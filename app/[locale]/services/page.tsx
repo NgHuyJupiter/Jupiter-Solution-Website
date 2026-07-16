@@ -62,23 +62,24 @@ export default function ServicesPage({ params }: PageProps) {
       </Section>
 
       {/* Strategic Services Detailed Section list */}
-      <Section variant="default" className="border-b border-slate-200">
-        <Container className="space-y-16">
+      <Section variant="default" className="border-b border-slate-200 bg-tech-grid relative">
+        <Container className="space-y-16 relative z-10">
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-12 border-b border-slate-200 last:border-b-0 last:pb-0`}
+              className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-12 border-b border-slate-200/80 last:border-b-0 last:pb-0 group opacity-0 animate-fade-up`}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Left Column: Title & Problem statement */}
-              <div className="lg:col-span-4 space-y-3">
-                <span className="font-mono text-sm font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-sm inline-block">
+              <div className="lg:col-span-4 space-y-3 lg:border-l-2 lg:border-slate-100 lg:pl-4 lg:group-hover:border-brand-500 transition-colors duration-[var(--motion-medium)]">
+                <span className="font-mono text-xs font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-xs inline-block">
                   {service.num}
                 </span>
-                <Typography variant="h2" className="text-text-primary leading-tight mt-1">
+                <Typography variant="h2" className="text-text-primary leading-tight mt-1 group-hover:text-brand-600 transition-colors duration-[var(--motion-base)]">
                   {service.title}
                 </Typography>
-                <div className="bg-slate-100/80 border border-slate-200 rounded p-4 text-xs">
-                  <span className="font-semibold text-slate-600 block mb-1">
+                <div className="bg-slate-50 border border-slate-200 rounded p-4 text-xs shadow-2xs">
+                  <span className="font-semibold text-slate-700 block mb-1">
                     {isEn ? 'Problem we solve:' : 'Bài toán giải quyết:'}
                   </span>
                   <p className="text-text-secondary leading-relaxed mb-0">{service.problem}</p>
@@ -99,7 +100,7 @@ export default function ServicesPage({ params }: PageProps) {
                     <ul className="space-y-1.5 text-xs text-text-secondary">
                       {service.scope.map((s) => (
                         <li key={s} className="flex items-start gap-1.5">
-                          <span className="text-brand-600 mt-0.5 shrink-0">▪</span>
+                          <span className="text-brand-500 mt-0.5 shrink-0">▪</span>
                           <span>{s}</span>
                         </li>
                       ))}
@@ -113,7 +114,7 @@ export default function ServicesPage({ params }: PageProps) {
                     <ul className="space-y-1.5 text-xs text-text-secondary">
                       {service.deliverables.map((d) => (
                         <li key={d} className="flex items-start gap-1.5">
-                          <span className="text-brand-600 mt-0.5 shrink-0">▪</span>
+                          <span className="text-brand-500 mt-0.5 shrink-0">▪</span>
                           <span>{d}</span>
                         </li>
                       ))}
@@ -123,7 +124,7 @@ export default function ServicesPage({ params }: PageProps) {
               </div>
 
               {/* Right Column: Tags & CTA */}
-              <div className="lg:col-span-3 flex flex-col justify-between h-full space-y-6 lg:text-right">
+              <div className="lg:col-span-3 flex flex-col justify-between h-full space-y-6 lg:items-end">
                 <div className="flex flex-wrap lg:justify-end gap-1.5">
                   {service.tags.map((tag) => (
                     <span
@@ -135,11 +136,11 @@ export default function ServicesPage({ params }: PageProps) {
                   ))}
                 </div>
 
-                <div className="lg:mt-auto">
+                <div className="lg:mt-auto w-full">
                   <Button
                     variant="primary"
                     size="sm"
-                    className="w-full lg:w-auto bg-brand-600 hover:bg-brand-700 text-white rounded-md"
+                    className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-md transition-all"
                     href={`/${params.locale}/contact#contact-form`}
                   >
                     {isEn ? 'Inquire service' : 'Yêu cầu tư vấn'}
@@ -154,7 +155,7 @@ export default function ServicesPage({ params }: PageProps) {
       {/* Engagement cooperation models */}
       <Section variant="alternate">
         <Container>
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16 opacity-0 animate-fade-up">
             <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
               {isEn ? 'Engagement Models' : 'Mô hình hợp tác'}
             </span>
@@ -164,13 +165,20 @@ export default function ServicesPage({ params }: PageProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {models.map((model) => (
-              <div key={model.num} className="bg-white border border-slate-200 rounded-lg p-5 flex flex-col justify-between hover:border-slate-300 transition-colors">
+            {models.map((model, idx) => (
+              <div 
+                key={model.num} 
+                className="group relative bg-white border border-slate-200 hover:border-brand-200 rounded-lg p-5 flex flex-col justify-between hover:shadow-md transition-all duration-[var(--motion-medium)] ease-[var(--ease-standard)] hover:-translate-y-0.5 opacity-0 animate-fade-up"
+                style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+              >
+                {/* Subtle corner marker */}
+                <span className="absolute top-2 right-2 font-mono text-[8px] text-slate-300 group-hover:text-brand-300 select-none" aria-hidden="true">+</span>
+                
                 <div>
-                  <span className="font-mono text-sm font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-sm mb-4 inline-block">
+                  <span className="font-mono text-xs font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-xs mb-4 inline-block">
                     {model.num}
                   </span>
-                  <h4 className="text-sm font-semibold text-text-primary mb-1">
+                  <h4 className="text-sm font-semibold text-text-primary mb-1 group-hover:text-brand-600 transition-colors">
                     {model.title}
                   </h4>
                   <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide block mb-3">

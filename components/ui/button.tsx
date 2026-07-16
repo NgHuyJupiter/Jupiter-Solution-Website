@@ -39,9 +39,9 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     // Brand color variants (Primary Burgundy, Secondary Slate, Ghost, Link)
     const variantClasses = {
       primary:
-        'bg-brand-600 hover:bg-brand-700 text-white shadow-sm font-medium border border-transparent focus-visible:ring-brand-500 active:scale-[0.98]',
+        'bg-brand-600 hover:bg-brand-700 text-white shadow-sm font-medium border border-transparent focus-visible:ring-brand-500 active:scale-[0.98] hover:-translate-y-0.5',
       secondary:
-        'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs font-medium focus-visible:ring-slate-400 active:scale-[0.98]',
+        'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs font-medium focus-visible:ring-slate-400 active:scale-[0.98] hover:-translate-y-0.5',
       ghost:
         'hover:bg-slate-100 text-slate-700 font-medium focus-visible:ring-slate-400 active:scale-[0.98]',
       link:
@@ -49,7 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     };
 
     const isBtnDisabled = disabled || isLoading;
-    const combinedClassName = `inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+    const combinedClassName = `inline-flex items-center justify-center transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] cursor-pointer select-none focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none group ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
     const content = (
       <>
@@ -79,13 +79,21 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
         )}
 
         {/* Prefix Icon */}
-        {!isLoading && leftIcon && <span className="inline-flex shrink-0">{leftIcon}</span>}
+        {!isLoading && leftIcon && (
+          <span className="inline-flex shrink-0 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:-translate-x-0.5">
+            {leftIcon}
+          </span>
+        )}
 
         {/* Button Text */}
         <span className="truncate">{children}</span>
 
         {/* Suffix Icon */}
-        {!isLoading && rightIcon && <span className="inline-flex shrink-0">{rightIcon}</span>}
+        {!isLoading && rightIcon && (
+          <span className="inline-flex shrink-0 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:translate-x-0.5">
+            {rightIcon}
+          </span>
+        )}
       </>
     );
 

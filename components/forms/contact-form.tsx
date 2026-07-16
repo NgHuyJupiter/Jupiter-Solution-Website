@@ -109,14 +109,17 @@ export default function ContactForm({ locale }: ContactFormProps) {
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-sm">
-      <h3 className="text-xl font-bold text-text-primary mb-1">{text.formTitle}</h3>
-      <p className="text-sm text-text-secondary mb-6">{text.formSub}</p>
+    <div className="relative overflow-hidden bg-white border border-slate-200 border-t-[3px] border-t-brand-600 rounded-lg p-6 md:p-8 shadow-sm">
+      {/* Subtle tech grid inside form panel */}
+      <div className="absolute inset-0 bg-tech-grid opacity-[0.03] pointer-events-none" />
+
+      <h3 className="relative z-10 text-xl font-bold text-text-primary mb-1">{text.formTitle}</h3>
+      <p className="relative z-10 text-sm text-text-secondary mb-6">{text.formSub}</p>
 
       {submitStatus === 'success' && (
         <div
           role="alert"
-          className="mb-6 p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-sm text-emerald-800"
+          className="relative z-10 mb-6 p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-sm text-emerald-800 animate-scale-in"
         >
           {text.successMsg}
         </div>
@@ -125,13 +128,13 @@ export default function ContactForm({ locale }: ContactFormProps) {
       {submitStatus === 'error' && (
         <div
           role="alert"
-          className="mb-6 p-4 rounded-lg bg-rose-50 border border-rose-200 text-sm text-rose-800"
+          className="relative z-10 mb-6 p-4 rounded-lg bg-rose-50 border border-rose-200 text-sm text-rose-800 animate-scale-in"
         >
           {text.errorMsg}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      <form onSubmit={handleSubmit} className="relative z-10 space-y-4" noValidate>
         {/* Row 1: Name and Company */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
@@ -144,14 +147,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
               required
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? 'error-name' : undefined}
-              className={`h-11 px-3 text-sm rounded-sm border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-colors ${
-                errors.name ? 'border-rose-500' : 'border-slate-300 hover:border-slate-400'
+              className={`h-10.5 px-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+                errors.name ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
               }`}
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
             {errors.name && (
-              <span id="error-name" role="alert" className="text-[11px] font-medium text-rose-600 mt-0.5">
+              <span id="error-name" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
                 {errors.name}
               </span>
             )}
@@ -167,14 +170,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
               required
               aria-invalid={!!errors.company}
               aria-describedby={errors.company ? 'error-company' : undefined}
-              className={`h-11 px-3 text-sm rounded-sm border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-colors ${
-                errors.company ? 'border-rose-500' : 'border-slate-300 hover:border-slate-400'
+              className={`h-10.5 px-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+                errors.company ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
               }`}
               value={formData.company}
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             />
             {errors.company && (
-              <span id="error-company" role="alert" className="text-[11px] font-medium text-rose-600 mt-0.5">
+              <span id="error-company" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
                 {errors.company}
               </span>
             )}
@@ -193,14 +196,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
               required
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? 'error-email' : undefined}
-              className={`h-11 px-3 text-sm rounded-sm border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-colors ${
-                errors.email ? 'border-rose-500' : 'border-slate-300 hover:border-slate-400'
+              className={`h-10.5 px-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+                errors.email ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
               }`}
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
             {errors.email && (
-              <span id="error-email" role="alert" className="text-[11px] font-medium text-rose-600 mt-0.5">
+              <span id="error-email" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
                 {errors.email}
               </span>
             )}
@@ -213,7 +216,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             <input
               id="form-phone"
               type="tel"
-              className="h-11 px-3 text-sm rounded-sm border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-colors"
+              className="h-10.5 px-3 text-sm rounded-md border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             />
@@ -228,7 +231,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             </label>
             <select
               id="form-service"
-              className="h-11 px-3 text-sm rounded-sm border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-colors"
+              className="h-10.5 px-3 text-sm rounded-md border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
               value={formData.service}
               onChange={(e) => setFormData({ ...formData, service: e.target.value })}
             >
@@ -250,7 +253,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             </label>
             <select
               id="form-budget"
-              className="h-11 px-3 text-sm rounded-sm border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-colors"
+              className="h-10.5 px-3 text-sm rounded-md border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
               value={formData.budget}
               onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
             >
@@ -271,52 +274,52 @@ export default function ContactForm({ locale }: ContactFormProps) {
           <textarea
             id="form-message"
             required
-            rows={5}
+            rows={4}
             placeholder={text.placeholderMessage}
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? 'error-message' : undefined}
-            className={`p-3 text-sm rounded-sm border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-colors ${
-              errors.message ? 'border-rose-500' : 'border-slate-300 hover:border-slate-400'
+            className={`p-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+              errors.message ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
             }`}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           />
           {errors.message && (
-            <span id="error-message" role="alert" className="text-[11px] font-medium text-rose-600 mt-0.5">
+            <span id="error-message" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
               {errors.message}
             </span>
           )}
         </div>
 
         {/* Row 5: Privacy Consent */}
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1.5 pt-1">
           <div className="flex items-start gap-2.5">
             <input
               id="form-consent"
               type="checkbox"
-              className="mt-1 h-4 w-4 rounded-sm border-slate-300 text-brand-600 focus:ring-brand-500 cursor-pointer"
+              className="mt-1 h-4 w-4 rounded-xs border-slate-300 text-brand-600 focus:ring-brand-500 cursor-pointer transition-colors duration-[var(--motion-base)]"
               checked={formData.consent}
               aria-invalid={!!errors.consent}
               aria-describedby={errors.consent ? 'error-consent' : undefined}
               onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
             />
-            <label htmlFor="form-consent" className="text-xs text-text-secondary cursor-pointer leading-relaxed">
+            <label htmlFor="form-consent" className="text-xs text-text-secondary cursor-pointer leading-relaxed select-none">
               {text.labelConsent}
             </label>
           </div>
           {errors.consent && (
-            <span id="error-consent" role="alert" className="text-[11px] font-medium text-rose-600">
+            <span id="error-consent" role="alert" className="text-[11px] font-semibold text-rose-600 animate-fade-in">
               {errors.consent}
             </span>
           )}
         </div>
 
         {/* Submit Action */}
-        <div className="pt-2">
+        <div className="pt-3">
           <Button
             type="submit"
             isLoading={isSubmitting}
-            className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-md h-11"
+            className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-md h-11 transition-all"
           >
             {text.btnSubmit}
           </Button>

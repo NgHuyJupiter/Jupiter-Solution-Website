@@ -48,9 +48,9 @@ export default function CapabilitiesPage({ params }: PageProps) {
       </Section>
 
       {/* Team ratios distribution */}
-      <Section variant="default" className="border-b border-slate-200">
-        <Container>
-          <div className="max-w-2xl mb-12">
+      <Section variant="default" className="border-b border-slate-200 bg-tech-grid relative">
+        <Container className="relative z-10">
+          <div className="max-w-2xl mb-12 opacity-0 animate-fade-up">
             <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
               {isEn ? 'Team proportion' : 'Cấu trúc đội ngũ'}
             </span>
@@ -60,12 +60,19 @@ export default function CapabilitiesPage({ params }: PageProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ratios.map((ratio) => (
-              <div key={ratio.title} className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:border-slate-300 transition-colors">
-                <span className="text-3xl font-extrabold text-brand-600 leading-none block mb-2">
+            {ratios.map((ratio, index) => (
+              <div 
+                key={ratio.title} 
+                className="group relative bg-white border border-slate-200 hover:border-brand-200 rounded-lg p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-[var(--motion-medium)] ease-[var(--ease-standard)] opacity-0 animate-fade-up"
+                style={{ animationDelay: `${(index + 1) * 100}ms` }}
+              >
+                {/* Asymmetric indicator tag */}
+                <span className="absolute top-2 right-2 font-mono text-[8px] text-slate-300 group-hover:text-brand-400 transition-colors select-none" aria-hidden="true">+</span>
+                
+                <span className="text-3xl font-extrabold text-brand-600 leading-none block mb-2 transition-transform duration-[var(--motion-base)] group-hover:scale-105 origin-left">
                   {ratio.percent}
                 </span>
-                <h4 className="text-sm font-semibold text-text-primary mb-1">
+                <h4 className="text-sm font-semibold text-text-primary mb-1 group-hover:text-brand-600 transition-colors">
                   {ratio.title}
                 </h4>
                 <p className="text-xs text-text-secondary leading-relaxed mt-1">
@@ -80,7 +87,7 @@ export default function CapabilitiesPage({ params }: PageProps) {
       {/* Certifications and Compliance list */}
       <Section variant="alternate" className="border-b border-slate-200">
         <Container>
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-12 opacity-0 animate-fade-up">
             <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
               {isEn ? 'Certifications & Compliance' : 'Chứng chỉ & Tuân thủ'}
             </span>
@@ -90,12 +97,16 @@ export default function CapabilitiesPage({ params }: PageProps) {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certs.map((cert) => (
-              <div key={cert.code} className="bg-bg-default border border-slate-200 rounded p-4 hover:border-slate-300 transition-colors">
-                <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-sm uppercase tracking-wider block w-fit mb-3">
+            {certs.map((cert, index) => (
+              <div 
+                key={cert.code} 
+                className="group bg-bg-default hover:bg-white border border-slate-200 hover:border-brand-200 rounded p-4 hover:shadow-xs hover:-translate-y-0.5 transition-all duration-[var(--motion-medium)] ease-[var(--ease-standard)] opacity-0 animate-fade-up"
+                style={{ animationDelay: `${(index + 1) * 70}ms` }}
+              >
+                <span className="font-mono text-[10px] font-bold text-slate-500 bg-slate-100 group-hover:bg-brand-50 group-hover:text-brand-600 transition-colors px-2 py-0.5 rounded-sm uppercase tracking-wider block w-fit mb-3">
                   {cert.code}
                 </span>
-                <h4 className="text-xs font-semibold text-text-primary leading-snug mb-1">
+                <h4 className="text-xs font-semibold text-text-primary leading-snug mb-1 group-hover:text-brand-600 transition-colors">
                   {cert.title}
                 </h4>
                 <span className="text-[11px] font-bold text-brand-600">

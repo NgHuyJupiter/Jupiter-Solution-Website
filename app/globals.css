@@ -33,6 +33,16 @@
   /* Typography families */
   --font-sans: 'Plus Jakarta Sans', 'Be Vietnam Pro', 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Motion Tokens */
+  --motion-fast: 140ms;
+  --motion-base: 200ms;
+  --motion-medium: 320ms;
+  --motion-slow: 480ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 }
 
 /* Base styles and defaults */
@@ -116,17 +126,116 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  /* Interactive & Graphic utilities */
+  .bg-tech-grid {
+    background-image: linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-burgundy-glow {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(128, 0, 32, 0.025) 0%, rgba(128, 0, 32, 0) 100%);
+  }
+
+  .animate-fade-up {
+    animation: fade-up var(--motion-medium) var(--ease-enter) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in var(--motion-medium) var(--ease-enter) forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in var(--motion-medium) var(--ease-enter) forwards;
+  }
+
+  .link-underline-hover {
+    position: relative;
+    text-decoration: none !important;
+  }
+
+  .link-underline-hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -1px;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform var(--motion-base) var(--ease-standard);
+  }
+
+  .link-underline-hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  /* Stagger delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes line-draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
-    animation-delay: -1ms !important;
-    animation-duration: 1ms !important;
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
     animation-iteration-count: 1 !important;
     background-attachment: initial !important;
     scroll-behavior: auto !important;
     transition-duration: 0s !important;
     transition-delay: 0s !important;
+  }
+  
+  /* Reset animations default state for accessibility */
+  .animate-fade-up, .animate-fade-in, .animate-scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }

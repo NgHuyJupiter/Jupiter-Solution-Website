@@ -33,13 +33,13 @@ export default function Accordion({ items }: AccordionProps) {
             
             {/* Custom details state indicator icon (+ to -) */}
             <span className="relative flex-shrink-0 ml-1.5 w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 group-hover:bg-brand-50 group-hover:text-brand-600 transition-colors">
-              <span className="absolute w-2.5 h-0.5 bg-current rounded-sm" />
-              <span className="absolute w-0.5 h-2.5 bg-current rounded-sm transition-transform duration-200 group-open:rotate-90" />
+              <span className="absolute w-2.5 h-0.5 bg-current rounded-sm transition-transform duration-200 group-open:rotate-180" />
+              <span className="absolute w-0.5 h-2.5 bg-current rounded-sm transition-transform duration-200 group-open:rotate-90 group-open:scale-y-0" />
             </span>
           </summary>
 
           {/* Details toggle body wrapper */}
-          <div className="border-t border-slate-100 p-5 bg-slate-50/50">
+          <div className="border-t border-slate-100 p-5 bg-slate-50/50 transition-all duration-200 ease-[var(--ease-standard)] group-open:animate-fade-in">
             <Typography variant="body-small" className="text-text-secondary mb-0">
               {item.answer}
             </Typography>

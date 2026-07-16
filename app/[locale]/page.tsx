@@ -41,22 +41,22 @@ export default function Homepage({ params }: PageProps) {
   return (
     <div className="flex flex-col w-full">
       {/* 1. Hero Section */}
-      <Section variant="default" className="pt-16 pb-20 border-b border-slate-200">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <Section variant="default" className="pt-16 pb-20 border-b border-slate-200 overflow-hidden relative bg-tech-grid">
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           {/* Hero Left Column Text */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-brand-600 bg-brand-50 rounded-xs mb-6 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-brand-600 bg-brand-50 rounded-xs mb-6 uppercase tracking-wider opacity-0 animate-fade-in">
               {heroCopy.eyebrow}
             </span>
-            <Typography variant="display" className="text-text-primary leading-tight font-extrabold mb-5">
+            <Typography variant="display" className="text-text-primary leading-tight font-extrabold mb-5 opacity-0 animate-fade-up delay-100">
               {heroCopy.headline}
             </Typography>
-            <Typography variant="body-large" className="text-text-secondary mb-8 max-w-xl">
+            <Typography variant="body-large" className="text-text-secondary mb-8 max-w-xl opacity-0 animate-fade-up delay-200">
               {heroCopy.description}
             </Typography>
             
             {/* CTA Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10 opacity-0 animate-fade-up delay-300">
               <Button
                 variant="primary"
                 size="lg"
@@ -76,7 +76,7 @@ export default function Homepage({ params }: PageProps) {
             </div>
 
             {/* Numerical stats row */}
-            <div className="grid grid-cols-3 gap-6 sm:gap-10 border-t border-slate-200 pt-8 w-full">
+            <div className="grid grid-cols-3 gap-6 sm:gap-10 border-t border-slate-200 pt-8 w-full opacity-0 animate-fade-in delay-400">
               {heroCopy.stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col">
                   <span className="text-2xl sm:text-3xl font-bold text-brand-600 leading-none">
@@ -90,23 +90,82 @@ export default function Homepage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Hero Right Column: Clean geometric system layout placeholder */}
-          <div className="lg:col-span-5 relative hidden lg:block" aria-hidden="true">
-            <div className="w-full aspect-square max-w-md mx-auto rounded-xl border border-slate-200 bg-white p-8 relative shadow-sm">
-              {/* Inner geometric shapes mimicking modular systems */}
-              <div className="absolute inset-0 bg-slate-50/50 rounded-xl" />
-              <div className="relative z-10 w-full h-full border border-dashed border-slate-300 rounded-lg flex items-center justify-center p-6">
-                <div className="w-4/5 h-4/5 rounded-full border border-slate-200 relative flex items-center justify-center">
-                  <div className="w-3/5 h-3/5 rounded-full border border-slate-300/80 border-dashed relative flex items-center justify-center">
-                    <span className="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600 flex items-center justify-center">
-                      <span className="w-4 h-4 rounded-full border border-brand-600 border-r-transparent border-t-transparent -rotate-45" />
-                    </span>
-                  </div>
-                  {/* Orbit nodes representing system nodes */}
-                  <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-slate-300 border border-white" />
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 rounded-full bg-brand-600 border border-white" />
-                  <span className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-slate-300 border border-white" />
-                </div>
+          {/* Hero Right Column: Detailed Precision Orbit Modular Diagram */}
+          <div className="lg:col-span-5 relative hidden lg:block opacity-0 animate-scale-in delay-200" aria-hidden="true">
+            {/* Ambient warm glow behind diagram */}
+            <div className="absolute -inset-10 bg-burgundy-glow rounded-full filter blur-xl pointer-events-none" />
+            
+            <div className="w-full aspect-square max-w-md mx-auto rounded-xl border border-slate-200/80 bg-white/70 backdrop-blur-xs p-6 relative shadow-xs hover:border-brand-200/50 hover:shadow-sm transition-all duration-[var(--motion-slow)] ease-[var(--ease-standard)]">
+              {/* Corner coordinates marks */}
+              <span className="absolute top-2 left-2 text-[8px] font-mono text-slate-300 select-none">+</span>
+              <span className="absolute top-2 right-2 text-[8px] font-mono text-slate-300 select-none">+</span>
+              <span className="absolute bottom-2 left-2 text-[8px] font-mono text-slate-300 select-none">+</span>
+              <span className="absolute bottom-2 right-2 text-[8px] font-mono text-slate-300 select-none">+</span>
+              
+              <div className="w-full h-full flex items-center justify-center">
+                <svg viewBox="0 0 400 400" className="w-full h-full text-slate-400 select-none" fill="none">
+                  {/* Outer Orbit Line */}
+                  <circle cx="200" cy="200" r="160" stroke="rgba(128, 0, 32, 0.04)" strokeWidth="1.5" />
+                  
+                  {/* Concentric dashed tracking circle */}
+                  <circle cx="200" cy="200" r="120" stroke="rgba(128, 0, 32, 0.08)" strokeWidth="1.2" strokeDasharray="3 3" />
+                  
+                  {/* Inner technical circle */}
+                  <circle cx="200" cy="200" r="80" stroke="rgba(128, 0, 32, 0.12)" strokeWidth="1" />
+                  
+                  {/* Asymmetric ellipse trajectory */}
+                  <ellipse cx="200" cy="200" rx="140" ry="80" stroke="rgba(128, 0, 32, 0.06)" strokeWidth="1.2" transform="rotate(-15 200 200)" />
+                  
+                  {/* Node Connector lines */}
+                  <line x1="200" y1="200" x2="80" y2="120" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
+                  <line x1="200" y1="200" x2="320" y2="120" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
+                  <line x1="200" y1="200" x2="200" y2="310" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
+                  <line x1="200" y1="200" x2="90" y2="280" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
+                  
+                  {/* central hub - modular core with hidden J geometric circle segment */}
+                  <g className="transition-transform duration-500 hover:scale-105 origin-center cursor-pointer">
+                    <circle cx="200" cy="200" r="28" fill="white" stroke="var(--color-brand-600)" strokeWidth="2.5" className="shadow-xs" />
+                    {/* Hidden geometric J curve inside orbit circle */}
+                    <path d="M 194 190 A 10 10 0 1 0 206 208 L 206 188" stroke="var(--color-brand-600)" strokeWidth="2.5" strokeLinecap="round" />
+                    <circle cx="200" cy="200" r="3" fill="var(--color-brand-600)" />
+                  </g>
+                  
+                  {/* Module 1: CLOUD OPERATIONS (Top Right) */}
+                  <g transform="translate(265, 95)" className="transition-transform duration-300 hover:-translate-y-0.5 cursor-default">
+                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
+                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">CLOUD</text>
+                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">INFRASTRUCTURE</text>
+                    <circle cx="-10" cy="9" r="2.5" fill="var(--color-brand-600)" />
+                  </g>
+
+                  {/* Module 2: SECURITY SOC (Top Left) */}
+                  <g transform="translate(45, 95)" className="transition-transform duration-300 hover:-translate-y-0.5 cursor-default">
+                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
+                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">SECURITY</text>
+                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">ZERO TRUST SOC</text>
+                    <circle cx="80" cy="9" r="2.5" fill="var(--color-brand-500)" />
+                  </g>
+
+                  {/* Module 3: APPLIED AI (Bottom Center) */}
+                  <g transform="translate(155, 290)" className="transition-transform duration-300 hover:translate-y-0.5 cursor-default">
+                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
+                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">APPLIED AI</text>
+                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">RAG AGENTS</text>
+                    <circle cx="35" cy="-10" r="2.5" fill="var(--color-brand-600)" />
+                  </g>
+                  
+                  {/* Module 4: CORE SYSTEMS (Bottom Left) */}
+                  <g transform="translate(45, 260)" className="transition-transform duration-300 hover:translate-y-0.5 cursor-default">
+                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
+                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">SOFTWARE</text>
+                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">CORE SYSTEMS</text>
+                    <circle cx="80" cy="9" r="2.5" fill="rgba(148, 163, 184, 0.4)" />
+                  </g>
+
+                  {/* Graphic layout parameters */}
+                  <text x="10" y="380" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)" opacity="0.4">SYS.LOC: 21.0285° N, 105.8542° E</text>
+                  <text x="340" y="380" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)" opacity="0.4">SCALE: 1:1</text>
+                </svg>
               </div>
             </div>
           </div>
@@ -129,6 +188,13 @@ export default function Homepage({ params }: PageProps) {
             <span>Hạ tầng mạng Viễn thông</span>
           </div>
         </Container>
+      </div>
+
+      {/* Styled Technical Section Divider */}
+      <div className="relative w-full h-[1px] bg-slate-200 max-w-7xl mx-auto" aria-hidden="true">
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4.5 h-4.5 rounded-full border border-slate-200 bg-white flex items-center justify-center shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-600" />
+        </span>
       </div>
 
       {/* 3. Strategic Services Section */}
@@ -208,8 +274,15 @@ export default function Homepage({ params }: PageProps) {
         </Container>
       </Section>
 
+      {/* Styled Technical Section Divider */}
+      <div className="relative w-full h-[1px] bg-slate-200 max-w-7xl mx-auto" aria-hidden="true">
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4.5 h-4.5 rounded-full border border-slate-200 bg-white flex items-center justify-center shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-600" />
+        </span>
+      </div>
+
       {/* 5. Strategic Partners & Products Showcase */}
-      <Section variant="default" className="border-t border-b border-slate-200">
+      <Section variant="default" className="border-b border-slate-200">
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">

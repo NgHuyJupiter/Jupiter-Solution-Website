@@ -15,12 +15,12 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
   ({ children, className = '', variant = 'default', ...props }, ref) => {
     // Map variant to background + text + border classes
     const bgClasses: Record<string, string> = {
-      default:     'bg-[var(--color-bg-default)] text-text-primary',
-      alternate:   'bg-[var(--color-surface-card)] text-text-primary border-y border-[var(--color-border-default)]',
-      subtle:      'bg-[var(--color-surface-alt)] text-text-primary border-y border-[var(--color-border-subtle)]',
-      'brand-tint':'bg-[var(--color-brand-50)] text-text-primary border-y border-[var(--color-brand-100)]',
-      dark:        'bg-[var(--color-surface-dark)] text-white',
-      'dark-brand':'bg-[var(--color-surface-dark)] text-white',
+      default:     'section-bg-default text-text-primary',
+      alternate:   'section-bg-alternate text-text-primary border-y border-[var(--color-border-default)]',
+      subtle:      'section-bg-subtle text-text-primary border-y border-[var(--color-border-subtle)]',
+      'brand-tint':'section-bg-brand text-text-primary border-y border-[var(--color-brand-100)]',
+      dark:        'section-bg-dark text-white',
+      'dark-brand':'section-bg-dark text-white',
     };
 
     return (

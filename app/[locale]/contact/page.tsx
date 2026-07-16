@@ -69,7 +69,8 @@ export default function ContactPage({ params }: PageProps) {
     <div className="flex flex-col w-full">
 
       {/* ── Page Header ──────────────────────────────────────── */}
-      <section className="py-14 md:py-16 border-b border-[var(--color-border-default)] bg-white">
+      <section className="py-14 md:py-16 border-b border-[var(--color-border-default)] bg-gradient-to-b from-white to-slate-50 bg-tech-dots relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
           <div className="max-w-3xl">
             <span className="eyebrow mb-5 block">

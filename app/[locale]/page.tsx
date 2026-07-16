@@ -50,7 +50,7 @@ export default function Homepage({ params }: PageProps) {
           Swiss grid: 7 cols text | 5 cols Precision Orbit graphic
           ════════════════════════════════════════════════════════════ */}
       <section
-        className="relative overflow-hidden border-b border-[var(--color-border-default)] bg-[var(--color-bg-default)] bg-editorial-grid"
+        className="relative overflow-hidden border-b border-[var(--color-border-default)] bg-gradient-to-b from-white via-slate-50 to-slate-100 bg-editorial-grid"
         aria-label={isEn ? 'Hero' : 'Giới thiệu'}
       >
         {/* Ambient glow — very subtle, behind right column graphic */}

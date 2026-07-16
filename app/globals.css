@@ -244,6 +244,27 @@
     background-color: var(--color-surface-dark);
   }
 
+  /* ─── Premium Gradient Section Backgrounds ─── */
+  .section-bg-default {
+    background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%);
+  }
+
+  .section-bg-alternate {
+    background: #FFFFFF;
+  }
+
+  .section-bg-subtle {
+    background: linear-gradient(180deg, #F1F5F9 0%, #E2E8F0 100%);
+  }
+
+  .section-bg-brand {
+    background: linear-gradient(180deg, #FFFDFD 0%, #FBF1F2 100%);
+  }
+
+  .section-bg-dark {
+    background: linear-gradient(180deg, #0F172A 0%, #090D16 100%);
+  }
+
   /* ─── Eyebrow Label ─── */
   .eyebrow {
     display: inline-flex;

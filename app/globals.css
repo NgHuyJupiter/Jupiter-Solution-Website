@@ -21,11 +21,11 @@
   --color-text-subtle:    #94A3B8; /* slate-400 — decorative text */
 
   /* ─── Surface & Background System ─── */
-  --color-bg-default:     #FAFAFA; /* warm near-white site BG */
-  --color-surface-card:   #FFFFFF; /* pure white cards */
-  --color-surface-alt:    #F5F5F7; /* subtle alternate sections */
-  --color-surface-dark:   #141419; /* charcoal-base for dark sections */
-  --color-surface-darker: #0E0E12; /* near-black for footer */
+  --color-bg-default:     #F8FAFC; /* slate-50 — premium neutral light gray background */
+  --color-surface-card:   #FFFFFF; /* pure white cards/surfaces */
+  --color-surface-alt:    #F1F5F9; /* slate-100 — obvious contrast alternation */
+  --color-surface-dark:   #0F172A; /* slate-900 — rich charcoal dark background */
+  --color-surface-darker: #090D16; /* slate-950 — deep spatial footer bg */
 
   /* ─── Border Colors ─── */
   --color-border-default:  #E2E8F0; /* slate-200 — standard border */
@@ -202,26 +202,41 @@
   /* Precision tech grid — very subtle, Swiss Modernism aligned */
   .bg-tech-grid {
     background-image:
-      linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
     background-size: 32px 32px;
   }
 
   /* Wider editorial grid — used in hero sections */
   .bg-editorial-grid {
     background-image:
-      linear-gradient(to right, rgba(148, 163, 184, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+      linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 
   /* Ambient burgundy radial glow — subtle */
   .bg-burgundy-glow {
     background: radial-gradient(
-      ellipse 70% 60% at 65% 40%,
-      rgba(128, 0, 32, 0.03) 0%,
-      rgba(128, 0, 32, 0) 100%
+      circle at 60% 40%,
+      rgba(128, 0, 32, 0.06) 0%,
+      rgba(128, 0, 32, 0.01) 60%,
+      transparent 100%
     );
+  }
+
+  /* Modern technical dots pattern */
+  .bg-tech-dots {
+    background-image: radial-gradient(rgba(148, 163, 184, 0.09) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Grid overlay for dark surfaces */
+  .bg-dark-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   /* Dark section surface — charcoal with burgundy undertone */

@@ -296,7 +296,9 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           3. STRATEGIC SERVICES — Indexed Grid
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)]">
+      <Section variant="default" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-dots">
+        {/* Soft radial glow in the corner */}
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
           {/* Section heading */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
@@ -346,8 +348,10 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           4. CAPABILITIES — Asymmetric Split Layout
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="subtle">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <Section variant="subtle" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-grid">
+        {/* Soft radial glow on the left */}
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           {/* Left: quote + CTA */}
           <div className="lg:col-span-7">
             <span className="eyebrow mb-5 block">{content.home.capabilitiesHead.eyebrow}</span>
@@ -408,8 +412,10 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           5. TECHNOLOGY INTEGRATION — Product Showcase
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)]">
-        <Container>
+      <Section variant="default" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-dots">
+        {/* Soft radial glow in the center-right */}
+        <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[400px] h-[400px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="relative z-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div className="max-w-xl">
               <span className="eyebrow mb-4 block">
@@ -458,8 +464,10 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           6. CASE STUDIES — Editorial Layout
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="subtle" className="border-b border-[var(--color-border-default)]">
-        <Container>
+      <Section variant="subtle" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-grid">
+        {/* Soft radial glow in the top-left */}
+        <div className="absolute top-0 left-0 w-[450px] h-[450px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="relative z-10">
           <div className="mb-14">
             <span className="eyebrow mb-4 block">
               {isEn ? 'Delivered Projects' : 'Dự án đã bàn giao'}
@@ -490,8 +498,10 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           7. DELIVERY PROCESS — Vertical Rail
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)]">
-        <Container>
+      <Section variant="default" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-dots">
+        {/* Soft radial glow in the center-bottom */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="relative z-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div className="max-w-xl">
               <span className="eyebrow mb-4 block">{content.home.processHead.eyebrow}</span>
@@ -550,7 +560,7 @@ export default function Homepage({ params }: PageProps) {
         />
         {/* Subtle grid on dark surface */}
         <div
-          className="absolute inset-0 bg-editorial-grid opacity-20 pointer-events-none"
+          className="absolute inset-0 bg-dark-grid opacity-40 pointer-events-none"
           aria-hidden="true"
         />
 

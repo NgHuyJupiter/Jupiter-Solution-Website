@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand colors */
+  --color-brand-50: #FBF1F2;
+  --color-brand-100: #F7D6D9;
+  --color-brand-200: #F1B3B8;
+  --color-brand-300: #E6858E;
+  --color-brand-400: #D85664;
+  --color-brand-500: #C23041;
+  --color-brand-600: #800020; /* Deep Burgundy / Maroon primary */
+  --color-brand-700: #600018; /* Hover state */
+  --color-brand-800: #42000E;
+  --color-brand-900: #290006;
+  
+  /* Text semantic colors */
+  --color-text-primary: #0F172A;   /* slate-900 */
+  --color-text-secondary: #475569; /* slate-600 */
+  --color-text-muted: #64748B;     /* slate-500 */
+  
+  /* Background colors */
+  --color-bg-default: #FAFAFA;     /* off-white */
+  --color-surface-card: #FFFFFF;   /* pure white */
+  
+  /* Radius scale (strict 4px grid mappings) */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  
+  /* Typography families */
+  --font-sans: 'Plus Jakarta Sans', 'Be Vietnam Pro', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base styles and defaults */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg-default);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Selection styles */
+  ::selection {
+    background-color: var(--color-brand-100);
+    color: var(--color-brand-800);
+  }
+  
+  /* Accessible Keyboard focus visible outline states */
+  *:focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+  }
+}
+
+/* Reusable layout helper utilities */
+@layer utilities {
+  /* Container layout sizes */
+  .container-center {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 80rem; /* 1280px */
+  }
+
+  .container-wide {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 90rem; /* 1440px */
+  }
+  
+  /* Section Spacings */
+  .section-rhythm {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .section-rhythm {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  /* Typography clamp styling for DISPLAY hero */
+  .text-clamp-display {
+    font-size: clamp(2rem, 5vw + 1rem, 2.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Text gradient helper (limited to tonal burgundy hues) */
+  .text-brand-gradient {
+    background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-brand-800) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}

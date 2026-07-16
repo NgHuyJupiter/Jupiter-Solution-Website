@@ -5,136 +5,180 @@ interface FooterProps {
 }
 
 export default function Footer({ locale }: FooterProps) {
-  // Localized navigation text copy
-  const text = locale === 'vi' ? {
-    aboutText: 'Sao Mộc là người đồng hành kiến tạo giải pháp công nghệ, chuyển đổi số và AI — đặt khách hàng làm trung tâm.',
-    addressTitle: 'Địa chỉ',
-    address: 'Tầng 12, Toà nhà Sao Mộc\n88 Đại Cồ Việt, Hai Bà Trưng\nHà Nội, Việt Nam',
-    phone: 'Số điện thoại',
-    email: 'Email liên hệ',
-    license: '© 2026 Công ty Cổ phần Giải pháp Công nghệ Sao Mộc. Đăng ký kinh doanh số 0109876543 [CONTENT VERIFICATION REQUIRED].',
-    navTitle: 'Điều hướng',
-    productsTitle: 'Sản phẩm',
-    servicesTitle: 'Dịch vụ',
-    capabilitiesTitle: 'Giới thiệu',
-    contactTitle: 'Liên hệ',
-    careers: 'Tuyển dụng',
-    privacy: 'Chính sách bảo mật',
-    terms: 'Điều khoản sử dụng',
-  } : {
-    aboutText: 'Sao Mộc is your partner in architecting technological solutions, digital transformation, and applied AI — putting clients at the center.',
-    addressTitle: 'Address',
-    address: '12th Floor, Sao Mộc Building\n88 Dai Co Viet, Hai Ba Trung\nHanoi, Vietnam',
-    phone: 'Phone',
-    email: 'Email',
-    license: '© 2026 Sao Mộc Technology Solutions Joint Stock Company. Business Registration No. 0109876543 [CONTENT VERIFICATION REQUIRED].',
-    navTitle: 'Navigation',
-    productsTitle: 'Products',
-    servicesTitle: 'Services',
-    capabilitiesTitle: 'Capabilities',
-    contactTitle: 'Contact',
-    careers: 'Careers',
-    privacy: 'Privacy Policy',
-    terms: 'Terms of Use',
-  };
+  const isVi = locale === 'vi';
+
+  const text = isVi
+    ? {
+        tagline: 'Sao Mộc — đồng hành kiến tạo giải pháp công nghệ, chuyển đổi số và AI.',
+        addressTitle: 'Địa chỉ',
+        address: 'Tầng 12, Toà nhà Sao Mộc\n88 Đại Cồ Việt, Hai Bà Trưng\nHà Nội, Việt Nam',
+        phone: 'Điện thoại',
+        email: 'Email',
+        license: '© 2026 Công ty Cổ phần Giải pháp Công nghệ Sao Mộc.',
+        navTitle: 'Điều hướng',
+        products: 'Sản phẩm',
+        services: 'Dịch vụ',
+        capabilities: 'Về chúng tôi',
+        contact: 'Liên hệ',
+        legalTitle: 'Pháp lý',
+        privacy: 'Chính sách bảo mật',
+        terms: 'Điều khoản sử dụng',
+        careers: 'Tuyển dụng',
+        hiringBadge: 'Đang tuyển',
+        orbits: 'Quỹ đạo của đổi mới.',
+      }
+    : {
+        tagline: 'Sao Mộc — your partner in enterprise technology solutions, digital transformation, and AI.',
+        addressTitle: 'Address',
+        address: '12th Floor, Sao Mộc Building\n88 Dai Co Viet, Hai Ba Trung\nHanoi, Vietnam',
+        phone: 'Phone',
+        email: 'Email',
+        license: '© 2026 Sao Mộc Technology Solutions Joint Stock Company.',
+        navTitle: 'Navigation',
+        products: 'Products',
+        services: 'Services',
+        capabilities: 'About Us',
+        contact: 'Contact',
+        legalTitle: 'Legal',
+        privacy: 'Privacy Policy',
+        terms: 'Terms of Use',
+        careers: 'Careers',
+        hiringBadge: 'We are hiring',
+        orbits: 'Orbit of Innovation.',
+      };
 
   return (
-    <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 pt-16 pb-8">
-      <div className="container-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Brand Summary Column */}
-          <div className="flex flex-col gap-4">
-            <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-white">
-              <span className="w-7 h-7 rounded bg-brand-600 flex items-center justify-center" aria-hidden="true">
-                <span className="w-4 h-4 rounded-full border border-white border-r-transparent border-t-transparent -rotate-45" />
+    <footer className="bg-[var(--color-surface-darker)] text-slate-300 border-t border-slate-800/80">
+      
+      {/* Top accent strip */}
+      <div className="h-[2px] bg-gradient-to-r from-brand-700/0 via-brand-600 to-brand-700/0" aria-hidden="true" />
+
+      {/* Main footer content */}
+      <div className="container-center pt-14 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+          {/* ── Brand Column ─────────────────────────────── */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Link href={`/${locale}`} className="inline-flex items-center gap-2.5 group mb-4">
+              {/* Precision Orbit logomark — dark version */}
+              <span
+                className="w-8 h-8 rounded-[var(--radius-md)] bg-brand-700 flex items-center justify-center shrink-0 transition-colors duration-[var(--motion-base)] group-hover:bg-brand-600"
+                aria-hidden="true"
+              >
+                <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+                  <ellipse
+                    cx="16"
+                    cy="16"
+                    rx="9"
+                    ry="5.5"
+                    stroke="rgba(255,255,255,0.2)"
+                    strokeWidth="1.2"
+                    transform="rotate(-30 16 16)"
+                  />
+                  <path
+                    d="M 16 10 A 6 6 0 1 1 10.5 18.5 L 10.5 13"
+                    stroke="white"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                  <circle cx="22.5" cy="11.5" r="1.5" fill="rgba(255,255,255,0.5)" />
+                </svg>
               </span>
-              <span className="font-bold text-lg leading-none">Sao Mộc</span>
+              <span className="flex flex-col leading-none">
+                <span className="text-[0.9375rem] font-bold text-white tracking-tight leading-none">Sao Mộc</span>
+                <span className="text-[0.625rem] font-semibold text-slate-400 leading-none mt-[3px] tracking-wide uppercase">Jupiter Solutions</span>
+              </span>
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
-              {text.aboutText}
+
+            <p className="text-sm text-slate-400 leading-relaxed max-w-[240px]">
+              {text.tagline}
             </p>
           </div>
 
-          {/* Contact Direct & Address Column */}
-          <div className="flex flex-col gap-3">
-            <h5 className="text-sm font-semibold text-white uppercase tracking-wider mb-1">
+          {/* ── Contact & Address ─────────────────────────── */}
+          <div>
+            <h5 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
               {text.addressTitle}
             </h5>
-            <p className="text-sm text-slate-400 whitespace-pre-line leading-relaxed">
-              {text.address}
-            </p>
-            <div className="text-sm mt-2">
-              <span className="text-slate-500 font-medium">{text.phone}:</span>{' '}
-              <a href="tel:+84326813947" className="hover:text-white transition-colors">
-                (+84) 326.813.947
-              </a>
-            </div>
-            <div className="text-sm">
-              <span className="text-slate-500 font-medium">{text.email}:</span>{' '}
-              <a href="mailto:info@jupiter-ai.pro" className="hover:text-white transition-colors">
-                info@jupiter-ai.pro
-              </a>
-            </div>
+            <address className="not-italic">
+              <p className="text-sm text-slate-400 whitespace-pre-line leading-relaxed mb-3">
+                {text.address}
+              </p>
+              <div className="space-y-1.5 text-sm">
+                <div>
+                  <span className="text-slate-500 text-xs">{text.phone}:&nbsp;</span>
+                  <a href="tel:+84326813947" className="text-slate-300 hover:text-white transition-colors duration-[var(--motion-fast)]">
+                    (+84) 326.813.947
+                  </a>
+                </div>
+                <div>
+                  <span className="text-slate-500 text-xs">{text.email}:&nbsp;</span>
+                  <a href="mailto:info@jupiter-ai.pro" className="text-slate-300 hover:text-white transition-colors duration-[var(--motion-fast)]">
+                    info@jupiter-ai.pro
+                  </a>
+                </div>
+              </div>
+            </address>
           </div>
 
-          {/* Quick Links Column */}
-          <div className="flex flex-col gap-3">
-            <h5 className="text-sm font-semibold text-white uppercase tracking-wider mb-1">
+          {/* ── Navigation ───────────────────────────────── */}
+          <div>
+            <h5 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
               {text.navTitle}
             </h5>
-            <ul className="flex flex-col gap-2.5 text-sm">
-              <li>
-                <Link href={`/${locale}/products`} className="hover:text-white text-slate-400 transition-colors">
-                  {text.productsTitle}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/services`} className="hover:text-white text-slate-400 transition-colors">
-                  {text.servicesTitle}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/capabilities`} className="hover:text-white text-slate-400 transition-colors">
-                  {text.capabilitiesTitle}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/contact`} className="hover:text-white text-slate-400 transition-colors">
-                  {text.contactTitle}
-                </Link>
-              </li>
+            <ul className="space-y-2.5">
+              {[
+                { label: text.products,     href: `/${locale}/products` },
+                { label: text.services,     href: `/${locale}/services` },
+                { label: text.capabilities, href: `/${locale}/capabilities` },
+                { label: text.contact,      href: `/${locale}/contact` },
+              ].map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm text-slate-400 hover:text-white transition-colors duration-[var(--motion-fast)] link-underline"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Legal / Recruitment Column */}
-          <div className="flex flex-col gap-3">
-            <h5 className="text-sm font-semibold text-white uppercase tracking-wider mb-1">
-              {locale === 'vi' ? 'Pháp lý & Tuyển dụng' : 'Legal & Careers'}
+          {/* ── Legal & Careers ───────────────────────────── */}
+          <div>
+            <h5 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+              {text.legalTitle}
             </h5>
-            <ul className="flex flex-col gap-2.5 text-sm">
+            <ul className="space-y-2.5">
               <li>
-                <span className="text-slate-500 block">
-                  {text.careers} — <span className="text-[10px] bg-slate-800 text-brand-100 px-1 py-0.5 rounded uppercase tracking-wider font-semibold">We are hiring</span>
+                <span className="text-sm text-slate-400 flex items-center gap-2">
+                  {text.careers}
+                  <span className="text-[9px] font-bold bg-brand-700 text-brand-100 px-1.5 py-0.5 rounded-[var(--radius-xs)] uppercase tracking-wider">
+                    {text.hiringBadge}
+                  </span>
                 </span>
               </li>
               <li>
-                <span className="hover:text-white text-slate-400 cursor-pointer transition-colors">
-                  {text.privacy}
-                </span>
+                <span className="text-sm text-slate-500 cursor-default">{text.privacy}</span>
               </li>
               <li>
-                <span className="hover:text-white text-slate-400 cursor-pointer transition-colors">
-                  {text.terms}
-                </span>
+                <span className="text-sm text-slate-500 cursor-default">{text.terms}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom copyright & business license bar */}
-        <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
-          <span>{text.license}</span>
-          <span>{locale === 'vi' ? 'Quỹ đạo của đổi mới.' : 'Orbit of Innovation.'}</span>
+        {/* ── Bottom bar ──────────────────────────────────── */}
+        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="text-xs text-slate-600 leading-relaxed">
+            {text.license}
+            {/* CONTENT VERIFICATION REQUIRED: Confirm business registration number */}
+          </p>
+          <span className="text-xs text-slate-700 font-medium tracking-wide italic shrink-0">
+            {text.orbits}
+          </span>
         </div>
       </div>
     </footer>

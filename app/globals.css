@@ -1,51 +1,76 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Brand colors */
-  --color-brand-50: #FBF1F2;
-  --color-brand-100: #F7D6D9;
-  --color-brand-200: #F1B3B8;
-  --color-brand-300: #E6858E;
-  --color-brand-400: #D85664;
-  --color-brand-500: #C23041;
-  --color-brand-600: #800020; /* Deep Burgundy / Maroon primary */
-  --color-brand-700: #600018; /* Hover state */
-  --color-brand-800: #42000E;
-  --color-brand-900: #290006;
-  
-  /* Text semantic colors */
-  --color-text-primary: #0F172A;   /* slate-900 */
-  --color-text-secondary: #475569; /* slate-600 */
-  --color-text-muted: #64748B;     /* slate-500 */
-  
-  /* Background colors */
-  --color-bg-default: #FAFAFA;     /* off-white */
-  --color-surface-card: #FFFFFF;   /* pure white */
-  
-  /* Radius scale (strict 4px grid mappings) */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 20px;
-  
-  /* Typography families */
-  --font-sans: 'Plus Jakarta Sans', 'Be Vietnam Pro', 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* ─── Brand Tonal Palette — Deep Burgundy #7A1F2B Identity ─── */
+  --color-brand-50:  #FBF1F2;
+  --color-brand-100: #F5D9DC;
+  --color-brand-200: #EEB3BA;
+  --color-brand-300: #E17F8B;
+  --color-brand-400: #CE4F5E;
+  --color-brand-500: #B23043;
+  --color-brand-600: #800020; /* Deep Burgundy / Maroon — approved primary */
+  --color-brand-700: #5E0018; /* Hover state — darker */
+  --color-brand-800: #400010; /* Strong emphasis */
+  --color-brand-900: #260009; /* Darkest, on-dark borders */
+  --color-brand-950: #130004; /* Near-black burgundy */
 
-  /* Motion Tokens */
-  --motion-fast: 140ms;
-  --motion-base: 200ms;
-  --motion-medium: 320ms;
-  --motion-slow: 480ms;
+  /* ─── Text Semantic Colors — Slate Scale ─── */
+  --color-text-primary:   #0F172A; /* slate-900 — main headings & body */
+  --color-text-secondary: #475569; /* slate-600 — supporting copy */
+  --color-text-muted:     #64748B; /* slate-500 — labels, captions */
+  --color-text-subtle:    #94A3B8; /* slate-400 — decorative text */
+
+  /* ─── Surface & Background System ─── */
+  --color-bg-default:     #FAFAFA; /* warm near-white site BG */
+  --color-surface-card:   #FFFFFF; /* pure white cards */
+  --color-surface-alt:    #F5F5F7; /* subtle alternate sections */
+  --color-surface-dark:   #141419; /* charcoal-base for dark sections */
+  --color-surface-darker: #0E0E12; /* near-black for footer */
+
+  /* ─── Border Colors ─── */
+  --color-border-default:  #E2E8F0; /* slate-200 — standard border */
+  --color-border-subtle:   #F1F5F9; /* slate-100 — very light */
+  --color-border-emphasis: #CBD5E1; /* slate-300 — stronger divider */
+  --color-border-brand:    rgba(128, 0, 32, 0.20); /* burgundy tinted border */
+
+  /* ─── Radius Scale (strict 4px grid) ─── */
+  --radius-none: 0px;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   8px;
+  --radius-xl:   12px;
+  --radius-2xl:  16px;
+  --radius-full: 9999px;
+
+  /* ─── Typography Families ─── */
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ─── Motion Tokens (Swiss Modernism — purposeful, controlled) ─── */
+  --motion-instant: 80ms;
+  --motion-fast:    140ms;
+  --motion-base:    200ms;
+  --motion-medium:  320ms;
+  --motion-slow:    480ms;
+  --motion-xslow:   640ms;
 
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-enter:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-linear:   linear;
+
+  /* ─── Elevation / Shadow System ─── */
+  --shadow-xs:  0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm:  0 1px 4px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:  0 4px 8px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-lg:  0 8px 24px rgba(15, 23, 42, 0.08), 0 4px 8px rgba(15, 23, 42, 0.04);
+  --shadow-brand: 0 0 0 3px rgba(128, 0, 32, 0.15);
 }
 
-/* Base styles and defaults */
+/* ────────────────────────────────────────────────────────────────────
+   BASE STYLES
+   ──────────────────────────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -55,6 +80,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
   body {
@@ -64,29 +90,43 @@
     display: flex;
     flex-direction: column;
   }
-  
-  /* Selection styles */
+
+  /* Selection */
   ::selection {
     background-color: var(--color-brand-100);
     color: var(--color-brand-800);
   }
-  
-  /* Accessible Keyboard focus visible outline states */
+
+  /* Focus — box-shadow based (respects border-radius) */
   *:focus-visible {
-    outline: 2px solid var(--color-brand-600);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-brand-600), 0 0 0 4px rgba(128, 0, 32, 0.12);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Remove default margin from headings, paragraphs in component context */
+  h1, h2, h3, h4, h5, h6 {
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
-/* Reusable layout helper utilities */
+/* ────────────────────────────────────────────────────────────────────
+   LAYOUT UTILITIES
+   ──────────────────────────────────────────────────────────────────── */
 @layer utilities {
-  /* Container layout sizes */
+
+  /* Container sizes — strict Swiss grid */
   .container-center {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     max-width: 80rem; /* 1280px */
   }
 
@@ -94,17 +134,33 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     max-width: 90rem; /* 1440px */
   }
-  
-  /* Section Spacings */
+
+  @media (min-width: 640px) {
+    .container-center,
+    .container-wide {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-center,
+    .container-wide {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  /* Section rhythm — mathematical spacing */
   .section-rhythm {
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
-  
+
   @media (min-width: 1024px) {
     .section-rhythm {
       padding-top: 6rem;
@@ -112,32 +168,169 @@
     }
   }
 
-  /* Typography clamp styling for DISPLAY hero */
+  /* ─── Typography Clamp Scales ─── */
   .text-clamp-display {
-    font-size: clamp(2rem, 5vw + 1rem, 2.5rem);
-    line-height: 1.2;
+    font-size: clamp(2.5rem, 4vw + 1rem, 4rem);   /* 40px → 64px */
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  .text-clamp-h1 {
+    font-size: clamp(2rem, 3vw + 0.75rem, 3.25rem); /* 32px → 52px */
+    line-height: 1.15;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
-  
-  /* Text gradient helper (limited to tonal burgundy hues) */
-  .text-brand-gradient {
-    background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-brand-800) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+  .text-clamp-h2 {
+    font-size: clamp(1.5rem, 2vw + 0.5rem, 2.25rem); /* 24px → 36px */
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 
-  /* Interactive & Graphic utilities */
+  .text-clamp-h3 {
+    font-size: clamp(1.125rem, 1.5vw + 0.25rem, 1.625rem); /* 18px → 26px */
+    line-height: 1.35;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Background Textures ─── */
+
+  /* Precision tech grid — very subtle, Swiss Modernism aligned */
   .bg-tech-grid {
-    background-image: linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
+  /* Wider editorial grid — used in hero sections */
+  .bg-editorial-grid {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Ambient burgundy radial glow — subtle */
   .bg-burgundy-glow {
-    background: radial-gradient(50% 50% at 50% 50%, rgba(128, 0, 32, 0.025) 0%, rgba(128, 0, 32, 0) 100%);
+    background: radial-gradient(
+      ellipse 70% 60% at 65% 40%,
+      rgba(128, 0, 32, 0.03) 0%,
+      rgba(128, 0, 32, 0) 100%
+    );
   }
 
+  /* Dark section surface — charcoal with burgundy undertone */
+  .bg-surface-dark {
+    background-color: var(--color-surface-dark);
+  }
+
+  /* ─── Eyebrow Label ─── */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.6875rem;   /* 11px */
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-brand-600);
+    background-color: var(--color-brand-50);
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-xs);
+  }
+
+  /* Eyebrow dot separator */
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--color-brand-600);
+    flex-shrink: 0;
+  }
+
+  /* Dark eyebrow — used on dark sections */
+  .eyebrow-dark {
+    color: var(--color-brand-300);
+    background-color: rgba(128, 0, 32, 0.15);
+  }
+
+  .eyebrow-dark::before {
+    background-color: var(--color-brand-300);
+  }
+
+  /* ─── Section Divider ─── */
+  .divider-orbit {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-border-default);
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .divider-orbit::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-brand-600);
+    box-shadow: 0 0 0 3px var(--color-surface-card), 0 0 0 5px var(--color-border-default);
+  }
+
+  /* ─── Interactive Micromotion Patterns ─── */
+
+  /* Hover lift — subtle elevation on interactive cards */
+  .hover-lift {
+    transition:
+      transform var(--motion-medium) var(--ease-enter),
+      box-shadow var(--motion-medium) var(--ease-standard),
+      border-color var(--motion-base) var(--ease-standard);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Expanding underline link animation */
+  .link-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--motion-base) var(--ease-standard);
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ─── Entrance Animations ─── */
+
+  /* Opacity + translate Y — for staggered reveals */
   .animate-fade-up {
     animation: fade-up var(--motion-medium) var(--ease-enter) forwards;
   }
@@ -147,43 +340,96 @@
   }
 
   .animate-scale-in {
-    animation: scale-in var(--motion-medium) var(--ease-enter) forwards;
+    animation: scale-in var(--motion-slow) var(--ease-enter) forwards;
   }
 
-  .link-underline-hover {
+  .animate-slide-right {
+    animation: slide-right var(--motion-medium) var(--ease-enter) forwards;
+  }
+
+  /* SVG path draw animation */
+  .animate-draw {
+    animation: svg-draw 1.2s var(--ease-enter) forwards;
+  }
+
+  /* Stagger delays — used with opacity-0 + animate-* */
+  .delay-75  { animation-delay: 75ms; }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-150 { animation-delay: 150ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-250 { animation-delay: 250ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-350 { animation-delay: 350ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+
+  /* ─── Left Brand Bar — Service/Section Indicator ─── */
+  .brand-bar {
     position: relative;
-    text-decoration: none !important;
+    padding-left: 1rem;
   }
 
-  .link-underline-hover::after {
+  .brand-bar::before {
     content: '';
     position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 1px;
-    bottom: -1px;
     left: 0;
-    background-color: currentColor;
-    transform-origin: bottom right;
-    transition: transform var(--motion-base) var(--ease-standard);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-brand-600);
+    border-radius: 0 1px 1px 0;
   }
 
-  .link-underline-hover:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  /* ─── Index Number Chip ─── */
+  .index-chip {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-brand-600);
+    background-color: var(--color-brand-50);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
-  
-  /* Stagger delays */
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
+
+  /* ─── Precision Orbit Graphic Utilities ─── */
+
+  /* SVG path draw-in animation class applied inline via stroke-dasharray */
+  .orbit-path {
+    stroke-dashoffset: 100;
+  }
+
+  /* ─── Scroll reveal — invisible before JS hydrates ─── */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity var(--motion-medium) var(--ease-enter),
+      transform var(--motion-medium) var(--ease-enter);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Without JS — ensure content remains accessible */
+  .scroll-reveal.no-js {
+    opacity: 1;
+    transform: none;
+  }
 }
+
+/* ────────────────────────────────────────────────────────────────────
+   KEYFRAMES
+   ──────────────────────────────────────────────────────────────────── */
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -192,18 +438,14 @@
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: scale(0.985);
+    transform: scale(0.97);
   }
   to {
     opacity: 1;
@@ -211,31 +453,60 @@
   }
 }
 
-@keyframes line-draw {
+@keyframes slide-right {
   from {
-    stroke-dashoffset: 100;
+    opacity: 0;
+    transform: translateX(-12px);
   }
   to {
-    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-/* Reduced motion support */
+@keyframes svg-draw {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   REDUCED MOTION — WCAG 2.2 AA Compliance
+   ──────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-delay: 0s !important;
-    animation-duration: 0s !important;
+
+  /* Kill all decorative motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0.001ms !important;
     animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0.001ms !important;
     background-attachment: initial !important;
     scroll-behavior: auto !important;
-    transition-duration: 0s !important;
-    transition-delay: 0s !important;
   }
-  
-  /* Reset animations default state for accessibility */
-  .animate-fade-up, .animate-fade-in, .animate-scale-in {
+
+  /* Force all animation states to their final value */
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-scale-in,
+  .animate-slide-right,
+  .animate-draw {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+
+  /* Force scroll-reveal elements visible */
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Hover lifts disabled */
+  .hover-lift:hover {
+    transform: none !important;
   }
 }

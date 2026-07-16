@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Typography from '../ui/typography';
 import Button from '../ui/button';
 
 interface ProductItem {
@@ -22,6 +21,15 @@ interface ProductCardProps {
   inquiryHref?: string;
 }
 
+/**
+ * ProductCard — Technology Integration Showcase
+ *
+ * Visually distinct from ServiceCard:
+ * - Top-accent bar instead of left-border
+ * - Code/Partner header with clear vendor identification
+ * - Technical model list with monospace model numbers
+ * - Different surface tint (no tech-grid overlay)
+ */
 export default function ProductCard({
   code,
   partner,
@@ -32,67 +40,76 @@ export default function ProductCard({
   inquiryHref,
 }: ProductCardProps) {
   return (
-    <div className="relative group bg-white border border-slate-200 hover:border-brand-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-[var(--motion-medium)] ease-[var(--ease-standard)] hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden">
-      {/* Decorative tech grid pattern underlay */}
-      <div className="absolute inset-0 bg-tech-grid opacity-[0.4] group-hover:opacity-[0.7] transition-opacity duration-[var(--motion-medium)] pointer-events-none" />
+    <div className="group relative bg-white border border-[var(--color-border-default)] hover:border-brand-200 rounded-[var(--radius-lg)] overflow-hidden hover-lift flex flex-col">
+      
+      {/* Top accent bar — 3px brand stripe (vs service card left-bar) */}
+      <div className="h-[3px] bg-gradient-to-r from-brand-700 via-brand-600 to-brand-400 transition-opacity duration-[var(--motion-medium)]" aria-hidden="true" />
 
-      {/* Decorative Technical Crosshair Corner Markers */}
-      <span className="absolute top-2 left-2 font-mono text-[9px] text-slate-300 group-hover:text-brand-300 transition-colors select-none" aria-hidden="true">+</span>
-      <span className="absolute top-2 right-2 font-mono text-[9px] text-slate-300 group-hover:text-brand-300 transition-colors select-none" aria-hidden="true">+</span>
+      {/* Corner alignment marks — Precision Orbit language */}
+      <span className="absolute top-4 right-4 font-mono text-[8px] text-slate-300 group-hover:text-brand-300 transition-colors duration-[var(--motion-base)] select-none" aria-hidden="true">+</span>
 
-      <div className="relative z-10">
-        {/* Card Header Vendor Branding */}
-        <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
-          <span className="font-mono text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-xs uppercase tracking-wider">
+      <div className="p-5 sm:p-6 flex flex-col flex-1">
+        
+        {/* Card header: Code + Vendor */}
+        <div className="flex items-center justify-between pb-3 mb-4 border-b border-[var(--color-border-subtle)]">
+          <span className="font-mono text-[10px] font-bold text-slate-500 bg-slate-100 group-hover:bg-brand-50 group-hover:text-brand-700 px-2 py-0.5 rounded-[var(--radius-xs)] uppercase tracking-widest transition-colors duration-[var(--motion-base)]">
             {code}
           </span>
-          <span className="text-xs font-semibold text-brand-600 font-sans tracking-wide">
+          <span className="text-xs font-semibold text-brand-600 tracking-wide">
             {partner}
           </span>
         </div>
 
         {/* Product Title */}
-        <Typography variant="h3" className="mb-2 text-text-primary group-hover:text-brand-600 transition-colors duration-[var(--motion-base)]">
+        <h3 className="text-clamp-h3 font-semibold text-text-primary group-hover:text-brand-700 transition-colors duration-[var(--motion-base)] mb-2 leading-snug tracking-tight">
           {title}
-        </Typography>
+        </h3>
 
-        {/* Product Description */}
-        <Typography variant="body-small" className="text-text-secondary mb-6 leading-relaxed">
+        {/* Description */}
+        <p className="text-sm text-text-secondary leading-relaxed mb-5">
           {description}
-        </Typography>
+        </p>
 
-        {/* Subgroups & Models details list */}
-        <div className="space-y-4">
+        {/* Technical subgroups — model matrix */}
+        <div className="space-y-4 mb-6 flex-1">
           {subgroups.map((group) => (
-            <div key={group.name} className="text-sm">
-              <span className="font-semibold text-text-primary block mb-1.5 flex items-center gap-1.5">
-                <span className="text-brand-600 text-xs transition-transform duration-[var(--motion-base)] group-hover:translate-x-0.5">▸</span> {group.name}
-              </span>
-              <ul className="space-y-1.5 pl-3.5 border-l border-slate-200/60">
+            <div key={group.name}>
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="text-brand-600 transition-transform duration-[var(--motion-base)] group-hover:translate-x-0.5" aria-hidden="true">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+                    <polygon points="0,0 10,5 0,10" />
+                  </svg>
+                </span>
+                <span className="text-xs font-semibold text-text-primary">{group.name}</span>
+              </div>
+              <ul className="space-y-1.5 pl-4 border-l border-[var(--color-border-subtle)]">
                 {group.items.map((item) => (
-                  <li key={item.name} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs">
-                    <span className="font-mono font-medium text-slate-700 bg-slate-50 px-1 py-0.5 rounded border border-slate-200 group-hover:border-slate-300/80 transition-colors">
+                  <li
+                    key={item.name}
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs"
+                  >
+                    <span className="font-mono font-medium text-slate-700 bg-slate-50 border border-[var(--color-border-default)] group-hover:border-slate-300 px-1.5 py-0.5 rounded-[var(--radius-xs)] transition-colors duration-[var(--motion-fast)] w-fit">
                       {item.name}
                     </span>
-                    <span className="text-text-muted">{item.note}</span>
+                    <span className="text-text-muted text-[11px]">{item.note}</span>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Inquiry CTA */}
-      <div className="mt-8 border-t border-slate-100 pt-4 relative z-10">
-        <Button
-          variant="secondary"
-          size="sm"
-          className="w-full text-center hover:bg-brand-50 hover:text-brand-700 hover:border-brand-200 transition-colors"
-          href={inquiryHref}
-        >
-          {inquiryText}
-        </Button>
+        {/* Inquiry CTA */}
+        <div className="mt-auto border-t border-[var(--color-border-subtle)] pt-4">
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full text-center"
+            href={inquiryHref}
+          >
+            {inquiryText}
+          </Button>
+        </div>
       </div>
     </div>
   );

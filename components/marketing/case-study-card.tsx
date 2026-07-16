@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Typography from '../ui/typography';
 
 interface CaseStudyCardProps {
   code: string;
@@ -12,6 +11,15 @@ interface CaseStudyCardProps {
   isVerified?: boolean;
 }
 
+/**
+ * CaseStudyCard — Editorial Layout
+ *
+ * Visually distinct from both ServiceCard and ProductCard:
+ * - Full-width editorial strip with numbered code
+ * - Challenge / Solution / Outcome in structured three-row format
+ * - Outcome highlighted in brand-tinted panel
+ * - No floating avatar, no decorative icon
+ */
 export default function CaseStudyCard({
   code,
   sector,
@@ -23,66 +31,81 @@ export default function CaseStudyCard({
   isVerified = false,
 }: CaseStudyCardProps) {
   return (
-    <div className="relative group bg-white border border-slate-200 hover:border-brand-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-[var(--motion-medium)] ease-[var(--ease-standard)] hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden">
-      {/* Decorative ambient underlay */}
-      <div className="absolute inset-0 bg-brand-50/5 opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--motion-medium)] pointer-events-none" />
-
-      <div>
-        {/* Case ID and Business Sector Header */}
-        <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
-          <span className="font-mono text-xs font-bold text-slate-500 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:text-brand-600 group-hover:scale-105 origin-left">
+    <article className="group relative bg-white border border-[var(--color-border-default)] hover:border-brand-200 rounded-[var(--radius-lg)] overflow-hidden hover-lift flex flex-col">
+      
+      {/* Editorial header bar */}
+      <div className="flex items-stretch border-b border-[var(--color-border-subtle)]">
+        {/* Left: case code strip */}
+        <div className="bg-slate-50 group-hover:bg-brand-50 border-r border-[var(--color-border-subtle)] px-4 py-3 flex items-center justify-center shrink-0 transition-colors duration-[var(--motion-base)]">
+          <span className="font-mono text-xs font-bold text-slate-500 group-hover:text-brand-600 uppercase tracking-widest rotate-0 transition-colors duration-[var(--motion-base)]">
             {code}
           </span>
-          <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-xs">
+        </div>
+        {/* Right: sector label */}
+        <div className="flex-1 px-4 py-3 flex items-center justify-between">
+          <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-[var(--radius-xs)]">
             {sector}
           </span>
-        </div>
-
-        {/* Project title */}
-        <Typography variant="h3" className="mb-4 text-text-primary group-hover:text-brand-600 transition-colors duration-[var(--motion-base)]">
-          {title}
-        </Typography>
-
-        {/* Content details divided by bold B2B sections with visual layering */}
-        <div className="space-y-4 mb-6 text-sm">
-          <div>
-            <span className="font-semibold text-slate-700 block mb-0.5 text-xs">Thách thức / Challenge:</span>
-            <p className="text-text-secondary text-xs leading-relaxed">{challenge}</p>
-          </div>
-          <div>
-            <span className="font-semibold text-slate-700 block mb-0.5 text-xs">Giải pháp / Solution:</span>
-            <p className="text-text-secondary text-xs leading-relaxed">{solution}</p>
-          </div>
-          {/* outcome metrics layered inside custom B2B panel */}
-          <div className="bg-brand-50/30 border border-brand-100/50 rounded-sm p-3 mt-1.5 transition-colors group-hover:bg-brand-50/50">
-            <span className="font-semibold text-brand-800 block mb-1 text-xs">Kết quả / Outcome:</span>
-            <p className="text-brand-700 text-xs font-medium leading-relaxed">{result}</p>
-          </div>
+          {isVerified && (
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-[var(--radius-xs)]">
+              <svg className="w-2.5 h-2.5" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M2 6l3 3 5-5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Verified
+            </span>
+          )}
         </div>
       </div>
 
-      <div>
-        {/* Technology tags row */}
+      {/* Main content */}
+      <div className="p-5 sm:p-6 flex flex-col flex-1">
+        
+        {/* Project title */}
+        <h3 className="text-clamp-h3 font-semibold text-text-primary group-hover:text-brand-700 transition-colors duration-[var(--motion-base)] mb-5 leading-snug tracking-tight">
+          {title}
+        </h3>
+
+        {/* Structured content rows */}
+        <div className="space-y-4 mb-5 flex-1">
+          <div className="grid grid-cols-[80px_1fr] gap-x-4 items-start text-xs">
+            <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-text-muted pt-0.5">
+              Challenge
+            </span>
+            <p className="text-text-secondary leading-relaxed">{challenge}</p>
+          </div>
+
+          <div className="grid grid-cols-[80px_1fr] gap-x-4 items-start text-xs">
+            <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-text-muted pt-0.5">
+              Solution
+            </span>
+            <p className="text-text-secondary leading-relaxed">{solution}</p>
+          </div>
+
+          {/* Outcome — highlighted panel */}
+          <div className="bg-brand-50 border border-brand-100 rounded-[var(--radius-md)] p-3.5 group-hover:bg-brand-50/80 transition-colors duration-[var(--motion-base)]">
+            <div className="grid grid-cols-[80px_1fr] gap-x-4 items-start text-xs">
+              <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-brand-700 pt-0.5">
+                Outcome
+              </span>
+              <p className="text-brand-800 font-medium leading-relaxed">{result}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Technology tags */}
         {techs.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-[var(--color-border-subtle)]">
             {techs.map((tech) => (
               <span
                 key={tech}
-                className="text-[10px] font-mono font-medium bg-slate-50 text-slate-500 border border-slate-200 px-2 py-0.5 rounded-xs"
+                className="text-[10px] font-mono font-medium bg-slate-50 text-slate-500 border border-[var(--color-border-default)] px-2 py-0.5 rounded-[var(--radius-xs)]"
               >
                 {tech}
               </span>
             ))}
           </div>
         )}
-
-        {/* Bottom verification warning marker */}
-        {!isVerified && (
-          <div className="border-t border-slate-100 pt-3 text-[10px] font-semibold text-amber-600 bg-amber-50/50 px-2 py-1 rounded border border-amber-100 uppercase tracking-wider text-center select-none">
-            [CONTENT VERIFICATION REQUIRED]
-          </div>
-        )}
       </div>
-    </div>
+    </article>
   );
 }

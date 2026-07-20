@@ -16,39 +16,98 @@ export const siteContentEn = {
   
   home: {
     hero: {
-      eyebrow: 'Sao Mộc Technology Solutions Joint Stock Company',
-      headline: 'Partner in building enterprise technology solutions & digital transformation',
-      description: 'We design and operate custom software systems, integrate network infrastructures, and deploy specialized AI agents—committed to engineering quality and long-term partnership.',
-      ctaPrimary: 'Speak with an Expert',
-      ctaSecondary: 'View Strategic Services',
-      // CONTENT VERIFICATION REQUIRED: Confirm staff counts and founding year
+      eyebrow: 'ENTERPRISE TECHNOLOGY SYSTEMS',
+      headline: 'Putting businesses into the orbit of technology.',
+      description: 'We design, build, and operate enterprise AI, software, data pipelines, and cloud infrastructure engineered to scale alongside your organization.',
+      ctaPrimary: 'Discuss a Project',
+      ctaSecondary: 'Explore Capabilities',
+      credibilityPill: 'AI · SOFTWARE · CLOUD · DATA · SECURITY',
       stats: [
-        { value: '2019', label: 'Established' }, 
-        { value: '60+', label: 'Engineers & Experts' },
-        { value: '320+', label: 'Infrastructure Projects' }
+        { value: '60+', label: 'Engineers & Specialists', sub: 'Engineers, architects and specialists' },
+        { value: '4', label: 'Markets Served', sub: 'Markets served across ASEAN' },
+        { value: '24/7', label: 'Continuous Operation', sub: 'Monitoring & emergency response' },
+        { value: '3', label: 'Regional Offices', sub: 'Regional presence & PoC labs' }
       ]
     },
+    challengesHead: {
+      eyebrow: 'ENTERPRISE CHALLENGE',
+      title: 'Technology should not become a fragmented system.',
+      description: 'When technology tools operate in isolation, enterprises incur high costs without achieving expected execution velocity.',
+      transition: 'Jupiter Solution architects a unified system from strategy to continuous operations.'
+    },
+    challenges: [
+      { id: 'c1', code: '01', title: 'Siloed Data Lakes', desc: 'Data is locked across disconnected software systems, preventing unified executive visibility.' },
+      { id: 'c2', code: '02', title: 'Manual Workflows', desc: 'Core processes rely on manual work, creating operational bottlenecks and human errors.' },
+      { id: 'c3', code: '03', title: 'Isolated AI Pilots', desc: 'AI is tested in isolation without generating real operational value or data privacy boundaries.' },
+      { id: 'c4', code: '04', title: 'Inflexible Infrastructure', desc: 'Legacy infrastructure lacks observability, driving unpredicted cloud bill escalation.' },
+      { id: 'c5', code: '05', title: 'Legacy Software Barriers', desc: 'Monolithic legacy systems slow down product deployment and time-to-market.' },
+      { id: 'c6', code: '06', title: 'Late Security Addition', desc: 'Security is added reactively after incidents rather than being engineered with Zero Trust by design.' }
+    ],
+    servicePillarsHead: {
+      eyebrow: 'SYSTEM ARCHITECTURE',
+      title: 'Three core pillars driving enterprise speed and stability',
+      description: 'We structure our capabilities into three interconnected pillars: Build, Intelligence, and Operate.'
+    },
+    servicePillars: [
+      {
+        id: 'build',
+        code: 'BUILD',
+        title: 'Build & System Integration',
+        description: 'Design and build custom enterprise software platforms and core integration engines.',
+        capabilities: ['Enterprise Software', 'Product Engineering', 'System Integration & APIs'],
+        outcome: 'Reduce time-to-market for new digital workflows by 40%.'
+      },
+      {
+        id: 'intelligence',
+        code: 'INTELLIGENCE',
+        title: 'Intelligence & Data Engineering',
+        description: 'Deploy specialized AI models and automated data pipelines on private secured datasets.',
+        capabilities: ['Enterprise RAG', 'AI Agents & Automation', 'Data Pipeline & Governance'],
+        outcome: 'Unlock internal enterprise knowledge and automate complex knowledge tasks.'
+      },
+      {
+        id: 'operate',
+        code: 'OPERATE',
+        title: 'Operate & Infrastructure',
+        description: 'Ensure 24/7 operational stability, information security, and high performance across hybrid clouds.',
+        capabilities: ['Cloud & Hybrid Infrastructure', 'DevOps & SRE Automation', 'Zero Trust SOC & Managed NOC'],
+        outcome: 'Committed 99.99% uptime SLA with rapid emergency incident response.'
+      }
+    ],
+    securityHead: {
+      eyebrow: 'RELIABILITY & GOVERNANCE',
+      title: 'Operational security principles for mission-critical systems',
+      description: 'We engineer cybersecurity as a foundational prerequisite across every system layer.'
+    },
+    securityPrinciples: [
+      { num: '01', title: 'Security by Design', desc: 'Embed security policies into every line of source code and infrastructure configuration.' },
+      { num: '02', title: 'Zero Trust Access Control', desc: 'Enforce multi-factor authentication and Least Privilege access control across all nodes.' },
+      { num: '03', title: 'Data Isolation', desc: 'Encrypt data at rest and in transit using customer-managed encryption keys.' },
+      { num: '04', title: 'Deployment Governance', desc: 'Automate security checks inside CI/CD pipelines before production deployment.' },
+      { num: '05', title: 'Full System Observability', desc: 'Centralize event log analytics (SIEM) with real-time threat anomaly detection.' },
+      { num: '06', title: 'Documentation & Handover', desc: 'Hand over 100% of architecture documentation, source code, and Disaster Recovery Plans (DRP).' }
+    ],
     servicesHead: {
       eyebrow: 'Strategic Services',
       title: 'End-to-End technology solutions for enterprise growth',
       description: 'We deliver full lifecycle engineering services from IT architecture consulting and custom software development to network security and NOC operations.'
     },
     capabilitiesHead: {
-      eyebrow: 'Our Principle',
+      eyebrow: 'OUR PRINCIPLE',
       title: 'Build quietly. Ship reliably.',
       description: 'We believe that the best technology is quiet and humble—serving humans, operating silently, and supporting clients so they can shine.'
     },
     processHead: {
-      eyebrow: 'Engagement Process',
-      title: 'Professional 5-step collaboration workflow',
+      eyebrow: 'DELIVERY METHODOLOGY',
+      title: '5-Stage system timeline from strategy to operation',
       description: 'Ensures absolute transparency in progress, engineering quality, and budget optimization throughout the project lifecycle.'
     },
     processSteps: [
-      { num: '01', title: 'Consult & Diagnose', desc: 'Understand real business needs, survey existing IT architecture, and assess system vulnerabilities.' },
-      { num: '02', title: 'Architect Solution', desc: 'Design baseline system architecture, compile implementation roadmap, and define commercial SLA.' },
-      { num: '03', title: 'Agile Implementation', desc: 'Program and integrate software in short cycles (Scrum) with progress reports delivered bi-weekly.' },
-      { num: '04', title: 'Handover & Train', desc: 'Transfer source code ownership, operational documentation, and conduct technical workshops for in-house teams.' },
-      { num: '05', title: 'Operate & Maintain', desc: 'Perform proactive software updates, 24/7 NOC monitoring, and suggest periodic security reviews.' }
+      { num: '01', title: 'Discover', desc: 'Understand real business needs, survey existing IT architecture, and define success metrics.' },
+      { num: '02', title: 'Architect', desc: 'Design baseline system architecture, compile implementation roadmap, and define commercial SLA.' },
+      { num: '03', title: 'Build', desc: 'Program and integrate software in short agile cycles (Scrum) with bi-weekly deliverables.' },
+      { num: '04', title: 'Integrate', desc: 'Connect legacy systems, data pipelines, and conduct technical workshops for in-house teams.' },
+      { num: '05', title: 'Operate', desc: 'Provide 24/7 NOC/SOC monitoring, proactive maintenance, and continuous performance tuning.' }
     ]
   },
 

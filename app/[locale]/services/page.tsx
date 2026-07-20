@@ -86,10 +86,10 @@ export default function ServicesPage({ params }: PageProps) {
       ];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
 
       {/* ── Page Header ──────────────────────────────────────── */}
-      <section className="py-14 md:py-16 border-b border-[var(--color-border-default)] bg-gradient-to-b from-white to-slate-50 bg-tech-dots relative overflow-hidden">
+      <section className="py-14 md:py-16 border-b border-white/[0.09] bg-[#100E0F] bg-tech-dots relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
           <div className="max-w-3xl">
@@ -109,13 +109,13 @@ export default function ServicesPage({ params }: PageProps) {
       </section>
 
       {/* ── Service Matrix ─────────────────────────────────────── */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)] bg-editorial-grid relative">
+      <Section variant="alternate" className="border-b border-white/[0.09] bg-editorial-grid relative">
         <Container className="space-y-0 relative z-10">
           {services.map((service, index) => (
             <div
               key={service.id}
               className={`group grid grid-cols-1 lg:grid-cols-12 gap-8 items-start py-12 ${
-                index < services.length - 1 ? 'border-b border-[var(--color-border-default)]' : ''
+                index < services.length - 1 ? 'border-b border-white/[0.08]' : ''
               } opacity-0 animate-fade-up`}
               style={{ animationDelay: `${index * 80}ms` }}
             >
@@ -125,19 +125,19 @@ export default function ServicesPage({ params }: PageProps) {
                   <span className="index-chip">{service.num}</span>
                   {/* Hover border accent indicator */}
                   <span
-                    className="flex-1 h-px bg-[var(--color-border-default)] group-hover:bg-brand-200 transition-colors duration-[var(--motion-medium)]"
+                    className="flex-1 h-px bg-white/10 group-hover:bg-[#8E2938] transition-colors duration-[var(--motion-medium)]"
                     aria-hidden="true"
                   />
                 </div>
                 <Typography
                   variant="h2"
                   as="h2"
-                  className="text-text-primary leading-tight group-hover:text-brand-700 transition-colors duration-[var(--motion-base)]"
+                  className="text-text-primary leading-tight group-hover:text-white transition-colors duration-[var(--motion-base)]"
                 >
                   {service.title}
                 </Typography>
                 {/* Problem statement panel */}
-                <div className="bg-[var(--color-surface-alt)] border border-[var(--color-border-default)] rounded-[var(--radius-md)] p-4 text-xs">
+                <div className="bg-[#171315] border border-white/10 rounded-[var(--radius-md)] p-4 text-xs">
                   <span className="block font-semibold text-text-primary mb-1.5">
                     {isEn ? 'Problem statement:' : 'Bài toán giải quyết:'}
                   </span>
@@ -159,7 +159,7 @@ export default function ServicesPage({ params }: PageProps) {
                     <ul className="space-y-2 text-xs text-text-secondary">
                       {service.scope.map((s) => (
                         <li key={s} className="flex items-start gap-2">
-                          <span className="text-brand-500 mt-[2px] shrink-0 leading-none" aria-hidden="true">▪</span>
+                          <span className="text-[#D46A79] mt-[2px] shrink-0 leading-none" aria-hidden="true">▪</span>
                           <span>{s}</span>
                         </li>
                       ))}
@@ -172,7 +172,7 @@ export default function ServicesPage({ params }: PageProps) {
                     <ul className="space-y-2 text-xs text-text-secondary">
                       {service.deliverables.map((d) => (
                         <li key={d} className="flex items-start gap-2">
-                          <span className="text-brand-500 mt-[2px] shrink-0 leading-none" aria-hidden="true">▪</span>
+                          <span className="text-[#D46A79] mt-[2px] shrink-0 leading-none" aria-hidden="true">▪</span>
                           <span>{d}</span>
                         </li>
                       ))}
@@ -187,7 +187,7 @@ export default function ServicesPage({ params }: PageProps) {
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] font-semibold font-mono bg-white text-slate-500 border border-[var(--color-border-default)] px-2 py-0.5 rounded-[var(--radius-xs)] group-hover:border-slate-300 transition-colors duration-[var(--motion-fast)]"
+                      className="text-[10px] font-semibold font-mono bg-[#171315] text-text-muted border border-white/10 px-2 py-0.5 rounded-[var(--radius-xs)] group-hover:border-white/20 group-hover:text-text-secondary transition-colors duration-[var(--motion-fast)]"
                     >
                       {tag}
                     </span>
@@ -223,17 +223,17 @@ export default function ServicesPage({ params }: PageProps) {
             {models.map((model, idx) => (
               <div
                 key={model.num}
-                className="group relative bg-white border border-[var(--color-border-default)] hover:border-brand-200 rounded-[var(--radius-lg)] p-5 flex flex-col hover-lift opacity-0 animate-fade-up"
+                className="group relative bg-[#1C181A] border border-white/10 hover:border-white/25 rounded-[var(--radius-lg)] p-5 flex flex-col hover-lift opacity-0 animate-fade-up"
                 style={{ animationDelay: `${idx * 80}ms` }}
               >
                 {/* Top corner mark */}
-                <span className="absolute top-3 right-3 font-mono text-[8px] text-slate-300 group-hover:text-brand-300 transition-colors duration-[var(--motion-base)] select-none" aria-hidden="true">+</span>
+                <span className="absolute top-3 right-3 font-mono text-[8px] text-text-muted group-hover:text-[#D46A79] transition-colors duration-[var(--motion-base)] select-none" aria-hidden="true">+</span>
 
                 {/* Index */}
                 <span className="index-chip mb-4 inline-block w-fit">{model.num}</span>
 
                 {/* Title */}
-                <h4 className="text-sm font-semibold text-text-primary mb-1 group-hover:text-brand-700 transition-colors duration-[var(--motion-base)] leading-snug">
+                <h4 className="text-sm font-semibold text-text-primary mb-1 group-hover:text-white transition-colors duration-[var(--motion-base)] leading-snug">
                   {model.title}
                 </h4>
 

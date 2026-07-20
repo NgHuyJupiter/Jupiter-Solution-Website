@@ -28,8 +28,8 @@ export default function ServiceCard({
     <div
       className={[
         'group relative',
-        'bg-white border border-[var(--color-border-default)]',
-        'hover:border-brand-200',
+        'bg-[#1C181A] border border-white/10',
+        'hover:border-white/25',
         'rounded-[var(--radius-lg)]',
         'p-5 sm:p-6',
         'hover-lift',
@@ -39,15 +39,15 @@ export default function ServiceCard({
       ].join(' ')}
       {...props}
     >
-      {/* Left brand bar — reveals on hover, grows from top */}
+      {/* Left brand bar — reveals on hover */}
       <span
-        className="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-600 origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-[var(--motion-medium)] ease-[var(--ease-standard)]"
+        className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#8E2938] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-[var(--motion-medium)] ease-[var(--ease-standard)]"
         aria-hidden="true"
       />
 
       {/* Subtle BG wash on hover */}
       <div
-        className="absolute inset-0 bg-brand-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--motion-medium)] pointer-events-none rounded-[var(--radius-lg)]"
+        className="absolute inset-0 bg-[#8E2938]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--motion-medium)] pointer-events-none rounded-[var(--radius-lg)]"
         aria-hidden="true"
       />
 
@@ -56,11 +56,11 @@ export default function ServiceCard({
         <div className="flex items-start justify-between mb-4">
           <span className="index-chip">{num}</span>
           <span
-            className="w-7 h-7 flex items-center justify-center rounded-full border border-[var(--color-border-default)] group-hover:border-brand-200 group-hover:bg-brand-50 transition-all duration-[var(--motion-base)]"
+            className="w-7 h-7 flex items-center justify-center rounded-full border border-white/10 group-hover:border-white/25 group-hover:bg-[#8E2938]/20 transition-all duration-[var(--motion-base)]"
             aria-hidden="true"
           >
             <svg
-              className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-600 group-hover:translate-x-0.5 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
+              className="w-3.5 h-3.5 text-text-muted group-hover:text-text-primary group-hover:translate-x-0.5 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -72,7 +72,7 @@ export default function ServiceCard({
         </div>
 
         {/* Title */}
-        <h3 className="text-clamp-h3 font-semibold text-text-primary group-hover:text-brand-700 transition-colors duration-[var(--motion-base)] mb-2 leading-snug tracking-tight">
+        <h3 className="text-clamp-h3 font-semibold text-text-primary group-hover:text-white transition-colors duration-[var(--motion-base)] mb-2 leading-snug tracking-tight">
           {title}
         </h3>
 
@@ -87,7 +87,7 @@ export default function ServiceCard({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] font-semibold font-mono bg-slate-50 text-slate-500 border border-[var(--color-border-default)] px-2 py-0.5 rounded-[var(--radius-xs)] group-hover:border-slate-300 transition-colors duration-[var(--motion-fast)]"
+                className="text-[10px] font-semibold font-mono bg-[#171315] text-text-muted border border-white/10 px-2 py-0.5 rounded-[var(--radius-xs)] group-hover:border-white/20 group-hover:text-text-secondary transition-colors duration-[var(--motion-fast)]"
               >
                 {tag}
               </span>

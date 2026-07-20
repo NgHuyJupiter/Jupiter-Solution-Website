@@ -48,10 +48,10 @@ export default function Footer({ locale }: FooterProps) {
       };
 
   return (
-    <footer className="bg-[var(--color-surface-darker)] text-slate-300 border-t border-slate-800/80">
+    <footer className="bg-[#0B0A0A] text-text-secondary border-t border-white/[0.09]">
       
       {/* Top accent strip */}
-      <div className="h-[2px] bg-gradient-to-r from-brand-700/0 via-brand-600 to-brand-700/0" aria-hidden="true" />
+      <div className="h-[1px] bg-gradient-to-r from-transparent via-[#8E2938] to-transparent" aria-hidden="true" />
 
       {/* Main footer content */}
       <div className="container-center pt-14 pb-10">
@@ -62,7 +62,7 @@ export default function Footer({ locale }: FooterProps) {
             <Link href={`/${locale}`} className="inline-flex items-center gap-2.5 group mb-4">
               {/* Precision Orbit logomark — dark version */}
               <span
-                className="w-8 h-8 rounded-[var(--radius-md)] bg-brand-700 flex items-center justify-center shrink-0 transition-colors duration-[var(--motion-base)] group-hover:bg-brand-600"
+                className="w-8 h-8 rounded-[var(--radius-md)] bg-[#8E2938] border border-white/20 flex items-center justify-center shrink-0 transition-colors duration-[var(--motion-base)] group-hover:bg-[#A73748]"
                 aria-hidden="true"
               >
                 <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
@@ -71,50 +71,50 @@ export default function Footer({ locale }: FooterProps) {
                     cy="16"
                     rx="9"
                     ry="5.5"
-                    stroke="rgba(255,255,255,0.2)"
+                    stroke="rgba(255,255,255,0.3)"
                     strokeWidth="1.2"
                     transform="rotate(-30 16 16)"
                   />
                   <path
                     d="M 16 10 A 6 6 0 1 1 10.5 18.5 L 10.5 13"
-                    stroke="white"
+                    stroke="#F7F2F3"
                     strokeWidth="2.2"
                     strokeLinecap="round"
                     fill="none"
                   />
-                  <circle cx="22.5" cy="11.5" r="1.5" fill="rgba(255,255,255,0.5)" />
+                  <circle cx="22.5" cy="11.5" r="1.5" fill="#D46A79" />
                 </svg>
               </span>
               <span className="flex flex-col leading-none">
-                <span className="text-[0.9375rem] font-bold text-white tracking-tight leading-none">Sao Mộc</span>
-                <span className="text-[0.625rem] font-semibold text-slate-400 leading-none mt-[3px] tracking-wide uppercase">Jupiter Solutions</span>
+                <span className="text-[0.9375rem] font-bold text-text-primary tracking-tight leading-none">Sao Mộc</span>
+                <span className="text-[0.625rem] font-semibold text-text-muted leading-none mt-[3px] tracking-wide uppercase">Jupiter Solutions</span>
               </span>
             </Link>
 
-            <p className="text-sm text-slate-400 leading-relaxed max-w-[240px]">
+            <p className="text-xs text-text-muted leading-relaxed max-w-[260px]">
               {text.tagline}
             </p>
           </div>
 
           {/* ── Contact & Address ─────────────────────────── */}
           <div>
-            <h5 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+            <h5 className="text-xs font-bold text-text-primary uppercase tracking-widest mb-4">
               {text.addressTitle}
             </h5>
             <address className="not-italic">
-              <p className="text-sm text-slate-400 whitespace-pre-line leading-relaxed mb-3">
+              <p className="text-xs text-text-secondary whitespace-pre-line leading-relaxed mb-3">
                 {text.address}
               </p>
-              <div className="space-y-1.5 text-sm">
+              <div className="space-y-1.5 text-xs">
                 <div>
-                  <span className="text-slate-500 text-xs">{text.phone}:&nbsp;</span>
-                  <a href="tel:+84326813947" className="text-slate-300 hover:text-white transition-colors duration-[var(--motion-fast)]">
+                  <span className="text-text-muted">{text.phone}:&nbsp;</span>
+                  <a href="tel:+84326813947" className="text-text-secondary hover:text-text-primary transition-colors duration-[var(--motion-fast)]">
                     (+84) 326.813.947
                   </a>
                 </div>
                 <div>
-                  <span className="text-slate-500 text-xs">{text.email}:&nbsp;</span>
-                  <a href="mailto:info@jupiter-ai.pro" className="text-slate-300 hover:text-white transition-colors duration-[var(--motion-fast)]">
+                  <span className="text-text-muted">{text.email}:&nbsp;</span>
+                  <a href="mailto:info@jupiter-ai.pro" className="text-text-secondary hover:text-text-primary transition-colors duration-[var(--motion-fast)]">
                     info@jupiter-ai.pro
                   </a>
                 </div>
@@ -124,7 +124,7 @@ export default function Footer({ locale }: FooterProps) {
 
           {/* ── Navigation ───────────────────────────────── */}
           <div>
-            <h5 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+            <h5 className="text-xs font-bold text-text-primary uppercase tracking-widest mb-4">
               {text.navTitle}
             </h5>
             <ul className="space-y-2.5">
@@ -137,7 +137,7 @@ export default function Footer({ locale }: FooterProps) {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-slate-400 hover:text-white transition-colors duration-[var(--motion-fast)] link-underline"
+                    className="text-xs text-text-secondary hover:text-text-primary transition-colors duration-[var(--motion-fast)] link-underline"
                   >
                     {label}
                   </Link>
@@ -148,35 +148,36 @@ export default function Footer({ locale }: FooterProps) {
 
           {/* ── Legal & Careers ───────────────────────────── */}
           <div>
-            <h5 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+            <h5 className="text-xs font-bold text-text-primary uppercase tracking-widest mb-4">
               {text.legalTitle}
             </h5>
             <ul className="space-y-2.5">
               <li>
-                <span className="text-sm text-slate-400 flex items-center gap-2">
+                <span className="text-xs text-text-secondary flex items-center gap-2">
                   {text.careers}
-                  <span className="text-[9px] font-bold bg-brand-700 text-brand-100 px-1.5 py-0.5 rounded-[var(--radius-xs)] uppercase tracking-wider">
+                  <span className="text-[9px] font-bold bg-[#8E2938] text-[#F7F2F3] px-1.5 py-0.5 rounded-[var(--radius-xs)] uppercase tracking-wider">
                     {text.hiringBadge}
                   </span>
                 </span>
               </li>
               <li>
-                <span className="text-sm text-slate-500 cursor-default">{text.privacy}</span>
+                <Link href={`/${locale}/privacy`} className="text-xs text-text-secondary hover:text-text-primary transition-colors">
+                  {text.privacy}
+                </Link>
               </li>
               <li>
-                <span className="text-sm text-slate-500 cursor-default">{text.terms}</span>
+                <span className="text-xs text-text-muted cursor-default">{text.terms}</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* ── Bottom bar ──────────────────────────────────── */}
-        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <p className="text-xs text-slate-600 leading-relaxed">
+        <div className="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="text-xs text-text-muted leading-relaxed">
             {text.license}
-            {/* CONTENT VERIFICATION REQUIRED: Confirm business registration number */}
           </p>
-          <span className="text-xs text-slate-700 font-medium tracking-wide italic shrink-0">
+          <span className="text-xs text-text-muted font-medium tracking-wide italic shrink-0">
             {text.orbits}
           </span>
         </div>

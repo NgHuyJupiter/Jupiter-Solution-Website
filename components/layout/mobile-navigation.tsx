@@ -83,7 +83,7 @@ export default function MobileNavigation({
     >
       {/* Backdrop overlay background */}
       <div
-        className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity duration-200"
+        className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -91,12 +91,12 @@ export default function MobileNavigation({
       {/* Slide-out Panel */}
       <div
         ref={drawerRef}
-        className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-xl flex flex-col p-6 border-l border-slate-200 transition-transform duration-300"
+        className="fixed right-0 top-0 bottom-0 w-full max-w-xs sm:max-w-sm bg-[#171315] shadow-2xl flex flex-col p-6 border-l border-white/15 transition-transform duration-300"
       >
         {/* Drawer header control row */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-2">
-            <span className="w-6 h-6 rounded-md bg-brand-600 flex items-center justify-center" aria-hidden="true">
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+          <div className="flex items-center gap-2.5">
+            <span className="w-7 h-7 rounded-md bg-[#8E2938] border border-white/20 flex items-center justify-center" aria-hidden="true">
               <span className="w-3.5 h-3.5 rounded-full border border-white border-r-transparent border-t-transparent -rotate-45" />
             </span>
             <span className="text-sm font-bold text-text-primary">Sao Mộc</span>
@@ -105,11 +105,11 @@ export default function MobileNavigation({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-md hover:bg-slate-100 text-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+            className="p-2 rounded-md bg-surface-raised border border-white/10 text-text-primary hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D46A79]"
             aria-label={locale === 'vi' ? 'Đóng menu' : 'Close menu'}
           >
             <svg
-              className="h-6 w-6"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -122,15 +122,15 @@ export default function MobileNavigation({
         </div>
 
         {/* Menu Navigation Links */}
-        <nav className="flex flex-col gap-4 mb-8" aria-label="Mobile Navigation Menu">
+        <nav className="flex flex-col gap-2 mb-8" aria-label="Mobile Navigation Menu">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               href={link.path}
               exact={link.path === `/${locale}`}
               onClick={onClose}
-              className="text-base font-semibold text-text-secondary hover:text-brand-600 py-2 border-b border-slate-100"
-              activeClassName="text-brand-600 font-bold border-brand-100"
+              className="text-base font-semibold text-text-secondary hover:text-text-primary py-2.5 px-3 rounded-md transition-colors border-b border-white/5 hover:bg-white/[0.04]"
+              activeClassName="text-text-primary font-bold bg-white/[0.08] border-white/15"
             >
               {link.name}
             </Link>
@@ -139,15 +139,15 @@ export default function MobileNavigation({
 
         {/* Mobile controls alignment (Lang switcher + CTA button) */}
         <div className="mt-auto flex flex-col gap-4">
-          <div className="flex items-center justify-between py-2 border-t border-slate-100 pt-4">
-            <span className="text-sm font-medium text-text-secondary">Ngôn ngữ / Language</span>
+          <div className="flex items-center justify-between py-2 border-t border-white/10 pt-4">
+            <span className="text-xs font-medium text-text-muted">Ngôn ngữ / Language</span>
             <LanguageSwitcher currentLocale={locale} />
           </div>
 
           <Button
             variant="primary"
             size="lg"
-            className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-md mt-2"
+            className="w-full bg-[#8E2938] hover:bg-[#A73748] text-[#F7F2F3] rounded-md mt-2"
             onClick={() => {
               onClose();
               window.location.href = `/${locale}/contact#contact-form`;

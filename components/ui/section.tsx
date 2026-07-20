@@ -3,24 +3,26 @@ import * as React from 'react';
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   variant?: 
-    | 'default'       /* #FAFAFA — standard off-white */
-    | 'alternate'     /* #FFFFFF — white surface */
-    | 'subtle'        /* #F5F5F7 — slightly dimmer alternate */
-    | 'brand-tint'    /* Very pale burgundy background */
-    | 'dark'          /* Charcoal dark — for dark editorial sections */
-    | 'dark-brand';   /* Charcoal with burgundy accent — for final CTAs */
+    | 'default'       /* #100E0F — deep page background */
+    | 'alternate'     /* #1C181A — primary dark warm slate surface */
+    | 'subtle'        /* #171315 — slightly lighter charcoal base */
+    | 'raised'        /* #241E21 — elevated surface / panel */
+    | 'brand-tint'    /* #30171D — deep dark burgundy feature surface */
+    | 'dark'          /* #0B0A0A — deepest spatial base */
+    | 'dark-brand';   /* #30171D — dark burgundy CTA section */
 }
 
 const Section = React.forwardRef<HTMLElement, SectionProps>(
   ({ children, className = '', variant = 'default', ...props }, ref) => {
     // Map variant to background + text + border classes
     const bgClasses: Record<string, string> = {
-      default:     'section-bg-default text-text-primary',
-      alternate:   'section-bg-alternate text-text-primary border-y border-[var(--color-border-default)]',
-      subtle:      'section-bg-subtle text-text-primary border-y border-[var(--color-border-subtle)]',
-      'brand-tint':'section-bg-brand text-text-primary border-y border-[var(--color-brand-100)]',
-      dark:        'section-bg-dark text-white',
-      'dark-brand':'section-bg-dark text-white',
+      default:     'bg-[#100E0F] text-text-primary',
+      alternate:   'bg-[#1C181A] text-text-primary border-y border-white/[0.08]',
+      subtle:      'bg-[#171315] text-text-primary border-y border-white/[0.06]',
+      raised:      'bg-[#241E21] text-text-primary border-y border-white/[0.10]',
+      'brand-tint':'bg-[#30171D] text-text-primary border-y border-white/[0.12]',
+      dark:        'bg-[#0B0A0A] text-text-primary',
+      'dark-brand':'bg-[#30171D] text-text-primary border-y border-white/[0.15]',
     };
 
     return (

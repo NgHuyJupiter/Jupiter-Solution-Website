@@ -66,10 +66,10 @@ export default function ContactPage({ params }: PageProps) {
   ];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
 
       {/* ── Page Header ──────────────────────────────────────── */}
-      <section className="py-14 md:py-16 border-b border-[var(--color-border-default)] bg-gradient-to-b from-white to-slate-50 bg-tech-dots relative overflow-hidden">
+      <section className="py-14 md:py-16 border-b border-white/[0.09] bg-[#100E0F] bg-tech-dots relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
           <div className="max-w-3xl">
@@ -89,7 +89,7 @@ export default function ContactPage({ params }: PageProps) {
       </section>
 
       {/* ── Contact Grid ─────────────────────────────────────── */}
-      <Section variant="default">
+      <Section variant="alternate">
         <Container
           id="contact-form"
           className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
@@ -103,10 +103,10 @@ export default function ContactPage({ params }: PageProps) {
                 {isEn ? 'Direct channels' : 'Kênh liên hệ trực tiếp'}
               </span>
 
-              <div className="space-y-0 divide-y divide-[var(--color-border-default)] border border-[var(--color-border-default)] rounded-[var(--radius-lg)] overflow-hidden bg-white">
+              <div className="space-y-0 divide-y divide-white/[0.08] border border-white/10 rounded-[var(--radius-lg)] overflow-hidden bg-[#171315]">
                 {channels.map(({ icon, label, value, href }) => (
-                  <div key={label} className="group px-5 py-4 flex items-start gap-4 hover:bg-[var(--color-surface-alt)] transition-colors duration-[var(--motion-fast)]">
-                    <span className="text-brand-600 mt-0.5 shrink-0">
+                  <div key={label} className="group px-5 py-4 flex items-start gap-4 hover:bg-[#241E21] transition-colors duration-[var(--motion-fast)]">
+                    <span className="text-[#D46A79] mt-0.5 shrink-0">
                       {icon}
                     </span>
                     <div className="min-w-0">
@@ -116,12 +116,12 @@ export default function ContactPage({ params }: PageProps) {
                       {href ? (
                         <a
                           href={href}
-                          className="text-sm font-semibold text-text-primary hover:text-brand-600 transition-colors duration-[var(--motion-fast)] break-all link-underline"
+                          className="text-sm font-semibold text-[#F7F2F3] hover:text-[#D46A79] transition-colors duration-[var(--motion-fast)] break-all link-underline"
                         >
                           {value}
                         </a>
                       ) : (
-                        <span className="text-sm font-semibold text-text-primary leading-relaxed whitespace-pre-line">
+                        <span className="text-sm font-semibold text-[#F7F2F3] leading-relaxed whitespace-pre-line">
                           {value}
                         </span>
                       )}
@@ -132,9 +132,9 @@ export default function ContactPage({ params }: PageProps) {
             </div>
 
             {/* Response commitment panel */}
-            <div className="bg-[var(--color-surface-alt)] border border-[var(--color-border-default)] rounded-[var(--radius-lg)] p-5">
+            <div className="bg-[#171315] border border-white/10 rounded-[var(--radius-lg)] p-5">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true" />
                 <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted">
                   {isEn ? 'Response SLA' : 'Cam kết phản hồi'}
                 </span>

@@ -36,27 +36,27 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
       lg: 'h-12 px-6 text-[0.9375rem] gap-2.5',
     };
 
-    // Variant classes — typographically precise, burgundy identity
+    // Variant classes — typographically precise, Jupiter Dark Precision identity
     const variantClasses = {
       // Deep Burgundy CTA — primary conversion action
       primary:
-        'bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white font-semibold rounded-[var(--radius-sm)] border border-transparent shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)] focus-visible:shadow-[var(--shadow-brand)] active:scale-[0.98] hover:-translate-y-px',
+        'bg-[#8E2938] hover:bg-[#A73748] active:bg-[#70202C] text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-white/10 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] focus-visible:shadow-[var(--shadow-brand)] active:scale-[0.98] hover:-translate-y-px',
 
-      // White / outlined secondary — equal visual weight
+      // Dark neutral secondary — equal visual weight
       secondary:
-        'bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border-default)] hover:border-[var(--color-border-emphasis)] shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)] active:scale-[0.98] hover:-translate-y-px',
+        'bg-[#1C181A] hover:bg-[#241E21] active:bg-[#171315] text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-white/15 hover:border-white/30 shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)] active:scale-[0.98] hover:-translate-y-px',
 
-      // Outline — transparent BG with brand border
+      // Outline — transparent BG with warm border
       outline:
-        'bg-transparent hover:bg-brand-50 active:bg-brand-100 text-brand-600 hover:text-brand-700 font-semibold rounded-[var(--radius-sm)] border border-brand-300 hover:border-brand-500 active:scale-[0.98]',
+        'bg-transparent hover:bg-white/[0.06] active:bg-white/[0.12] text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-white/20 hover:border-white/40 active:scale-[0.98]',
 
       // Ghost — no border, minimal presence
       ghost:
-        'bg-transparent hover:bg-slate-100 active:bg-slate-200 text-slate-700 font-semibold rounded-[var(--radius-sm)] border border-transparent active:scale-[0.98]',
+        'bg-transparent hover:bg-white/[0.06] active:bg-white/[0.12] text-[#C8BEC1] hover:text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-transparent active:scale-[0.98]',
 
       // Link — inline text style
       link:
-        'text-brand-600 hover:text-brand-700 font-semibold underline-offset-4 hover:underline bg-transparent border-transparent h-auto px-0 py-0',
+        'text-[#D46A79] hover:text-[#F7F2F3] font-semibold underline-offset-4 hover:underline bg-transparent border-transparent h-auto px-0 py-0',
     };
 
     const isBtnDisabled = disabled || isLoading;

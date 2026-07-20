@@ -55,24 +55,24 @@ export default function SiteHeader({ locale }: SiteHeaderProps) {
       <header
         className={[
           'sticky top-0 z-40 w-full',
-          'border-b',
-          'bg-white/97 backdrop-blur-sm',
-          'transition-[border-color,box-shadow] duration-[var(--motion-medium)] ease-[var(--ease-standard)]',
+          'border-b border-white/[0.09]',
+          'bg-[#100E0F]/90 backdrop-blur-md',
+          'transition-[border-color,box-shadow,background-color] duration-[var(--motion-medium)] ease-[var(--ease-standard)]',
           isScrolled
-            ? 'border-[var(--color-border-default)] shadow-[var(--shadow-sm)]'
-            : 'border-transparent shadow-none',
+            ? 'border-white/15 bg-[#100E0F]/95 shadow-[0_4px_20px_rgba(0,0,0,0.6)]'
+            : 'border-white/[0.08]',
         ].join(' ')}
       >
-        <div className="container-center h-[60px] flex items-center justify-between">
+        <div className="container-center h-[64px] flex items-center justify-between">
 
           {/* ── Brand Mark ─────────────────────────────────────────── */}
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-2.5 group focus-visible:rounded-[var(--radius-sm)]"
+            className="flex items-center gap-3 group focus-visible:rounded-[var(--radius-sm)]"
           >
             {/* Precision Orbit logomark — hidden J orbit segment */}
             <span
-              className="w-8 h-8 rounded-[var(--radius-md)] bg-brand-600 flex items-center justify-center shrink-0 relative overflow-hidden transition-[background-color,transform] duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:bg-brand-700 group-hover:scale-[1.04]"
+              className="w-9 h-9 rounded-[var(--radius-md)] bg-[#8E2938] border border-white/15 flex items-center justify-center shrink-0 relative overflow-hidden transition-[background-color,transform,border-color] duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:bg-[#A73748] group-hover:border-white/25 group-hover:scale-[1.04]"
               aria-hidden="true"
             >
               {/* Outer orbit arc */}
@@ -89,20 +89,20 @@ export default function SiteHeader({ locale }: SiteHeaderProps) {
                   cy="16"
                   rx="9"
                   ry="5.5"
-                  stroke="rgba(255,255,255,0.25)"
+                  stroke="rgba(255,255,255,0.3)"
                   strokeWidth="1.2"
                   transform="rotate(-30 16 16)"
                 />
                 {/* Hidden J segment — geometric letterform */}
                 <path
                   d="M 16 10 A 6 6 0 1 1 10.5 18.5 L 10.5 13"
-                  stroke="white"
+                  stroke="#F7F2F3"
                   strokeWidth="2.2"
                   strokeLinecap="round"
                   fill="none"
                 />
                 {/* Node dot */}
-                <circle cx="22.5" cy="11.5" r="1.5" fill="rgba(255,255,255,0.6)" />
+                <circle cx="22.5" cy="11.5" r="1.5" fill="#D46A79" />
               </svg>
             </span>
 
@@ -126,13 +126,13 @@ export default function SiteHeader({ locale }: SiteHeaderProps) {
                 key={link.path}
                 href={link.path}
                 exact={link.path === `/${locale}`}
-                className="relative px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary rounded-[var(--radius-sm)] transition-colors duration-[var(--motion-base)] ease-[var(--ease-standard)] focus-visible:rounded-[var(--radius-sm)] group"
-                activeClassName="text-brand-600 font-semibold"
+                className="relative px-3.5 py-2 text-sm font-medium text-text-secondary hover:text-text-primary rounded-[var(--radius-sm)] transition-colors duration-[var(--motion-base)] ease-[var(--ease-standard)] focus-visible:rounded-[var(--radius-sm)] group"
+                activeClassName="text-[#F7F2F3] font-semibold"
               >
                 {link.name}
                 {/* Active / hover underline indicator */}
                 <span
-                  className="absolute bottom-1 left-3 right-3 h-[1.5px] bg-brand-600 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)]"
+                  className="absolute bottom-1 left-3.5 right-3.5 h-[1.5px] bg-[#8E2938] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)]"
                   aria-hidden="true"
                 />
               </Link>
@@ -161,7 +161,7 @@ export default function SiteHeader({ locale }: SiteHeaderProps) {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="inline-flex lg:hidden p-2 rounded-[var(--radius-md)] hover:bg-slate-100 text-slate-600 focus:outline-none focus-visible:shadow-[var(--shadow-brand)] transition-colors duration-[var(--motion-fast)]"
+              className="inline-flex lg:hidden p-2 rounded-[var(--radius-md)] bg-surface-raised border border-white/10 hover:bg-surface text-text-primary focus:outline-none focus-visible:shadow-[var(--shadow-brand)] transition-colors duration-[var(--motion-fast)]"
               aria-label={locale === 'vi' ? 'Mở menu điều hướng' : 'Open navigation menu'}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-nav-drawer"

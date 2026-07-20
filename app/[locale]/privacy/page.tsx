@@ -26,21 +26,21 @@ export default function PrivacyPage({ params }: PageProps) {
   const isEn = params.locale === 'en';
 
   return (
-    <div className="flex flex-col w-full">
-      <Section variant="alternate" className="py-12 border-b border-slate-200 bg-white">
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
+      <Section variant="alternate" className="py-12 border-b border-white/[0.09] bg-[#1C181A]">
         <Container>
-          <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
+          <span className="eyebrow mb-3 block">
             {isEn ? 'Data Confidentiality' : 'Chính sách bảo mật'}
           </span>
-          <Typography variant="h1" className="mt-4 mb-3 text-text-primary">
+          <Typography variant="h1" className="mt-2 mb-3 text-text-primary">
             {isEn ? 'Information Security & Data Protection Policy' : 'Chính sách An toàn Thông tin & Bảo mật Dữ liệu'}
           </Typography>
         </Container>
       </Section>
 
-      <Section variant="default" className="py-16">
+      <Section variant="default" className="py-16 bg-[#100E0F]">
         <Container className="max-w-3xl">
-          <div className="prose prose-slate max-w-none text-sm leading-relaxed space-y-6 text-text-secondary">
+          <div className="prose prose-invert max-w-none text-sm leading-relaxed space-y-6 text-text-secondary">
             {isEn ? (
               <>
                 <Typography variant="h3" className="text-text-primary font-semibold">1. Confidentiality Framework (NDA)</Typography>

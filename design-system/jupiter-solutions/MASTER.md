@@ -7,7 +7,7 @@
 ---
 
 **Project:** Jupiter Solutions
-**Generated:** 2026-07-16 15:21:17
+**Generated:** 2026-07-20 16:54:41
 **Category:** B2B Service
 
 ---
@@ -18,29 +18,29 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#0F172A` | `--color-primary` |
+| Primary | `#7C3AED` | `--color-primary` |
 | On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#334155` | `--color-secondary` |
-| Accent/CTA | `#0369A1` | `--color-accent` |
-| Background | `#F8FAFC` | `--color-background` |
-| Foreground | `#020617` | `--color-foreground` |
-| Muted | `#E8ECF1` | `--color-muted` |
-| Border | `#E2E8F0` | `--color-border` |
+| Secondary | `#6366F1` | `--color-secondary` |
+| Accent/CTA | `#EC4899` | `--color-accent` |
+| Background | `#FAF5FF` | `--color-background` |
+| Foreground | `#0F172A` | `--color-foreground` |
+| Muted | `#F7F3FD` | `--color-muted` |
+| Border | `#EFE7FC` | `--color-border` |
 | Destructive | `#DC2626` | `--color-destructive` |
-| Ring | `#0F172A` | `--color-ring` |
+| Ring | `#7C3AED` | `--color-ring` |
 
-**Color Notes:** Professional navy + blue CTA
+**Color Notes:** AI purple + generation pink
 
 ### Typography
 
-- **Heading Font:** Roboto
-- **Body Font:** Roboto
-- **Mood:** material design 3, md3, android, google, tonal, friendly, rounded, accessible, adaptive
-- **Google Fonts:** [Roboto + Roboto](https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400)
+- **Heading Font:** Inter
+- **Body Font:** Inter
+- **Mood:** minimal, clean, swiss, functional, neutral, professional
+- **Google Fonts:** [Inter + Inter](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap)
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 ```
 
 ### Spacing Variables
@@ -73,7 +73,7 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #0369A1;
+  background: #EC4899;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -90,8 +90,8 @@
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #0F172A;
-  border: 2px solid #0F172A;
+  color: #7C3AED;
+  border: 2px solid #7C3AED;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -104,7 +104,7 @@
 
 ```css
 .card {
-  background: #F8FAFC;
+  background: #FAF5FF;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -130,9 +130,9 @@
 }
 
 .input:focus {
-  border-color: #0F172A;
+  border-color: #7C3AED;
   outline: none;
-  box-shadow: 0 0 0 3px #0F172A20;
+  box-shadow: 0 0 0 3px #7C3AED20;
 }
 ```
 
@@ -168,11 +168,11 @@
 
 ### Page Pattern
 
-**Pattern Name:** AI Personalization Landing
+**Pattern Name:** Enterprise Gateway
 
-- **Conversion Strategy:** 20%+ conversion with personalization. Requires analytics integration. Fallback for new users.
-- **CTA Placement:** Context-aware placement based on user segment
-- **Section Order:** 1. Dynamic hero (personalized), 2. Relevant features, 3. Tailored testimonials, 4. Smart CTA
+- **Conversion Strategy:** Path selection (I am a...). Mega menu navigation. Trust signals prominent.
+- **CTA Placement:** Contact Sales (Primary) + Login (Secondary)
+- **Section Order:** 1. Hero (Video/Mission), 2. Solutions by Industry, 3. Solutions by Role, 4. Client Logos, 5. Contact Sales
 
 ---
 

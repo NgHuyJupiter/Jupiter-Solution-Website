@@ -54,10 +54,10 @@ export default function ProductsPage({ params }: PageProps) {
   ];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
 
       {/* ── Page Header ──────────────────────────────────────── */}
-      <section className="py-14 md:py-16 border-b border-[var(--color-border-default)] bg-gradient-to-b from-white to-slate-50 bg-tech-dots relative overflow-hidden">
+      <section className="py-14 md:py-16 border-b border-white/[0.09] bg-[#100E0F] bg-tech-dots relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
           <div className="max-w-3xl">
@@ -75,7 +75,7 @@ export default function ProductsPage({ params }: PageProps) {
       </section>
 
       {/* ── Product Cards ─────────────────────────────────────── */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)]">
+      <Section variant="alternate" className="border-b border-white/[0.09]">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {products.map((group) => (
@@ -106,11 +106,11 @@ export default function ProductsPage({ params }: PageProps) {
             </Typography>
           </div>
 
-          {/* Scrollable table with Precision Authority design */}
-          <div className="overflow-x-auto border border-[var(--color-border-default)] rounded-[var(--radius-lg)] shadow-[var(--shadow-xs)] opacity-0 animate-scale-in delay-150">
-            <table className="min-w-full divide-y divide-[var(--color-border-default)] text-sm text-left bg-white">
+          {/* Scrollable table with Dark Precision design */}
+          <div className="overflow-x-auto border border-white/10 rounded-[var(--radius-lg)] shadow-md opacity-0 animate-scale-in delay-150">
+            <table className="min-w-full divide-y divide-white/10 text-sm text-left bg-[#1C181A]">
               <thead>
-                <tr className="bg-[var(--color-surface-alt)]">
+                <tr className="bg-[#171315]">
                   <th scope="col" className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted">
                     {isEn ? 'Model' : 'Thiết bị'}
                   </th>
@@ -128,14 +128,14 @@ export default function ProductsPage({ params }: PageProps) {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[var(--color-border-subtle)]">
-                {tableRows.map((row, i) => (
+              <tbody className="divide-y divide-white/[0.08]">
+                {tableRows.map((row) => (
                   <tr
                     key={row.model}
-                    className="group hover:bg-brand-50/30 transition-colors duration-[var(--motion-fast)]"
+                    className="group hover:bg-[#8E2938]/10 transition-colors duration-[var(--motion-fast)]"
                   >
                     <td className="px-6 py-4">
-                      <span className="font-mono font-bold text-brand-600 group-hover:text-brand-700 transition-colors duration-[var(--motion-fast)]">
+                      <span className="font-mono font-bold text-[#D46A79] group-hover:text-white transition-colors duration-[var(--motion-fast)]">
                         {row.model}
                       </span>
                     </td>
@@ -146,7 +146,7 @@ export default function ProductsPage({ params }: PageProps) {
                       <Link
                         href={`/${params.locale}/contact#contact-form`}
                         variant="inline"
-                        className="text-xs font-bold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1 group/row transition-colors duration-[var(--motion-fast)]"
+                        className="text-xs font-bold text-[#D46A79] hover:text-[#F7F2F3] inline-flex items-center gap-1 group/row transition-colors duration-[var(--motion-fast)]"
                       >
                         <span>{isEn ? 'Request quote' : 'Yêu cầu báo giá'}</span>
                         <span className="transition-transform duration-[var(--motion-base)] group-hover/row:translate-x-0.5" aria-hidden="true">→</span>

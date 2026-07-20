@@ -8,6 +8,7 @@ import Link from '@/components/ui/link';
 import ServiceCard from '@/components/marketing/service-card';
 import ProductCard from '@/components/marketing/product-card';
 import CaseStudyCard from '@/components/marketing/case-study-card';
+import TechnologyOrbit from '@/components/marketing/technology-orbit';
 import { getPageMetadata } from '@/lib/metadata/metadata-utils';
 import { Metadata } from 'next';
 
@@ -43,18 +44,18 @@ export default function Homepage({ params }: PageProps) {
     : ['Ngân hàng & Tài chính', 'Năng lượng & Điện lực', 'Chứng khoán & Bảo hiểm', 'Hạ tầng Viễn thông'];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
 
       {/* ════════════════════════════════════════════════════════════
-          1. HERO — Precision Authority Entry Point
-          Swiss grid: 7 cols text | 5 cols Precision Orbit graphic
+          1. HERO — Jupiter Dark Precision Enterprise Entry
+          Asymmetric Swiss grid: 7 cols text | 5 cols Orbital Architecture graphic
           ════════════════════════════════════════════════════════════ */}
       <section
-        className="relative overflow-hidden border-b border-[var(--color-border-default)] bg-gradient-to-b from-white via-slate-50 to-slate-100 bg-editorial-grid"
+        className="relative overflow-hidden border-b border-white/[0.09] bg-[#100E0F] bg-editorial-grid"
         aria-label={isEn ? 'Hero' : 'Giới thiệu'}
       >
-        {/* Ambient glow — very subtle, behind right column graphic */}
-        <div className="absolute right-0 top-0 w-1/2 h-full bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        {/* Muted burgundy ambient glow behind right column graphic */}
+        <div className="absolute right-0 top-0 w-3/5 h-full bg-burgundy-glow pointer-events-none opacity-80" aria-hidden="true" />
 
         <Container className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-center relative z-10 pt-16 pb-20 md:pt-20 md:pb-24">
 
@@ -73,7 +74,7 @@ export default function Homepage({ params }: PageProps) {
             <Typography
               variant="display"
               as="h1"
-              className="text-text-primary mb-5 opacity-0 animate-fade-up delay-100"
+              className="text-[#F7F2F3] mb-5 opacity-0 animate-fade-up delay-100 font-extrabold tracking-tight"
             >
               {heroCopy.headline}
             </Typography>
@@ -81,13 +82,13 @@ export default function Homepage({ params }: PageProps) {
             {/* Supporting description */}
             <Typography
               variant="body-large"
-              className="text-text-secondary mb-8 max-w-[540px] opacity-0 animate-fade-up delay-200"
+              className="text-[#C8BEC1] mb-8 max-w-[540px] opacity-0 animate-fade-up delay-200"
             >
               {heroCopy.description}
             </Typography>
 
             {/* CTA Group */}
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mb-10 opacity-0 animate-fade-up delay-300">
+            <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto mb-10 opacity-0 animate-fade-up delay-300">
               <Button
                 variant="primary"
                 size="lg"
@@ -111,13 +112,13 @@ export default function Homepage({ params }: PageProps) {
 
             {/* Stats credibility row */}
             <div
-              className="grid grid-cols-3 gap-6 sm:gap-10 border-t border-[var(--color-border-default)] pt-8 w-full max-w-md opacity-0 animate-fade-in delay-400"
+              className="grid grid-cols-3 gap-6 sm:gap-10 border-t border-white/[0.09] pt-8 w-full max-w-md opacity-0 animate-fade-in delay-400"
               role="list"
               aria-label={isEn ? 'Company statistics' : 'Thống kê công ty'}
             >
               {heroCopy.stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col" role="listitem">
-                  <span className="text-2xl sm:text-3xl font-extrabold text-brand-600 leading-none tabular-nums">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-[#F7F2F3] leading-none tabular-nums">
                     {stat.value}
                   </span>
                   <span className="text-[11px] font-medium text-text-muted mt-1.5 leading-tight">
@@ -128,136 +129,9 @@ export default function Homepage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* ── Right Column: Precision Orbit Diagram ─────────── */}
-          <div
-            className="lg:col-span-5 hidden lg:flex items-center justify-center opacity-0 animate-scale-in delay-200"
-            aria-hidden="true"
-          >
-            <div className="relative w-full max-w-[440px] aspect-square">
-              {/* Outer frame — precision panel */}
-              <div className="absolute inset-0 rounded-[var(--radius-xl)] border border-[var(--color-border-default)] bg-white/60 backdrop-blur-xs shadow-[var(--shadow-sm)]">
-                {/* Corner coordinate marks */}
-                <span className="absolute top-3 left-3 font-mono text-[8px] text-slate-300 select-none">+</span>
-                <span className="absolute top-3 right-3 font-mono text-[8px] text-slate-300 select-none">+</span>
-                <span className="absolute bottom-3 left-3 font-mono text-[8px] text-slate-300 select-none">+</span>
-                <span className="absolute bottom-3 right-3 font-mono text-[8px] text-slate-300 select-none">+</span>
-              </div>
-
-              {/* SVG Precision Orbit Diagram */}
-              <svg
-                viewBox="0 0 440 440"
-                className="relative z-10 w-full h-full select-none"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Grid alignment lines */}
-                <line x1="220" y1="40" x2="220" y2="400" stroke="rgba(148,163,184,0.06)" strokeWidth="1" />
-                <line x1="40" y1="220" x2="400" y2="220" stroke="rgba(148,163,184,0.06)" strokeWidth="1" />
-
-                {/* Outer orbit circle */}
-                <circle
-                  cx="220" cy="220" r="170"
-                  stroke="rgba(128,0,32,0.05)"
-                  strokeWidth="1.5"
-                />
-
-                {/* Dashed tracking orbit */}
-                <circle
-                  cx="220" cy="220" r="130"
-                  stroke="rgba(128,0,32,0.09)"
-                  strokeWidth="1.2"
-                  strokeDasharray="4 5"
-                />
-
-                {/* Inner precision circle */}
-                <circle
-                  cx="220" cy="220" r="90"
-                  stroke="rgba(128,0,32,0.13)"
-                  strokeWidth="1"
-                />
-
-                {/* Asymmetric ellipse trajectory */}
-                <ellipse
-                  cx="220" cy="220"
-                  rx="150" ry="85"
-                  stroke="rgba(128,0,32,0.07)"
-                  strokeWidth="1.2"
-                  transform="rotate(-18 220 220)"
-                />
-
-                {/* Connector radials from center */}
-                <line x1="220" y1="220" x2="95" y2="125"  stroke="rgba(148,163,184,0.12)" strokeWidth="1" />
-                <line x1="220" y1="220" x2="345" y2="125" stroke="rgba(148,163,184,0.12)" strokeWidth="1" />
-                <line x1="220" y1="220" x2="220" y2="335" stroke="rgba(148,163,184,0.12)" strokeWidth="1" />
-                <line x1="220" y1="220" x2="100" y2="305" stroke="rgba(148,163,184,0.12)" strokeWidth="1" />
-                <line x1="220" y1="220" x2="340" y2="305" stroke="rgba(148,163,184,0.10)" strokeWidth="1" />
-
-                {/* Central Hub — geometric J with orbit ring */}
-                <g>
-                  <circle cx="220" cy="220" r="30" fill="white" stroke="rgba(128,0,32,0.15)" strokeWidth="1.5" />
-                  <circle cx="220" cy="220" r="30" fill="white" stroke="var(--color-brand-600)" strokeWidth="2" opacity="0.9" />
-                  {/* Geometric J letterform */}
-                  <path
-                    d="M 220 207 A 11 11 0 1 1 209 224 L 209 210"
-                    stroke="var(--color-brand-600)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    fill="none"
-                  />
-                  {/* Center node */}
-                  <circle cx="220" cy="220" r="2.5" fill="var(--color-brand-600)" />
-                </g>
-
-                {/* Module 1: CLOUD OPS (top right) */}
-                <g transform="translate(295, 102)">
-                  <rect x="-8" y="-14" width="96" height="40" rx="4" fill="white" stroke="rgba(148,163,184,0.22)" strokeWidth="1" />
-                  <rect x="-8" y="-14" width="96" height="40" rx="4" fill="white" stroke="rgba(148,163,184,0.22)" strokeWidth="1" />
-                  <text x="40" y="4"  textAnchor="middle" fill="var(--color-text-primary)" fontSize="8.5" fontWeight="700" fontFamily="var(--font-sans)">CLOUD</text>
-                  <text x="40" y="16" textAnchor="middle" fill="var(--color-text-muted)"   fontSize="7"   fontWeight="500" fontFamily="var(--font-mono)">INFRASTRUCTURE</text>
-                  <circle cx="-8" cy="6" r="2.5" fill="var(--color-brand-600)" />
-                </g>
-
-                {/* Module 2: SECURITY SOC (top left) */}
-                <g transform="translate(55, 102)">
-                  <rect x="-8" y="-14" width="96" height="40" rx="4" fill="white" stroke="rgba(148,163,184,0.22)" strokeWidth="1" />
-                  <text x="40" y="4"  textAnchor="middle" fill="var(--color-text-primary)" fontSize="8.5" fontWeight="700" fontFamily="var(--font-sans)">SECURITY</text>
-                  <text x="40" y="16" textAnchor="middle" fill="var(--color-text-muted)"   fontSize="7"   fontWeight="500" fontFamily="var(--font-mono)">ZERO TRUST SOC</text>
-                  <circle cx="88" cy="6" r="2.5" fill="var(--color-brand-500)" />
-                </g>
-
-                {/* Module 3: APPLIED AI (bottom center) */}
-                <g transform="translate(172, 315)">
-                  <rect x="-8" y="-14" width="96" height="40" rx="4" fill="white" stroke="rgba(148,163,184,0.22)" strokeWidth="1" />
-                  <text x="40" y="4"  textAnchor="middle" fill="var(--color-text-primary)" fontSize="8.5" fontWeight="700" fontFamily="var(--font-sans)">APPLIED AI</text>
-                  <text x="40" y="16" textAnchor="middle" fill="var(--color-text-muted)"   fontSize="7"   fontWeight="500" fontFamily="var(--font-mono)">RAG · AGENTS</text>
-                  <circle cx="40" cy="-14" r="2.5" fill="var(--color-brand-600)" />
-                </g>
-
-                {/* Module 4: SOFTWARE (bottom left) */}
-                <g transform="translate(60, 286)">
-                  <rect x="-8" y="-14" width="96" height="40" rx="4" fill="white" stroke="rgba(148,163,184,0.22)" strokeWidth="1" />
-                  <text x="40" y="4"  textAnchor="middle" fill="var(--color-text-primary)" fontSize="8.5" fontWeight="700" fontFamily="var(--font-sans)">SOFTWARE</text>
-                  <text x="40" y="16" textAnchor="middle" fill="var(--color-text-muted)"   fontSize="7"   fontWeight="500" fontFamily="var(--font-mono)">CORE SYSTEMS</text>
-                  <circle cx="88" cy="6" r="2.5" fill="rgba(148,163,184,0.5)" />
-                </g>
-
-                {/* Module 5: DEVOPS (bottom right) */}
-                <g transform="translate(285, 286)">
-                  <rect x="-8" y="-14" width="96" height="40" rx="4" fill="white" stroke="rgba(148,163,184,0.22)" strokeWidth="1" />
-                  <text x="40" y="4"  textAnchor="middle" fill="var(--color-text-primary)" fontSize="8.5" fontWeight="700" fontFamily="var(--font-sans)">DEVOPS</text>
-                  <text x="40" y="16" textAnchor="middle" fill="var(--color-text-muted)"   fontSize="7"   fontWeight="500" fontFamily="var(--font-mono)">CI/CD · MONITORING</text>
-                  <circle cx="-8" cy="6" r="2.5" fill="rgba(148,163,184,0.35)" />
-                </g>
-
-                {/* Geo-coordinate label */}
-                <text x="16" y="428" fill="rgba(148,163,184,0.4)" fontSize="6.5" fontFamily="var(--font-mono)">
-                  SYS.LOC: 21.0285°N 105.8542°E
-                </text>
-                <text x="380" y="428" textAnchor="end" fill="rgba(148,163,184,0.4)" fontSize="6.5" fontFamily="var(--font-mono)">
-                  v2.4
-                </text>
-              </svg>
-            </div>
+          {/* ── Right Column: Animated Precision Orbit Planetary System ─────────── */}
+          <div className="lg:col-span-5 flex items-center justify-center pt-6 lg:pt-0">
+            <TechnologyOrbit />
           </div>
         </Container>
       </section>
@@ -266,22 +140,22 @@ export default function Homepage({ params }: PageProps) {
           2. INDUSTRY CREDIBILITY STRIP
           ════════════════════════════════════════════════════════════ */}
       <div
-        className="bg-white border-b border-[var(--color-border-default)] py-6"
+        className="bg-[#171315] border-b border-white/[0.09] py-6"
         aria-label={isEn ? 'Industry sectors served' : 'Lĩnh vực phục vụ'}
       >
         <Container>
           <div className="flex flex-col items-center gap-4">
-            <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-subtle">
+            <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted">
               {isEn ? 'Core Industry Verticals' : 'Ngành công nghiệp trọng yếu'}
             </span>
             <div className="flex flex-wrap items-center justify-center gap-0">
               {sectors.map((sector, i) => (
                 <span key={sector} className="flex items-center">
-                  <span className="text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors duration-[var(--motion-fast)] px-4 md:px-6 py-1">
+                  <span className="text-xs font-semibold text-text-secondary hover:text-[#F7F2F3] transition-colors duration-[var(--motion-fast)] px-4 md:px-6 py-1">
                     {sector}
                   </span>
                   {i < sectors.length - 1 && (
-                    <span className="w-px h-4 bg-slate-200" aria-hidden="true" />
+                    <span className="w-px h-4 bg-white/10" aria-hidden="true" />
                   )}
                 </span>
               ))}
@@ -296,7 +170,7 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           3. STRATEGIC SERVICES — Indexed Grid
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-dots">
+      <Section variant="alternate" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-dots">
         {/* Soft radial glow in the corner */}
         <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
@@ -348,14 +222,14 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           4. CAPABILITIES — Asymmetric Split Layout
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="subtle" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-grid">
+      <Section variant="subtle" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-grid">
         {/* Soft radial glow on the left */}
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           {/* Left: quote + CTA */}
           <div className="lg:col-span-7">
             <span className="eyebrow mb-5 block">{content.home.capabilitiesHead.eyebrow}</span>
-            <blockquote className="text-clamp-h2 font-semibold text-text-primary leading-snug tracking-tight mb-6 italic border-l-2 border-brand-600 pl-6">
+            <blockquote className="text-clamp-h2 font-semibold text-text-primary leading-snug tracking-tight mb-6 italic border-l-2 border-[#8E2938] pl-6">
               &ldquo;{content.home.capabilitiesHead.description}&rdquo;
             </blockquote>
             <Button
@@ -374,7 +248,7 @@ export default function Homepage({ params }: PageProps) {
 
           {/* Right: company metadata panel */}
           <div className="lg:col-span-5">
-            <div className="bg-white border border-[var(--color-border-default)] rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-xs)]">
+            <div className="bg-[#1C181A] border border-white/10 rounded-[var(--radius-lg)] overflow-hidden shadow-md">
               {[
                 {
                   label: isEn ? 'Established' : 'Năm thành lập',
@@ -386,12 +260,12 @@ export default function Homepage({ params }: PageProps) {
                 },
                 {
                   label: isEn ? 'Office presence' : 'Văn phòng hiện diện',
-                  value: 'Hà Nội · Tp. HCM · Singapore', // CONTENT VERIFICATION REQUIRED
+                  value: 'Hà Nội · Tp. HCM · Singapore',
                 },
               ].map((row, i, arr) => (
                 <div
                   key={row.label}
-                  className={`px-6 py-5 flex flex-col ${i < arr.length - 1 ? 'border-b border-[var(--color-border-default)]' : ''}`}
+                  className={`px-6 py-5 flex flex-col ${i < arr.length - 1 ? 'border-b border-white/[0.08]' : ''}`}
                 >
                   <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted mb-1">
                     {row.label}
@@ -412,7 +286,7 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           5. TECHNOLOGY INTEGRATION — Product Showcase
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-dots">
+      <Section variant="raised" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-dots">
         {/* Soft radial glow in the center-right */}
         <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[400px] h-[400px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container className="relative z-10">
@@ -464,7 +338,7 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           6. CASE STUDIES — Editorial Layout
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="subtle" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-grid">
+      <Section variant="brand-tint" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-grid">
         {/* Soft radial glow in the top-left */}
         <div className="absolute top-0 left-0 w-[450px] h-[450px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container className="relative z-10">
@@ -498,7 +372,7 @@ export default function Homepage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════
           7. DELIVERY PROCESS — Vertical Rail
           ════════════════════════════════════════════════════════════ */}
-      <Section variant="default" className="border-b border-[var(--color-border-default)] relative overflow-hidden bg-tech-dots">
+      <Section variant="alternate" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-dots">
         {/* Soft radial glow in the center-bottom */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container className="relative z-10">
@@ -524,17 +398,17 @@ export default function Homepage({ params }: PageProps) {
                 {/* Connector line (hidden on last item) */}
                 {index < stepsCopy.length - 1 && (
                   <div
-                    className="hidden lg:block absolute top-7 left-1/2 w-full h-px bg-[var(--color-border-default)] z-0"
+                    className="hidden lg:block absolute top-7 left-1/2 w-full h-px bg-white/10 z-0"
                     aria-hidden="true"
                   />
                 )}
 
-                <div className="relative z-10 bg-[var(--color-bg-default)] group-hover:bg-white border border-[var(--color-border-default)] group-hover:border-brand-200 rounded-[var(--radius-lg)] p-5 mx-2 flex-1 transition-[background-color,border-color,box-shadow] duration-[var(--motion-medium)] ease-[var(--ease-standard)] group-hover:shadow-[var(--shadow-sm)]">
+                <div className="relative z-10 bg-[#1C181A] group-hover:bg-[#241E21] border border-white/10 group-hover:border-white/25 rounded-[var(--radius-lg)] p-5 mx-2 flex-1 transition-[background-color,border-color,box-shadow] duration-[var(--motion-medium)] ease-[var(--ease-standard)] group-hover:shadow-md">
                   {/* Step number */}
                   <span className="index-chip mb-4 inline-block">{step.num}</span>
 
                   {/* Step title */}
-                  <h4 className="text-sm font-semibold text-text-primary mb-2 group-hover:text-brand-700 transition-colors duration-[var(--motion-base)] leading-snug">
+                  <h4 className="text-sm font-semibold text-text-primary mb-2 group-hover:text-white transition-colors duration-[var(--motion-base)] leading-snug">
                     {step.title}
                   </h4>
 
@@ -550,37 +424,37 @@ export default function Homepage({ params }: PageProps) {
       </Section>
 
       {/* ════════════════════════════════════════════════════════════
-          8. FINAL CTA — Dark Charcoal Section
+          8. FINAL CTA — Dark Burgundy CTA Section
           ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[var(--color-surface-dark)] text-white">
+      <section className="relative overflow-hidden bg-[#30171D] text-[#F7F2F3] border-t border-white/15">
         {/* Burgundy gradient accent */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-brand-950/40 via-transparent to-transparent pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-br from-[#8E2938]/30 via-transparent to-transparent pointer-events-none"
           aria-hidden="true"
         />
         {/* Subtle grid on dark surface */}
         <div
-          className="absolute inset-0 bg-dark-grid opacity-40 pointer-events-none"
+          className="absolute inset-0 bg-dark-grid opacity-30 pointer-events-none"
           aria-hidden="true"
         />
 
         <Container className="relative z-10 py-20 md:py-24 text-center max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-brand-300 bg-brand-900/60 border border-brand-800 px-3 py-1.5 rounded-[var(--radius-xs)] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" aria-hidden="true" />
+          <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#F7F2F3] bg-[#8E2938]/40 border border-[#8E2938]/60 px-3.5 py-1.5 rounded-[var(--radius-xs)] mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D46A79] animate-pulse" aria-hidden="true" />
             {isEn ? 'Start the conversation' : 'Bắt đầu hợp tác'}
           </span>
 
           <Typography
             variant="h2"
             as="h2"
-            className="text-white mb-5 leading-tight"
+            className="text-[#F7F2F3] mb-5 leading-tight"
           >
             {isEn
               ? "Let's align your technology strategy"
               : 'Hãy đưa giải pháp công nghệ vào vận hành thực tế'}
           </Typography>
 
-          <Typography variant="body-large" className="text-slate-300 mb-10 max-w-lg mx-auto">
+          <Typography variant="body-large" className="text-[#C8BEC1] mb-10 max-w-lg mx-auto">
             {isEn
               ? 'Schedule a 30-minute consultation with our system architects to outline your roadmap.'
               : 'Đặt lịch trao đổi 30 phút cùng đội ngũ kỹ sư trưởng để phác thảo sơ bộ giải pháp hạ tầng.'}
@@ -590,7 +464,7 @@ export default function Homepage({ params }: PageProps) {
             variant="primary"
             size="lg"
             href={`/${params.locale}/contact#contact-form`}
-            className="bg-brand-600 hover:bg-brand-500 border-transparent shadow-lg hover:shadow-brand-900/50"
+            className="bg-[#8E2938] hover:bg-[#A73748] border-white/20 shadow-xl"
             rightIcon={
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" />

@@ -63,39 +63,98 @@ export const siteContentVi = {
   
   home: {
     hero: {
-      eyebrow: 'Công ty Cổ phần Giải pháp Công nghệ Sao Mộc',
-      headline: 'Đồng hành kiến tạo giải pháp công nghệ & chuyển đổi số doanh nghiệp',
-      description: 'Chúng tôi thiết kế và vận hành các giải pháp phần mềm, tích hợp hạ tầng, và tác tử trí tuệ nhân tạo chuyên biệt — cam kết chất lượng kỹ thuật tối ưu và đồng hành lâu dài cùng doanh nghiệp.',
-      ctaPrimary: 'Trao đổi với chuyên gia',
-      ctaSecondary: 'Xem dịch vụ triển khai',
-      // CONTENT VERIFICATION REQUIRED: Confirm staff counts and founding year
+      eyebrow: 'ENTERPRISE TECHNOLOGY SYSTEMS',
+      headline: 'Đưa doanh nghiệp vào quỹ đạo công nghệ.',
+      description: 'Chúng tôi thiết kế, xây dựng và vận hành các hệ thống AI, phần mềm, dữ liệu và hạ tầng cloud có khả năng mở rộng cùng doanh nghiệp.',
+      ctaPrimary: 'Trao đổi dự án',
+      ctaSecondary: 'Khám phá năng lực',
+      credibilityPill: 'AI · SOFTWARE · CLOUD · DATA · SECURITY',
       stats: [
-        { value: '2019', label: 'Năm thành lập' }, 
-        { value: '60+', label: 'Kỹ sư & chuyên gia' },
-        { value: '320+', label: 'Dự án hạ tầng đã bàn giao' }
+        { value: '60+', label: 'Kỹ sư & chuyên gia', sub: 'Engineers, architects and specialists' },
+        { value: '4', label: 'Thị trường phục vụ', sub: 'Markets served across ASEAN' },
+        { value: '24/7', label: 'Vận hành liên tục', sub: 'Monitoring & emergency response' },
+        { value: '3', label: 'Văn phòng khu vực', sub: 'Regional presence & PoC labs' }
       ]
     },
+    challengesHead: {
+      eyebrow: 'BẢN CHẤT BÀI TOÁN DOANH NGHIỆP',
+      title: 'Công nghệ không nên trở thành một hệ thống rời rạc.',
+      description: 'Khi các công cụ công nghệ không gắn kết, doanh nghiệp tiêu tốn chi phí nhưng không đạt được tốc độ vận hành kỳ vọng.',
+      transition: 'Jupiter Solution thiết kế một hệ thống thống nhất từ chiến lược đến vận hành.'
+    },
+    challenges: [
+      { id: 'c1', code: '01', title: 'Dữ liệu phân mảnh', desc: 'Dữ liệu nằm trong nhiều hệ thống không kết nối, thiếu góc nhìn toàn cảnh cho lãnh đạo.' },
+      { id: 'c2', code: '02', title: 'Quy trình thủ công', desc: 'Nghiệp vụ phụ thuộc nhiều vào thao tác con người, dễ phát sinh lỗi và nghẽn tiến độ.' },
+      { id: 'c3', code: '03', title: 'AI thử nghiệm rời rạc', desc: 'Thử nghiệm AI nhưng chưa tạo ra giá trị vận hành thực tế và lo ngại bảo mật dữ liệu.' },
+      { id: 'c4', code: '04', title: 'Hạ tầng khó mở rộng', desc: 'Hạ tầng Cloud/On-premise cũ thiếu khả năng quan sát và chi phí gia tăng không kiểm soát.' },
+      { id: 'c5', code: '05', title: 'Phần mềm cũ cản trở', desc: 'Các hệ thống legacy cồng kềnh làm chậm tốc độ đưa sản phẩm mới ra thị trường.' },
+      { id: 'c6', code: '06', title: 'Bảo mật bổ sung muộn', desc: 'An ninh mạng chỉ được chú trọng sau khi sự cố xảy ra thay vì thiết kế Zero Trust ngay từ đầu.' }
+    ],
+    servicePillarsHead: {
+      eyebrow: 'KIẾN TRÚC HỆ THỐNG',
+      title: 'Ba trục năng lực cốt lõi kéo doanh nghiệp tiến xa',
+      description: 'Chúng tôi cấu trúc dịch vụ thành 3 khối gắn kết chặt chẽ: Phát triển (Build), Trí tuệ (Intelligence) và Vận hành (Operate).'
+    },
+    servicePillars: [
+      {
+        id: 'build',
+        code: 'BUILD',
+        title: 'Phát triển & Tích hợp (Build)',
+        description: 'Xây dựng các hệ thống phần mềm doanh nghiệp và nền tảng cốt lõi được đo ni đóng giày.',
+        capabilities: ['Enterprise Software', 'Product Engineering', 'System Integration & APIs'],
+        outcome: 'Rút ngắn 40% thời gian đưa nghiệp vụ mới vào vận hành.'
+      },
+      {
+        id: 'intelligence',
+        code: 'INTELLIGENCE',
+        title: 'Trí tuệ & Dữ liệu (Intelligence)',
+        description: 'Đưa AI từ thử nghiệm vào quy trình vận hành thực tế trên tập dữ liệu riêng bảo mật.',
+        capabilities: ['Enterprise RAG', 'AI Agents & Automation', 'Data Pipeline & Governance'],
+        outcome: 'Khai thác tối đa kho tri thức nội bộ và tự động hóa tác vụ chuyên sâu.'
+      },
+      {
+        id: 'operate',
+        code: 'OPERATE',
+        title: 'Hạ tầng & Vận hành (Operate)',
+        description: 'Đảm bảo sự ổn định, an toàn thông tin và hiệu năng liên tục 24/7 cho toàn bộ hạ tầng.',
+        capabilities: ['Cloud & Hybrid Infrastructure', 'DevOps & SRE Automation', 'Zero Trust SOC & Managed NOC'],
+        outcome: 'Cam kết SLA 99.99% uptime và ứng phó sự cố khẩn cấp.'
+      }
+    ],
+    securityHead: {
+      eyebrow: 'TỰ PHỤC HỒI & AN TOÀN BẢO MẬT',
+      title: 'Nguyên tắc vận hành an ninh cho hệ thống lớn',
+      description: 'Chúng tôi thiết kế an ninh mạng như một điều kiện tiên quyết trong mọi kiến trúc hệ thống.'
+    },
+    securityPrinciples: [
+      { num: '01', title: 'Security by Design', desc: 'Tích hợp chính sách an toàn thông tin vào từng dòng mã nguồn và cấu hình hạ tầng.' },
+      { num: '02', title: 'Zero Trust Access Control', desc: 'Xác thực đa yếu tố và phân quyền đặc quyền tối thiểu (Least Privilege) cho mọi kết nối.' },
+      { num: '03', title: 'Data Isolation', desc: 'Mã hóa dữ liệu tại chỗ (At Rest) và trên đường truyền (In Transit) với khóa riêng của khách hàng.' },
+      { num: '04', title: 'Deployment Governance', desc: 'Quy trình CI/CD kiểm thử an ninh tự động trước khi đưa sản phẩm lên môi trường Production.' },
+      { num: '05', title: 'Full System Observability', desc: 'Giám sát tập trung log sự kiện (SIEM) và cảnh báo bất thường thời gian thực.' },
+      { num: '06', title: 'Documentation & Handover', desc: 'Bàn giao 100% tài liệu kiến trúc, mã nguồn và quy trình khôi phục thảm họa (DRP).' }
+    ],
     servicesHead: {
       eyebrow: 'Dịch vụ chiến lược',
       title: 'Các dịch vụ công nghệ đầu cuối cho doanh nghiệp',
       description: 'Chúng tôi cung cấp các giải pháp công nghệ trọn vòng đời từ tư vấn kiến trúc, triển khai phần mềm cho đến bảo mật và vận hành hạ tầng mạng.'
     },
     capabilitiesHead: {
-      eyebrow: 'Tôn chỉ của Sao Mộc',
+      eyebrow: 'TÔN CHỈ SAO MỘC',
       title: 'Build quietly. Ship reliably.',
       description: 'Chúng tôi tin rằng công nghệ tốt nhất là công nghệ biết khiêm tốn — phục vụ con người, vận hành lặng lẽ, và làm bệ đỡ vững chắc để khách hàng tỏa sáng.'
     },
     processHead: {
-      eyebrow: 'Mô hình cộng tác',
-      title: 'Quy trình hợp tác 5 bước chuyên nghiệp',
+      eyebrow: 'PHƯƠNG PHÁP TRIỂN KHAI',
+      title: 'Lộ trình 5 bước đưa hệ thống vào vận hành',
       description: 'Đảm bảo sự minh bạch về tiến độ, chất lượng kỹ thuật và tối ưu hóa ngân sách trong suốt vòng đời dự án.'
     },
     processSteps: [
-      { num: '01', title: 'Khảo sát & Chẩn đoán', desc: 'Lắng nghe nhu cầu thực tế của doanh nghiệp, khảo sát hiện trạng hạ tầng và đánh giá rủi ro.' },
-      { num: '02', title: 'Định hình giải pháp', desc: 'Thiết kế kiến trúc hệ thống sơ bộ, lập lộ trình triển khai chi tiết và cam kết SLA thương mại.' },
-      { num: '03', title: 'Triển khai linh hoạt', desc: 'Lập trình và tích hợp theo chu kỳ ngắn (Scrum), liên tục báo cáo tiến độ hai tuần một lần.' },
-      { num: '04', title: 'Bàn giao & Đào tạo', desc: 'Chuyển giao toàn bộ mã nguồn, tài liệu vận hành chi tiết và hướng dẫn kỹ thuật cho team in-house.' },
-      { num: '05', title: 'Đồng hành lâu dài', desc: 'Bảo trì hệ thống chủ động, giám sát NOC 24/7 và đề xuất các cải tiến an ninh định kỳ.' }
+      { num: '01', title: 'Khảo sát (Discover)', desc: 'Lắng nghe nhu cầu thực tế, khảo sát hiện trạng hạ tầng và xác định bài toán kinh doanh.' },
+      { num: '02', title: 'Kiến trúc (Architect)', desc: 'Thiết kế kiến trúc hệ thống, dữ liệu, bảo mật và cam kết mốc thời gian thương mại.' },
+      { num: '03', title: 'Phát triển (Build)', desc: 'Lập trình và tích hợp theo từng giai đoạn (Scrum) có thể kiểm chứng hai tuần một lần.' },
+      { num: '04', title: 'Tích hợp (Integrate)', desc: 'Kết nối hệ thống, dữ liệu nghiệp vụ và đào tạo chuyển giao cho đội ngũ in-house.' },
+      { num: '05', title: 'Vận hành (Operate)', desc: 'Giám sát NOC/SOC 24/7, bảo trì chủ động và tối ưu hóa hiệu năng hệ thống liên tục.' }
     ]
   },
 

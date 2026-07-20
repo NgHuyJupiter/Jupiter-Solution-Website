@@ -3,7 +3,6 @@ import { siteContentEn } from '@/content/en/site';
 import Container from '@/components/ui/container';
 import Section from '@/components/ui/section';
 import Typography from '@/components/ui/typography';
-import Button from '@/components/ui/button';
 import Link from '@/components/ui/link';
 import ProductCard from '@/components/marketing/product-card';
 import { getPageMetadata } from '@/lib/metadata/metadata-utils';
@@ -32,27 +31,53 @@ export default function ProductsPage({ params }: PageProps) {
   const content = isEn ? siteContentEn : siteContentVi;
   const products = content.products.list;
 
-  return (
-    <div className="flex flex-col w-full">
-      {/* Page Header */}
-      <Section variant="alternate" className="py-12 border-b border-slate-200 bg-white">
-        <Container>
-          <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-            {isEn ? 'Hardware & Software Platforms' : 'Nền tảng & Thiết bị'}
-          </span>
-          <Typography variant="h1" className="mt-4 mb-3 text-text-primary">
-            {isEn ? 'Authorized System Integrations' : 'Thiết bị & Nền tảng chúng tôi triển khai'}
-          </Typography>
-          <Typography variant="body-large" className="text-text-secondary max-w-3xl mb-0">
-            {content.products.intro}
-          </Typography>
-        </Container>
-      </Section>
+  /* ── Comparison table rows ── */
+  const tableRows = [
+    {
+      model: 'SRX 5800',
+      throughput: isEn ? 'Up to 2 Tbps' : 'Lên đến 2 Tbps',
+      ports: '100GbE · 40GbE · 10GbE',
+      role: isEn ? 'Data Center & Telecom Core' : 'Trung tâm dữ liệu & Viễn thông lõi',
+    },
+    {
+      model: 'SRX 4600',
+      throughput: isEn ? 'Up to 400 Gbps' : 'Lên đến 400 Gbps',
+      ports: '100GbE · 40GbE · 10GbE · 1U',
+      role: isEn ? 'Enterprise HQ & Private Cloud' : 'Trụ sở doanh nghiệp & Private Cloud',
+    },
+    {
+      model: 'SRX 1500',
+      throughput: isEn ? 'Up to 9 Gbps' : 'Lên đến 9 Gbps',
+      ports: '10GbE SFP+ · 1GbE RJ45',
+      role: isEn ? 'Enterprise Edge & Medium Branch' : 'Nhánh doanh nghiệp & Chi nhánh vừa',
+    },
+  ];
 
-      {/* Main Category Cards */}
-      <Section variant="default" className="border-b border-slate-200">
+  return (
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
+
+      {/* ── Page Header ──────────────────────────────────────── */}
+      <section className="py-14 md:py-16 border-b border-white/[0.09] bg-[#100E0F] bg-tech-dots relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="max-w-3xl">
+            <span className="eyebrow mb-5 block">
+              {isEn ? 'Hardware & Software Platforms' : 'Nền tảng & Thiết bị'}
+            </span>
+            <Typography variant="h1" className="mb-4 text-text-primary leading-tight">
+              {isEn ? 'Authorized System Integrations' : 'Thiết bị & Nền tảng chúng tôi triển khai'}
+            </Typography>
+            <Typography variant="body-large" className="text-text-secondary max-w-2xl">
+              {content.products.intro}
+            </Typography>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Product Cards ─────────────────────────────────────── */}
+      <Section variant="alternate" className="border-b border-white/[0.09]">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {products.map((group) => (
               <ProductCard
                 key={group.id}
@@ -69,78 +94,66 @@ export default function ProductsPage({ params }: PageProps) {
         </Container>
       </Section>
 
-      {/* Comparison Specifications Table */}
-      <Section variant="alternate">
+      {/* ── Comparison Table ──────────────────────────────────── */}
+      <Section variant="subtle">
         <Container>
-          <div className="max-w-2xl mb-10 opacity-0 animate-fade-up">
-            <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-              {isEn ? 'Parameters comparison' : 'Đối chiếu thông số điển hình'}
+          <div className="mb-10 opacity-0 animate-fade-up">
+            <span className="eyebrow mb-4 block">
+              {isEn ? 'Parameter comparison' : 'Đối chiếu thông số điển hình'}
             </span>
-            <Typography variant="h2" className="mt-4 mb-2 text-text-primary">
+            <Typography variant="h2" className="mb-3 text-text-primary leading-tight max-w-xl">
               {isEn ? 'Core Network Security Gateways' : 'Các phân khúc tường lửa mạng lõi tiêu biểu'}
             </Typography>
           </div>
- 
-          <div className="overflow-x-auto border border-slate-200 rounded-lg shadow-sm opacity-0 animate-scale-in delay-150">
-            <table className="min-w-full divide-y divide-slate-200 text-sm text-left bg-white">
-              <thead className="bg-slate-50 text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                <tr>
-                  <th scope="col" className="px-6 py-4">{isEn ? 'Model' : 'Thiết bị'}</th>
-                  <th scope="col" className="px-6 py-4">{isEn ? 'Throughput' : 'Băng thông'}</th>
-                  <th scope="col" className="px-6 py-4">{isEn ? 'Interface Ports' : 'Cổng kết nối'}</th>
-                  <th scope="col" className="px-6 py-4">{isEn ? 'Role Context' : 'Phạm vi triển khai'}</th>
-                  <th scope="col" className="px-6 py-4 text-right">{isEn ? 'Action' : 'Hành động'}</th>
+
+          {/* Scrollable table with Dark Precision design */}
+          <div className="overflow-x-auto border border-white/10 rounded-[var(--radius-lg)] shadow-md opacity-0 animate-scale-in delay-150">
+            <table className="min-w-full divide-y divide-white/10 text-sm text-left bg-[#1C181A]">
+              <thead>
+                <tr className="bg-[#171315]">
+                  <th scope="col" className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted">
+                    {isEn ? 'Model' : 'Thiết bị'}
+                  </th>
+                  <th scope="col" className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted">
+                    {isEn ? 'Throughput' : 'Băng thông'}
+                  </th>
+                  <th scope="col" className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted">
+                    {isEn ? 'Interface Ports' : 'Cổng kết nối'}
+                  </th>
+                  <th scope="col" className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted">
+                    {isEn ? 'Deployment Context' : 'Phạm vi triển khai'}
+                  </th>
+                  <th scope="col" className="px-6 py-3.5 text-right text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted">
+                    {isEn ? 'Action' : 'Hành động'}
+                  </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-700">
-                <tr className="hover:bg-slate-50/60 transition-colors duration-[var(--motion-fast)]">
-                  <td className="px-6 py-4 font-mono font-bold text-brand-600">SRX 5800</td>
-                  <td className="px-6 py-4">Up to 2 Tbps</td>
-                  <td className="px-6 py-4">100GbE, 40GbE, 10GbE</td>
-                  <td className="px-6 py-4">Data Center &amp; Telecom Core</td>
-                  <td className="px-6 py-4 text-right">
-                    <Link
-                      href={`/${params.locale}/contact#contact-form`}
-                      variant="inline"
-                      className="text-xs font-bold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1 group/row"
-                    >
-                      <span>{isEn ? 'Request Quote' : 'Yêu cầu báo giá'}</span>
-                      <span className="transition-transform duration-[var(--motion-base)] group-hover/row:translate-x-0.5">→</span>
-                    </Link>
-                  </td>
-                </tr>
-                <tr className="hover:bg-slate-50/60 transition-colors duration-[var(--motion-fast)]">
-                  <td className="px-6 py-4 font-mono font-bold text-brand-600">SRX 4600</td>
-                  <td className="px-6 py-4">Up to 400 Gbps</td>
-                  <td className="px-6 py-4">100GbE, 40GbE, 10GbE, 1U Size</td>
-                  <td className="px-6 py-4">Enterprise Headquarter &amp; Private Cloud</td>
-                  <td className="px-6 py-4 text-right">
-                    <Link
-                      href={`/${params.locale}/contact#contact-form`}
-                      variant="inline"
-                      className="text-xs font-bold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1 group/row"
-                    >
-                      <span>{isEn ? 'Request Quote' : 'Yêu cầu báo giá'}</span>
-                      <span className="transition-transform duration-[var(--motion-base)] group-hover/row:translate-x-0.5">→</span>
-                    </Link>
-                  </td>
-                </tr>
-                <tr className="hover:bg-slate-50/60 transition-colors duration-[var(--motion-fast)]">
-                  <td className="px-6 py-4 font-mono font-bold text-brand-600">SRX 1500</td>
-                  <td className="px-6 py-4">Up to 9 Gbps</td>
-                  <td className="px-6 py-4">10GbE SFP+, 1GbE RJ45</td>
-                  <td className="px-6 py-4">Enterprise Edge &amp; Medium Branch</td>
-                  <td className="px-6 py-4 text-right">
-                    <Link
-                      href={`/${params.locale}/contact#contact-form`}
-                      variant="inline"
-                      className="text-xs font-bold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1 group/row"
-                    >
-                      <span>{isEn ? 'Request Quote' : 'Yêu cầu báo giá'}</span>
-                      <span className="transition-transform duration-[var(--motion-base)] group-hover/row:translate-x-0.5">→</span>
-                    </Link>
-                  </td>
-                </tr>
+              <tbody className="divide-y divide-white/[0.08]">
+                {tableRows.map((row) => (
+                  <tr
+                    key={row.model}
+                    className="group hover:bg-[#8E2938]/10 transition-colors duration-[var(--motion-fast)]"
+                  >
+                    <td className="px-6 py-4">
+                      <span className="font-mono font-bold text-[#D46A79] group-hover:text-white transition-colors duration-[var(--motion-fast)]">
+                        {row.model}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-text-secondary tabular-nums">{row.throughput}</td>
+                    <td className="px-6 py-4 text-text-muted font-mono text-xs">{row.ports}</td>
+                    <td className="px-6 py-4 text-text-secondary">{row.role}</td>
+                    <td className="px-6 py-4 text-right">
+                      <Link
+                        href={`/${params.locale}/contact#contact-form`}
+                        variant="inline"
+                        className="text-xs font-bold text-[#D46A79] hover:text-[#F7F2F3] inline-flex items-center gap-1 group/row transition-colors duration-[var(--motion-fast)]"
+                      >
+                        <span>{isEn ? 'Request quote' : 'Yêu cầu báo giá'}</span>
+                        <span className="transition-transform duration-[var(--motion-base)] group-hover/row:translate-x-0.5" aria-hidden="true">→</span>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

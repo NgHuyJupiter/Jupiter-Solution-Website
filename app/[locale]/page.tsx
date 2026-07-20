@@ -8,6 +8,7 @@ import Link from '@/components/ui/link';
 import ServiceCard from '@/components/marketing/service-card';
 import ProductCard from '@/components/marketing/product-card';
 import CaseStudyCard from '@/components/marketing/case-study-card';
+import TechnologyOrbit from '@/components/marketing/technology-orbit';
 import { getPageMetadata } from '@/lib/metadata/metadata-utils';
 import { Metadata } from 'next';
 
@@ -17,7 +18,6 @@ interface PageProps {
   };
 }
 
-// Generate dynamic B2B metadata for the Homepage
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const content = params.locale === 'en' ? siteContentEn : siteContentVi;
   return getPageMetadata({
@@ -31,58 +31,97 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default function Homepage({ params }: PageProps) {
   const isEn = params.locale === 'en';
   const content = isEn ? siteContentEn : siteContentVi;
-  
+
   const heroCopy = content.home.hero;
-  const servicesCopy = content.services.list.slice(0, 4); // Show top 4 services on homepage
+  const servicesCopy = content.services.list.slice(0, 4);
   const productsCopy = content.products.list;
-  const caseStudiesCopy = content.caseStudies.list.slice(0, 2); // Show top 2 case studies
+  const caseStudiesCopy = content.caseStudies.list.slice(0, 2);
   const stepsCopy = content.home.processSteps;
 
+  /* ── Industry sectors for credibility strip ── */
+  const sectors = isEn
+    ? ['Banking & Finance', 'Energy & Utilities', 'Securities & Insurance', 'Telecom Infrastructure']
+    : ['Ngân hàng & Tài chính', 'Năng lượng & Điện lực', 'Chứng khoán & Bảo hiểm', 'Hạ tầng Viễn thông'];
+
   return (
-    <div className="flex flex-col w-full">
-      {/* 1. Hero Section */}
-      <Section variant="default" className="pt-16 pb-20 border-b border-slate-200 overflow-hidden relative bg-tech-grid">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          {/* Hero Left Column Text */}
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
+
+      {/* ════════════════════════════════════════════════════════════
+          1. HERO — Jupiter Dark Precision Enterprise Entry
+          Asymmetric Swiss grid: 7 cols text | 5 cols Orbital Architecture graphic
+          ════════════════════════════════════════════════════════════ */}
+      <section
+        className="relative overflow-hidden border-b border-white/[0.09] bg-[#100E0F] bg-editorial-grid"
+        aria-label={isEn ? 'Hero' : 'Giới thiệu'}
+      >
+        {/* Muted burgundy ambient glow behind right column graphic */}
+        <div className="absolute right-0 top-0 w-3/5 h-full bg-burgundy-glow pointer-events-none opacity-80" aria-hidden="true" />
+
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-center relative z-10 pt-16 pb-20 md:pt-20 md:pb-24">
+
+          {/* ── Left Column: Copy ─────────────────────────────── */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-brand-600 bg-brand-50 rounded-xs mb-6 uppercase tracking-wider opacity-0 animate-fade-in">
+
+            {/* Eyebrow label */}
+            <span
+              className="eyebrow mb-6 opacity-0 animate-fade-in"
+              aria-label={heroCopy.eyebrow}
+            >
               {heroCopy.eyebrow}
             </span>
-            <Typography variant="display" className="text-text-primary leading-tight font-extrabold mb-5 opacity-0 animate-fade-up delay-100">
+
+            {/* Primary Headline */}
+            <Typography
+              variant="display"
+              as="h1"
+              className="text-[#F7F2F3] mb-5 opacity-0 animate-fade-up delay-100 font-extrabold tracking-tight"
+            >
               {heroCopy.headline}
             </Typography>
-            <Typography variant="body-large" className="text-text-secondary mb-8 max-w-xl opacity-0 animate-fade-up delay-200">
+
+            {/* Supporting description */}
+            <Typography
+              variant="body-large"
+              className="text-[#C8BEC1] mb-8 max-w-[540px] opacity-0 animate-fade-up delay-200"
+            >
               {heroCopy.description}
             </Typography>
-            
-            {/* CTA Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10 opacity-0 animate-fade-up delay-300">
+
+            {/* CTA Group */}
+            <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto mb-10 opacity-0 animate-fade-up delay-300">
               <Button
                 variant="primary"
                 size="lg"
-                className="bg-brand-600 hover:bg-brand-700 text-white rounded-md w-full sm:w-auto"
                 href={`/${params.locale}/contact#contact-form`}
+                rightIcon={
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
+                }
               >
                 {heroCopy.ctaPrimary}
               </Button>
               <Button
                 variant="secondary"
                 size="lg"
-                className="w-full sm:w-auto"
                 href={`/${params.locale}/services`}
               >
                 {heroCopy.ctaSecondary}
               </Button>
             </div>
 
-            {/* Numerical stats row */}
-            <div className="grid grid-cols-3 gap-6 sm:gap-10 border-t border-slate-200 pt-8 w-full opacity-0 animate-fade-in delay-400">
+            {/* Stats credibility row */}
+            <div
+              className="grid grid-cols-3 gap-6 sm:gap-10 border-t border-white/[0.09] pt-8 w-full max-w-md opacity-0 animate-fade-in delay-400"
+              role="list"
+              aria-label={isEn ? 'Company statistics' : 'Thống kê công ty'}
+            >
               {heroCopy.stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col">
-                  <span className="text-2xl sm:text-3xl font-bold text-brand-600 leading-none">
+                <div key={stat.label} className="flex flex-col" role="listitem">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-[#F7F2F3] leading-none tabular-nums">
                     {stat.value}
                   </span>
-                  <span className="text-[11px] sm:text-xs font-medium text-text-secondary mt-1.5 leading-tight">
+                  <span className="text-[11px] font-medium text-text-muted mt-1.5 leading-tight">
                     {stat.label}
                   </span>
                 </div>
@@ -90,129 +129,80 @@ export default function Homepage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Hero Right Column: Detailed Precision Orbit Modular Diagram */}
-          <div className="lg:col-span-5 relative hidden lg:block opacity-0 animate-scale-in delay-200" aria-hidden="true">
-            {/* Ambient warm glow behind diagram */}
-            <div className="absolute -inset-10 bg-burgundy-glow rounded-full filter blur-xl pointer-events-none" />
-            
-            <div className="w-full aspect-square max-w-md mx-auto rounded-xl border border-slate-200/80 bg-white/70 backdrop-blur-xs p-6 relative shadow-xs hover:border-brand-200/50 hover:shadow-sm transition-all duration-[var(--motion-slow)] ease-[var(--ease-standard)]">
-              {/* Corner coordinates marks */}
-              <span className="absolute top-2 left-2 text-[8px] font-mono text-slate-300 select-none">+</span>
-              <span className="absolute top-2 right-2 text-[8px] font-mono text-slate-300 select-none">+</span>
-              <span className="absolute bottom-2 left-2 text-[8px] font-mono text-slate-300 select-none">+</span>
-              <span className="absolute bottom-2 right-2 text-[8px] font-mono text-slate-300 select-none">+</span>
-              
-              <div className="w-full h-full flex items-center justify-center">
-                <svg viewBox="0 0 400 400" className="w-full h-full text-slate-400 select-none" fill="none">
-                  {/* Outer Orbit Line */}
-                  <circle cx="200" cy="200" r="160" stroke="rgba(128, 0, 32, 0.04)" strokeWidth="1.5" />
-                  
-                  {/* Concentric dashed tracking circle */}
-                  <circle cx="200" cy="200" r="120" stroke="rgba(128, 0, 32, 0.08)" strokeWidth="1.2" strokeDasharray="3 3" />
-                  
-                  {/* Inner technical circle */}
-                  <circle cx="200" cy="200" r="80" stroke="rgba(128, 0, 32, 0.12)" strokeWidth="1" />
-                  
-                  {/* Asymmetric ellipse trajectory */}
-                  <ellipse cx="200" cy="200" rx="140" ry="80" stroke="rgba(128, 0, 32, 0.06)" strokeWidth="1.2" transform="rotate(-15 200 200)" />
-                  
-                  {/* Node Connector lines */}
-                  <line x1="200" y1="200" x2="80" y2="120" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
-                  <line x1="200" y1="200" x2="320" y2="120" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
-                  <line x1="200" y1="200" x2="200" y2="310" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
-                  <line x1="200" y1="200" x2="90" y2="280" stroke="rgba(148, 163, 184, 0.15)" strokeWidth="1" />
-                  
-                  {/* central hub - modular core with hidden J geometric circle segment */}
-                  <g className="transition-transform duration-500 hover:scale-105 origin-center cursor-pointer">
-                    <circle cx="200" cy="200" r="28" fill="white" stroke="var(--color-brand-600)" strokeWidth="2.5" className="shadow-xs" />
-                    {/* Hidden geometric J curve inside orbit circle */}
-                    <path d="M 194 190 A 10 10 0 1 0 206 208 L 206 188" stroke="var(--color-brand-600)" strokeWidth="2.5" strokeLinecap="round" />
-                    <circle cx="200" cy="200" r="3" fill="var(--color-brand-600)" />
-                  </g>
-                  
-                  {/* Module 1: CLOUD OPERATIONS (Top Right) */}
-                  <g transform="translate(265, 95)" className="transition-transform duration-300 hover:-translate-y-0.5 cursor-default">
-                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
-                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">CLOUD</text>
-                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">INFRASTRUCTURE</text>
-                    <circle cx="-10" cy="9" r="2.5" fill="var(--color-brand-600)" />
-                  </g>
+          {/* ── Right Column: Animated Precision Orbit Planetary System ─────────── */}
+          <div className="lg:col-span-5 flex items-center justify-center pt-6 lg:pt-0">
+            <TechnologyOrbit />
+          </div>
+        </Container>
+      </section>
 
-                  {/* Module 2: SECURITY SOC (Top Left) */}
-                  <g transform="translate(45, 95)" className="transition-transform duration-300 hover:-translate-y-0.5 cursor-default">
-                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
-                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">SECURITY</text>
-                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">ZERO TRUST SOC</text>
-                    <circle cx="80" cy="9" r="2.5" fill="var(--color-brand-500)" />
-                  </g>
-
-                  {/* Module 3: APPLIED AI (Bottom Center) */}
-                  <g transform="translate(155, 290)" className="transition-transform duration-300 hover:translate-y-0.5 cursor-default">
-                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
-                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">APPLIED AI</text>
-                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">RAG AGENTS</text>
-                    <circle cx="35" cy="-10" r="2.5" fill="var(--color-brand-600)" />
-                  </g>
-                  
-                  {/* Module 4: CORE SYSTEMS (Bottom Left) */}
-                  <g transform="translate(45, 260)" className="transition-transform duration-300 hover:translate-y-0.5 cursor-default">
-                    <rect x="-10" y="-10" width="90" height="38" rx="4" fill="white" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" className="shadow-xs" />
-                    <text x="35" y="14" textAnchor="middle" fill="var(--color-text-primary)" fontSize="9" fontWeight="bold" fontFamily="var(--font-sans)">SOFTWARE</text>
-                    <text x="35" y="24" textAnchor="middle" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)">CORE SYSTEMS</text>
-                    <circle cx="80" cy="9" r="2.5" fill="rgba(148, 163, 184, 0.4)" />
-                  </g>
-
-                  {/* Graphic layout parameters */}
-                  <text x="10" y="380" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)" opacity="0.4">SYS.LOC: 21.0285° N, 105.8542° E</text>
-                  <text x="340" y="380" fill="var(--color-text-muted)" fontSize="7" fontFamily="var(--font-mono)" opacity="0.4">SCALE: 1:1</text>
-                </svg>
-              </div>
+      {/* ════════════════════════════════════════════════════════════
+          2. INDUSTRY CREDIBILITY STRIP
+          ════════════════════════════════════════════════════════════ */}
+      <div
+        className="bg-[#171315] border-b border-white/[0.09] py-6"
+        aria-label={isEn ? 'Industry sectors served' : 'Lĩnh vực phục vụ'}
+      >
+        <Container>
+          <div className="flex flex-col items-center gap-4">
+            <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted">
+              {isEn ? 'Core Industry Verticals' : 'Ngành công nghiệp trọng yếu'}
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-0">
+              {sectors.map((sector, i) => (
+                <span key={sector} className="flex items-center">
+                  <span className="text-xs font-semibold text-text-secondary hover:text-[#F7F2F3] transition-colors duration-[var(--motion-fast)] px-4 md:px-6 py-1">
+                    {sector}
+                  </span>
+                  {i < sectors.length - 1 && (
+                    <span className="w-px h-4 bg-white/10" aria-hidden="true" />
+                  )}
+                </span>
+              ))}
             </div>
           </div>
         </Container>
-      </Section>
-
-      {/* 2. Customer Logo Wall Marquee */}
-      <div className="border-b border-slate-200 py-8 bg-white" aria-label="Khách hàng và đối tác">
-        <Container className="flex flex-col gap-4">
-          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">
-            {isEn ? 'Sectors and Core Industries' : 'Các lĩnh vực và hạ tầng công nghiệp'}
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12 text-sm font-semibold text-slate-400">
-            <span>Ngân hàng &amp; Tài chính</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-200" />
-            <span>Năng lượng &amp; Điện lực</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-200" />
-            <span>Chứng khoán &amp; Bảo hiểm</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-200" />
-            <span>Hạ tầng mạng Viễn thông</span>
-          </div>
-        </Container>
       </div>
 
-      {/* Styled Technical Section Divider */}
-      <div className="relative w-full h-[1px] bg-slate-200 max-w-7xl mx-auto" aria-hidden="true">
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4.5 h-4.5 rounded-full border border-slate-200 bg-white flex items-center justify-center shadow-xs">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-600" />
-        </span>
-      </div>
+      {/* Section divider */}
+      <div className="divider-orbit" aria-hidden="true" />
 
-      {/* 3. Strategic Services Section */}
-      <Section variant="default" className="border-b border-slate-200">
+      {/* ════════════════════════════════════════════════════════════
+          3. STRATEGIC SERVICES — Indexed Grid
+          ════════════════════════════════════════════════════════════ */}
+      <Section variant="alternate" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-dots">
+        {/* Soft radial glow in the corner */}
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
         <Container>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-              {content.home.servicesHead.eyebrow}
-            </span>
-            <Typography variant="h2" className="mt-4 mb-3 text-text-primary">
-              {content.home.servicesHead.title}
-            </Typography>
-            <Typography variant="body" className="text-text-secondary">
-              {content.home.servicesHead.description}
-            </Typography>
+          {/* Section heading */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+            <div className="max-w-xl">
+              <span className="eyebrow mb-4 block">{content.home.servicesHead.eyebrow}</span>
+              <Typography variant="h2" className="mb-3 text-text-primary leading-tight">
+                {content.home.servicesHead.title}
+              </Typography>
+              <Typography variant="body" className="text-text-secondary">
+                {content.home.servicesHead.description}
+              </Typography>
+            </div>
+            <div className="shrink-0">
+              <Button
+                variant="secondary"
+                size="md"
+                href={`/${params.locale}/services`}
+                rightIcon={
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M2 7h10M8 3l4 4-4 4" />
+                  </svg>
+                }
+              >
+                {isEn ? 'All services' : 'Tất cả dịch vụ'}
+              </Button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {/* Services grid — 2 col on md+, 4 items */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {servicesCopy.map((service) => (
               <ServiceCard
                 key={service.id}
@@ -223,80 +213,112 @@ export default function Homepage({ params }: PageProps) {
               />
             ))}
           </div>
-
-          <div className="text-center">
-            <Button
-              variant="secondary"
-              size="md"
-              href={`/${params.locale}/services`}
-            >
-              {isEn ? 'View all services' : 'Xem toàn bộ dịch vụ'} →
-            </Button>
-          </div>
         </Container>
       </Section>
 
-      {/* 4. Capabilities & Citations */}
-      <Section variant="alternate">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-8">
-            <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-              {content.home.capabilitiesHead.eyebrow}
-            </span>
-            <h3 className="text-xl sm:text-2xl font-semibold text-text-primary leading-relaxed mt-4 mb-6 italic">
+      {/* Section divider */}
+      <div className="divider-orbit" aria-hidden="true" />
+
+      {/* ════════════════════════════════════════════════════════════
+          4. CAPABILITIES — Asymmetric Split Layout
+          ════════════════════════════════════════════════════════════ */}
+      <Section variant="subtle" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-grid">
+        {/* Soft radial glow on the left */}
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          {/* Left: quote + CTA */}
+          <div className="lg:col-span-7">
+            <span className="eyebrow mb-5 block">{content.home.capabilitiesHead.eyebrow}</span>
+            <blockquote className="text-clamp-h2 font-semibold text-text-primary leading-snug tracking-tight mb-6 italic border-l-2 border-[#8E2938] pl-6">
               &ldquo;{content.home.capabilitiesHead.description}&rdquo;
-            </h3>
+            </blockquote>
             <Button
-              variant="ghost"
-              className="text-brand-600 hover:text-brand-700"
+              variant="outline"
+              size="md"
               href={`/${params.locale}/capabilities`}
+              rightIcon={
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M2 7h10M8 3l4 4-4 4" />
+                </svg>
+              }
             >
-              {isEn ? 'Read company capabilities' : 'Tìm hiểu năng lực của chúng tôi'} →
+              {isEn ? 'Engineering capabilities' : 'Năng lực kỹ thuật'}
             </Button>
           </div>
 
-          {/* Capabilities metadata side indicators */}
-          <div className="lg:col-span-4 bg-bg-default border border-slate-200 rounded-lg p-6 space-y-4">
-            <div className="flex flex-col pb-4 border-b border-slate-200">
-              <span className="text-xs text-text-muted">{isEn ? 'Founding Year' : 'Năm thành lập'}</span>
-              <span className="text-lg font-bold text-text-primary mt-0.5">2019, Hà Nội</span>
-            </div>
-            <div className="flex flex-col pb-4 border-b border-slate-200">
-              <span className="text-xs text-text-muted">{isEn ? 'Staffing' : 'Đội ngũ'}</span>
-              <span className="text-lg font-bold text-text-primary mt-0.5">60+ Kỹ sư &amp; Chuyên gia</span>
-            </div>
-            {/* CONTENT VERIFICATION REQUIRED: HCM & SG offices address confirmation */}
-            <div className="flex flex-col">
-              <span className="text-xs text-text-muted">{isEn ? 'Office Presence' : 'Văn phòng hiện diện'}</span>
-              <span className="text-lg font-bold text-text-primary mt-0.5">Hà Nội · Tp. HCM · Singapore</span>
+          {/* Right: company metadata panel */}
+          <div className="lg:col-span-5">
+            <div className="bg-[#1C181A] border border-white/10 rounded-[var(--radius-lg)] overflow-hidden shadow-md">
+              {[
+                {
+                  label: isEn ? 'Established' : 'Năm thành lập',
+                  value: '2019, Hà Nội',
+                },
+                {
+                  label: isEn ? 'Engineering team' : 'Đội ngũ kỹ thuật',
+                  value: isEn ? '60+ Engineers & Specialists' : '60+ Kỹ sư & Chuyên gia',
+                },
+                {
+                  label: isEn ? 'Office presence' : 'Văn phòng hiện diện',
+                  value: 'Hà Nội · Tp. HCM · Singapore',
+                },
+              ].map((row, i, arr) => (
+                <div
+                  key={row.label}
+                  className={`px-6 py-5 flex flex-col ${i < arr.length - 1 ? 'border-b border-white/[0.08]' : ''}`}
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted mb-1">
+                    {row.label}
+                  </span>
+                  <span className="text-base font-bold text-text-primary leading-tight">
+                    {row.value}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Styled Technical Section Divider */}
-      <div className="relative w-full h-[1px] bg-slate-200 max-w-7xl mx-auto" aria-hidden="true">
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4.5 h-4.5 rounded-full border border-slate-200 bg-white flex items-center justify-center shadow-xs">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-600" />
-        </span>
-      </div>
+      {/* Section divider */}
+      <div className="divider-orbit" aria-hidden="true" />
 
-      {/* 5. Strategic Partners & Products Showcase */}
-      <Section variant="default" className="border-b border-slate-200">
-        <Container>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-              {isEn ? 'Partner ecosystem' : 'Đối tác & Nền tảng'}
-            </span>
-            <Typography variant="h2" className="mt-4 mb-3 text-text-primary">
-              {isEn ? 'Enterprise Technology Integration' : 'Tích hợp công nghệ cấp doanh nghiệp'}
-            </Typography>
-            <Typography variant="body" className="text-text-secondary">
-              {content.products.intro}
-            </Typography>
+      {/* ════════════════════════════════════════════════════════════
+          5. TECHNOLOGY INTEGRATION — Product Showcase
+          ════════════════════════════════════════════════════════════ */}
+      <Section variant="raised" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-dots">
+        {/* Soft radial glow in the center-right */}
+        <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[400px] h-[400px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+            <div className="max-w-xl">
+              <span className="eyebrow mb-4 block">
+                {isEn ? 'Partner Ecosystem' : 'Đối tác & Nền tảng'}
+              </span>
+              <Typography variant="h2" className="mb-3 text-text-primary leading-tight">
+                {isEn ? 'Enterprise Technology Integration' : 'Tích hợp công nghệ cấp doanh nghiệp'}
+              </Typography>
+              <Typography variant="body" className="text-text-secondary">
+                {content.products.intro}
+              </Typography>
+            </div>
+            <div className="shrink-0">
+              <Button
+                variant="secondary"
+                size="md"
+                href={`/${params.locale}/products`}
+                rightIcon={
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M2 7h10M8 3l4 4-4 4" />
+                  </svg>
+                }
+              >
+                {isEn ? 'Technical specs' : 'Thông số kỹ thuật'}
+              </Button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {productsCopy.map((prod) => (
               <ProductCard
                 key={prod.id}
@@ -305,37 +327,31 @@ export default function Homepage({ params }: PageProps) {
                 title={prod.title}
                 description={prod.description}
                 subgroups={prod.subgroups}
-                inquiryText={isEn ? 'Consultation quote' : 'Yêu cầu tư vấn'}
+                inquiryText={isEn ? 'Request consultation' : 'Yêu cầu tư vấn'}
                 inquiryHref={`/${params.locale}/contact#contact-form`}
               />
             ))}
           </div>
-
-          <div className="text-center">
-            <Button
-              variant="secondary"
-              size="md"
-              href={`/${params.locale}/products`}
-            >
-              {isEn ? 'View technical specs' : 'Xem thông số kỹ thuật'} →
-            </Button>
-          </div>
         </Container>
       </Section>
 
-      {/* 6. Case Studies Section */}
-      <Section variant="default" className="border-b border-slate-200">
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-              Case Studies
+      {/* ════════════════════════════════════════════════════════════
+          6. CASE STUDIES — Editorial Layout
+          ════════════════════════════════════════════════════════════ */}
+      <Section variant="brand-tint" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-grid">
+        {/* Soft radial glow in the top-left */}
+        <div className="absolute top-0 left-0 w-[450px] h-[450px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="relative z-10">
+          <div className="mb-14">
+            <span className="eyebrow mb-4 block">
+              {isEn ? 'Delivered Projects' : 'Dự án đã bàn giao'}
             </span>
-            <Typography variant="h2" className="mt-4 mb-3 text-text-primary">
-              {isEn ? 'Delivered Projects' : 'Một số dự án hạ tầng đã bàn giao'}
+            <Typography variant="h2" className="mb-3 text-text-primary leading-tight max-w-xl">
+              {isEn ? 'Verified case studies' : 'Một số dự án hạ tầng đã bàn giao'}
             </Typography>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {caseStudiesCopy.map((item) => (
               <CaseStudyCard
                 key={item.id}
@@ -353,65 +369,112 @@ export default function Homepage({ params }: PageProps) {
         </Container>
       </Section>
 
-      {/* 7. Delivery Process Workflow */}
-      <Section variant="alternate">
-        <Container>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-              {content.home.processHead.eyebrow}
-            </span>
-            <Typography variant="h2" className="mt-4 mb-3 text-text-primary">
-              {content.home.processHead.title}
-            </Typography>
-            <Typography variant="body" className="text-text-secondary">
-              {content.home.processHead.description}
-            </Typography>
+      {/* ════════════════════════════════════════════════════════════
+          7. DELIVERY PROCESS — Vertical Rail
+          ════════════════════════════════════════════════════════════ */}
+      <Section variant="alternate" className="border-b border-white/[0.09] relative overflow-hidden bg-tech-dots">
+        {/* Soft radial glow in the center-bottom */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container className="relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+            <div className="max-w-xl">
+              <span className="eyebrow mb-4 block">{content.home.processHead.eyebrow}</span>
+              <Typography variant="h2" className="mb-3 text-text-primary leading-tight">
+                {content.home.processHead.title}
+              </Typography>
+              <Typography variant="body" className="text-text-secondary">
+                {content.home.processHead.description}
+              </Typography>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {stepsCopy.map((step) => (
-              <div key={step.num} className="bg-bg-default border border-slate-200 rounded-lg p-5 flex flex-col justify-between hover:border-slate-300 transition-colors">
-                <div>
-                  <span className="font-mono text-sm font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-sm mb-4 inline-block">
-                    {step.num}
-                  </span>
-                  <h4 className="text-sm font-semibold text-text-primary mb-2">
+          {/* Process steps — horizontal numbered rail on desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0">
+            {stepsCopy.map((step, index) => (
+              <div
+                key={step.num}
+                className="relative group flex flex-col"
+              >
+                {/* Connector line (hidden on last item) */}
+                {index < stepsCopy.length - 1 && (
+                  <div
+                    className="hidden lg:block absolute top-7 left-1/2 w-full h-px bg-white/10 z-0"
+                    aria-hidden="true"
+                  />
+                )}
+
+                <div className="relative z-10 bg-[#1C181A] group-hover:bg-[#241E21] border border-white/10 group-hover:border-white/25 rounded-[var(--radius-lg)] p-5 mx-2 flex-1 transition-[background-color,border-color,box-shadow] duration-[var(--motion-medium)] ease-[var(--ease-standard)] group-hover:shadow-md">
+                  {/* Step number */}
+                  <span className="index-chip mb-4 inline-block">{step.num}</span>
+
+                  {/* Step title */}
+                  <h4 className="text-sm font-semibold text-text-primary mb-2 group-hover:text-white transition-colors duration-[var(--motion-base)] leading-snug">
                     {step.title}
                   </h4>
+
+                  {/* Step description */}
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    {step.desc}
+                  </p>
                 </div>
-                <p className="text-xs text-text-secondary leading-relaxed mt-2">
-                  {step.desc}
-                </p>
               </div>
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* 8. Final CTA Section */}
-      <Section variant="brand-tint" className="text-center">
-        <Container className="max-w-3xl mx-auto py-6">
-          <span className="text-xs font-bold text-brand-600 bg-white/80 border border-brand-100 px-3 py-1 rounded-xs uppercase tracking-wider">
-            {isEn ? 'Start Collaboration' : 'Đặt lịch tư vấn'}
+      {/* ════════════════════════════════════════════════════════════
+          8. FINAL CTA — Dark Burgundy CTA Section
+          ════════════════════════════════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-[#30171D] text-[#F7F2F3] border-t border-white/15">
+        {/* Burgundy gradient accent */}
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#8E2938]/30 via-transparent to-transparent pointer-events-none"
+          aria-hidden="true"
+        />
+        {/* Subtle grid on dark surface */}
+        <div
+          className="absolute inset-0 bg-dark-grid opacity-30 pointer-events-none"
+          aria-hidden="true"
+        />
+
+        <Container className="relative z-10 py-20 md:py-24 text-center max-w-3xl mx-auto">
+          <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#F7F2F3] bg-[#8E2938]/40 border border-[#8E2938]/60 px-3.5 py-1.5 rounded-[var(--radius-xs)] mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D46A79] animate-pulse" aria-hidden="true" />
+            {isEn ? 'Start the conversation' : 'Bắt đầu hợp tác'}
           </span>
-          <Typography variant="h2" className="mt-6 mb-4 text-text-primary leading-tight">
-            {isEn ? 'Let\'s align your technology strategy' : 'Hãy đưa giải pháp công nghệ vào vận hành thực tế'}
-          </Typography>
-          <Typography variant="body-large" className="text-text-secondary mb-8 max-w-xl mx-auto">
+
+          <Typography
+            variant="h2"
+            as="h2"
+            className="text-[#F7F2F3] mb-5 leading-tight"
+          >
             {isEn
-              ? 'Schedule a 30-minute consultation with our system architects to outline a roadmap.'
-              : 'Đặt lịch trao đổi 30 phút cùng đội ngũ kỹ sư trưởng của chúng tôi để phác thảo sơ bộ giải pháp hạ tầng.'}
+              ? "Let's align your technology strategy"
+              : 'Hãy đưa giải pháp công nghệ vào vận hành thực tế'}
           </Typography>
+
+          <Typography variant="body-large" className="text-[#C8BEC1] mb-10 max-w-lg mx-auto">
+            {isEn
+              ? 'Schedule a 30-minute consultation with our system architects to outline your roadmap.'
+              : 'Đặt lịch trao đổi 30 phút cùng đội ngũ kỹ sư trưởng để phác thảo sơ bộ giải pháp hạ tầng.'}
+          </Typography>
+
           <Button
             variant="primary"
             size="lg"
-            className="bg-brand-600 hover:bg-brand-700 text-white rounded-md px-8"
             href={`/${params.locale}/contact#contact-form`}
+            className="bg-[#8E2938] hover:bg-[#A73748] border-white/20 shadow-xl"
+            rightIcon={
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            }
           >
             {isEn ? 'Consult with an Expert' : 'Đặt lịch tư vấn ngay'}
           </Button>
         </Container>
-      </Section>
+      </section>
     </div>
   );
 }

@@ -30,91 +30,149 @@ export default function ServicesPage({ params }: PageProps) {
   const content = isEn ? siteContentEn : siteContentVi;
   const services = content.services.list;
 
-  const models = isEn ? [
-    { num: '01', title: 'Strategic Consulting', term: '2–6 weeks · Fixed scope', desc: 'Ideal for initial planning. Delivers a 12–24 month transformation roadmap, architectural blueprints, and viability audits.' },
-    { num: '02', title: 'Fixed-Price Projects', term: '3–9 months · Fixed budget', desc: 'Best when requirements are locked. We define deliverables, timelines, and budgets, absorbing execution risks.' },
-    { num: '03', title: 'Dedicated Engineering Squads', term: '6+ months · Resource billing', desc: 'A custom engineering team operating under your agile Scrum process. Highly scalable depending on backlog velocity.' },
-    { num: '04', title: 'Managed Operations NOC', term: '12–36 month SLA contract', desc: 'Outsource NOC/SOC operations under strict SLA parameters. Covers hardware replacement, patches, and proactive monitoring.' }
-  ] : [
-    { num: '01', title: 'Tư vấn chiến lược', term: '2–6 tuần · Trọn gói', desc: 'Phù hợp khi doanh nghiệp cần khảo sát lộ trình chuyển đổi số 12-24 tháng, thiết kế kiến trúc hệ thống sơ bộ và đánh giá khả thi.' },
-    { num: '02', title: 'Dự án giá cố định', term: '3–9 tháng · Thỏa thuận', desc: 'Phù hợp khi phạm vi công việc đã rõ ràng. Cam kết chặt chẽ tiến độ, chất lượng bàn giao và chi phí dự toán — chúng tôi chịu trách nhiệm thực thi.' },
-    { num: '03', title: 'Đội ngũ chuyên trách', term: '6+ tháng · Thuê tài nguyên', desc: 'Bố trí đội ngũ kỹ sư vận hành riêng biệt dưới sự điều phối trực tiếp của khách hàng theo chu kỳ Scrum. Dễ dàng co giãn nhân sự.' },
-    { num: '04', title: 'Vận hành ủy thác NOC/SOC', term: 'Hợp đồng 12–36 tháng theo SLA', desc: 'Sao Mộc chịu trách nhiệm giám sát NOC/SOC 24/7, ứng phó sự cố khẩn cấp, vá bảo mật phần mềm và bảo trì thiết bị onsite.' }
-  ];
+  /* ── Engagement models ── */
+  const models = isEn
+    ? [
+        {
+          num: '01',
+          title: 'Strategic Consulting',
+          term: '2–6 weeks · Fixed scope',
+          desc: 'Ideal for initial planning. Delivers a 12–24 month transformation roadmap, architectural blueprints, and viability audits.',
+        },
+        {
+          num: '02',
+          title: 'Fixed-Price Projects',
+          term: '3–9 months · Fixed budget',
+          desc: 'Best when requirements are locked. We define deliverables, timelines, and budgets, absorbing execution risks.',
+        },
+        {
+          num: '03',
+          title: 'Dedicated Engineering Squads',
+          term: '6+ months · Resource billing',
+          desc: 'A custom engineering team operating under your agile Scrum process. Highly scalable depending on backlog velocity.',
+        },
+        {
+          num: '04',
+          title: 'Managed Operations NOC',
+          term: '12–36 month SLA contract',
+          desc: 'Outsource NOC/SOC operations under strict SLA parameters. Covers hardware replacement, patches, and proactive monitoring.',
+        },
+      ]
+    : [
+        {
+          num: '01',
+          title: 'Tư vấn chiến lược',
+          term: '2–6 tuần · Trọn gói',
+          desc: 'Phù hợp khi doanh nghiệp cần khảo sát lộ trình chuyển đổi số 12-24 tháng, thiết kế kiến trúc hệ thống sơ bộ và đánh giá khả thi.',
+        },
+        {
+          num: '02',
+          title: 'Dự án giá cố định',
+          term: '3–9 tháng · Thỏa thuận',
+          desc: 'Phù hợp khi phạm vi công việc đã rõ ràng. Cam kết chặt chẽ tiến độ, chất lượng bàn giao và chi phí dự toán — chúng tôi chịu trách nhiệm thực thi.',
+        },
+        {
+          num: '03',
+          title: 'Đội ngũ chuyên trách',
+          term: '6+ tháng · Thuê tài nguyên',
+          desc: 'Bố trí đội ngũ kỹ sư vận hành riêng biệt dưới sự điều phối trực tiếp của khách hàng theo chu kỳ Scrum. Dễ dàng co giãn nhân sự.',
+        },
+        {
+          num: '04',
+          title: 'Vận hành ủy thác NOC/SOC',
+          term: 'Hợp đồng 12–36 tháng theo SLA',
+          desc: 'Sao Mộc chịu trách nhiệm giám sát NOC/SOC 24/7, ứng phó sự cố khẩn cấp, vá bảo mật phần mềm và bảo trì thiết bị onsite.',
+        },
+      ];
 
   return (
-    <div className="flex flex-col w-full">
-      {/* Page Header */}
-      <Section variant="alternate" className="py-12 border-b border-slate-200 bg-white">
-        <Container>
-          <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
-            {isEn ? 'Lifecycle Services' : 'Dịch vụ trọn vòng đời'}
-          </span>
-          <Typography variant="h1" className="mt-4 mb-3 text-text-primary">
-            {isEn ? 'Core Technology Operations' : 'Bốn trục lực hấp dẫn kéo doanh nghiệp tiến xa'}
-          </Typography>
-          <Typography variant="body-large" className="text-text-secondary max-w-3xl mb-0">
-            {isEn
-              ? 'We design, implement, and secure enterprise software and core network systems with absolute operational rigor.'
-              : 'Chúng tôi thiết kế và vận hành các giải pháp công nghệ trọn vòng đời — từ tư vấn chiến lược, triển khai phát triển cho đến vận hành liên tục.'}
-          </Typography>
-        </Container>
-      </Section>
+    <div className="flex flex-col w-full bg-[#100E0F] text-text-primary">
 
-      {/* Strategic Services Detailed Section list */}
-      <Section variant="default" className="border-b border-slate-200 bg-tech-grid relative">
-        <Container className="space-y-16 relative z-10">
+      {/* ── Page Header ──────────────────────────────────────── */}
+      <section className="py-14 md:py-16 border-b border-white/[0.09] bg-[#100E0F] bg-tech-dots relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-burgundy-glow pointer-events-none" aria-hidden="true" />
+        <Container>
+          <div className="max-w-3xl">
+            <span className="eyebrow mb-5 block">
+              {isEn ? 'Lifecycle Services' : 'Dịch vụ trọn vòng đời'}
+            </span>
+            <Typography variant="h1" className="mb-4 text-text-primary leading-tight">
+              {isEn ? 'Core Technology Operations' : 'Bốn trục lực hấp dẫn kéo doanh nghiệp tiến xa'}
+            </Typography>
+            <Typography variant="body-large" className="text-text-secondary max-w-2xl">
+              {isEn
+                ? 'We design, implement, and secure enterprise software and core network systems with absolute operational rigor.'
+                : 'Chúng tôi thiết kế và vận hành các giải pháp công nghệ trọn vòng đời — từ tư vấn chiến lược, triển khai phát triển cho đến vận hành liên tục.'}
+            </Typography>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Service Matrix ─────────────────────────────────────── */}
+      <Section variant="alternate" className="border-b border-white/[0.09] bg-editorial-grid relative">
+        <Container className="space-y-0 relative z-10">
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-12 border-b border-slate-200/80 last:border-b-0 last:pb-0 group opacity-0 animate-fade-up`}
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group grid grid-cols-1 lg:grid-cols-12 gap-8 items-start py-12 ${
+                index < services.length - 1 ? 'border-b border-white/[0.08]' : ''
+              } opacity-0 animate-fade-up`}
+              style={{ animationDelay: `${index * 80}ms` }}
             >
-              {/* Left Column: Title & Problem statement */}
-              <div className="lg:col-span-4 space-y-3 lg:border-l-2 lg:border-slate-100 lg:pl-4 lg:group-hover:border-brand-500 transition-colors duration-[var(--motion-medium)]">
-                <span className="font-mono text-xs font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-xs inline-block">
-                  {service.num}
-                </span>
-                <Typography variant="h2" className="text-text-primary leading-tight mt-1 group-hover:text-brand-600 transition-colors duration-[var(--motion-base)]">
+              {/* Left: index + title + problem */}
+              <div className="lg:col-span-4 space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="index-chip">{service.num}</span>
+                  {/* Hover border accent indicator */}
+                  <span
+                    className="flex-1 h-px bg-white/10 group-hover:bg-[#8E2938] transition-colors duration-[var(--motion-medium)]"
+                    aria-hidden="true"
+                  />
+                </div>
+                <Typography
+                  variant="h2"
+                  as="h2"
+                  className="text-text-primary leading-tight group-hover:text-white transition-colors duration-[var(--motion-base)]"
+                >
                   {service.title}
                 </Typography>
-                <div className="bg-slate-50 border border-slate-200 rounded p-4 text-xs shadow-2xs">
-                  <span className="font-semibold text-slate-700 block mb-1">
-                    {isEn ? 'Problem we solve:' : 'Bài toán giải quyết:'}
+                {/* Problem statement panel */}
+                <div className="bg-[#171315] border border-white/10 rounded-[var(--radius-md)] p-4 text-xs">
+                  <span className="block font-semibold text-text-primary mb-1.5">
+                    {isEn ? 'Problem statement:' : 'Bài toán giải quyết:'}
                   </span>
-                  <p className="text-text-secondary leading-relaxed mb-0">{service.problem}</p>
+                  <p className="text-text-secondary leading-relaxed">{service.problem}</p>
                 </div>
               </div>
 
-              {/* Middle Column: Scope & Deliverables */}
-              <div className="lg:col-span-5 space-y-4">
+              {/* Middle: scope + deliverables */}
+              <div className="lg:col-span-5 space-y-5">
                 <Typography variant="body-small" className="text-text-secondary leading-relaxed">
                   {service.description}
                 </Typography>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <span className="text-xs font-semibold text-text-primary block mb-2">
-                      {isEn ? 'Scope of Service' : 'Phạm vi triển khai'}
+                    <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted block mb-3">
+                      {isEn ? 'Scope of service' : 'Phạm vi triển khai'}
                     </span>
-                    <ul className="space-y-1.5 text-xs text-text-secondary">
+                    <ul className="space-y-2 text-xs text-text-secondary">
                       {service.scope.map((s) => (
-                        <li key={s} className="flex items-start gap-1.5">
-                          <span className="text-brand-500 mt-0.5 shrink-0">▪</span>
+                        <li key={s} className="flex items-start gap-2">
+                          <span className="text-[#D46A79] mt-[2px] shrink-0 leading-none" aria-hidden="true">▪</span>
                           <span>{s}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-
                   <div>
-                    <span className="text-xs font-semibold text-text-primary block mb-2">
-                      {isEn ? 'Key Deliverables' : 'Bàn giao chính'}
+                    <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-text-muted block mb-3">
+                      {isEn ? 'Key deliverables' : 'Bàn giao chính'}
                     </span>
-                    <ul className="space-y-1.5 text-xs text-text-secondary">
+                    <ul className="space-y-2 text-xs text-text-secondary">
                       {service.deliverables.map((d) => (
-                        <li key={d} className="flex items-start gap-1.5">
-                          <span className="text-brand-500 mt-0.5 shrink-0">▪</span>
+                        <li key={d} className="flex items-start gap-2">
+                          <span className="text-[#D46A79] mt-[2px] shrink-0 leading-none" aria-hidden="true">▪</span>
                           <span>{d}</span>
                         </li>
                       ))}
@@ -123,69 +181,69 @@ export default function ServicesPage({ params }: PageProps) {
                 </div>
               </div>
 
-              {/* Right Column: Tags & CTA */}
-              <div className="lg:col-span-3 flex flex-col justify-between h-full space-y-6 lg:items-end">
+              {/* Right: tags + CTA */}
+              <div className="lg:col-span-3 flex flex-col justify-between gap-6 lg:items-end">
                 <div className="flex flex-wrap lg:justify-end gap-1.5">
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] font-semibold bg-white text-slate-600 border border-slate-200 px-2 py-0.5 rounded-sm"
+                      className="text-[10px] font-semibold font-mono bg-[#171315] text-text-muted border border-white/10 px-2 py-0.5 rounded-[var(--radius-xs)] group-hover:border-white/20 group-hover:text-text-secondary transition-colors duration-[var(--motion-fast)]"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-
-                <div className="lg:mt-auto w-full">
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-md transition-all"
-                    href={`/${params.locale}/contact#contact-form`}
-                  >
-                    {isEn ? 'Inquire service' : 'Yêu cầu tư vấn'}
-                  </Button>
-                </div>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  className="w-full lg:w-auto"
+                  href={`/${params.locale}/contact#contact-form`}
+                >
+                  {isEn ? 'Inquire service' : 'Yêu cầu tư vấn'}
+                </Button>
               </div>
             </div>
           ))}
         </Container>
       </Section>
 
-      {/* Engagement cooperation models */}
-      <Section variant="alternate">
+      {/* ── Engagement Models ──────────────────────────────────── */}
+      <Section variant="subtle">
         <Container>
-          <div className="text-center max-w-2xl mx-auto mb-16 opacity-0 animate-fade-up">
-            <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-xs uppercase tracking-wider">
+          <div className="mb-14">
+            <span className="eyebrow mb-4 block">
               {isEn ? 'Engagement Models' : 'Mô hình hợp tác'}
             </span>
-            <Typography variant="h2" className="mt-4 mb-2 text-text-primary">
+            <Typography variant="h2" className="mb-3 text-text-primary leading-tight max-w-xl">
               {isEn ? 'Four ways we collaborate' : 'Bốn phương thức để cùng nhau bắt đầu'}
             </Typography>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {models.map((model, idx) => (
-              <div 
-                key={model.num} 
-                className="group relative bg-white border border-slate-200 hover:border-brand-200 rounded-lg p-5 flex flex-col justify-between hover:shadow-md transition-all duration-[var(--motion-medium)] ease-[var(--ease-standard)] hover:-translate-y-0.5 opacity-0 animate-fade-up"
-                style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+              <div
+                key={model.num}
+                className="group relative bg-[#1C181A] border border-white/10 hover:border-white/25 rounded-[var(--radius-lg)] p-5 flex flex-col hover-lift opacity-0 animate-fade-up"
+                style={{ animationDelay: `${idx * 80}ms` }}
               >
-                {/* Subtle corner marker */}
-                <span className="absolute top-2 right-2 font-mono text-[8px] text-slate-300 group-hover:text-brand-300 select-none" aria-hidden="true">+</span>
-                
-                <div>
-                  <span className="font-mono text-xs font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-xs mb-4 inline-block">
-                    {model.num}
-                  </span>
-                  <h4 className="text-sm font-semibold text-text-primary mb-1 group-hover:text-brand-600 transition-colors">
-                    {model.title}
-                  </h4>
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide block mb-3">
-                    {model.term}
-                  </span>
-                </div>
-                <p className="text-xs text-text-secondary leading-relaxed mt-2">
+                {/* Top corner mark */}
+                <span className="absolute top-3 right-3 font-mono text-[8px] text-text-muted group-hover:text-[#D46A79] transition-colors duration-[var(--motion-base)] select-none" aria-hidden="true">+</span>
+
+                {/* Index */}
+                <span className="index-chip mb-4 inline-block w-fit">{model.num}</span>
+
+                {/* Title */}
+                <h4 className="text-sm font-semibold text-text-primary mb-1 group-hover:text-white transition-colors duration-[var(--motion-base)] leading-snug">
+                  {model.title}
+                </h4>
+
+                {/* Term */}
+                <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-text-muted block mb-3">
+                  {model.term}
+                </span>
+
+                {/* Description */}
+                <p className="text-xs text-text-secondary leading-relaxed mt-auto">
                   {model.desc}
                 </p>
               </div>

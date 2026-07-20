@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from './link';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'link';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
@@ -29,34 +29,58 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     },
     ref
   ) => {
-    // Standard layout size definitions
+    // Size definitions — Swiss Modernism grid-aligned
     const sizeClasses = {
-      sm: 'h-8 px-3 text-xs gap-1.5 rounded-sm',
-      md: 'h-10 px-4 text-sm gap-2 rounded-md',
-      lg: 'h-11 px-5 text-base gap-2.5 rounded-lg',
+      sm: 'h-8 px-3.5 text-xs gap-1.5',
+      md: 'h-10 px-5 text-sm gap-2',
+      lg: 'h-12 px-6 text-[0.9375rem] gap-2.5',
     };
 
-    // Brand color variants (Primary Burgundy, Secondary Slate, Ghost, Link)
+    // Variant classes — typographically precise, Jupiter Dark Precision identity
     const variantClasses = {
+      // Deep Burgundy CTA — primary conversion action
       primary:
-        'bg-brand-600 hover:bg-brand-700 text-white shadow-sm font-medium border border-transparent focus-visible:ring-brand-500 active:scale-[0.98] hover:-translate-y-0.5',
+        'bg-[#8E2938] hover:bg-[#A73748] active:bg-[#70202C] text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-white/10 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] focus-visible:shadow-[var(--shadow-brand)] active:scale-[0.98] hover:-translate-y-px',
+
+      // Dark neutral secondary — equal visual weight
       secondary:
-        'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs font-medium focus-visible:ring-slate-400 active:scale-[0.98] hover:-translate-y-0.5',
+        'bg-[#1C181A] hover:bg-[#241E21] active:bg-[#171315] text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-white/15 hover:border-white/30 shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)] active:scale-[0.98] hover:-translate-y-px',
+
+      // Outline — transparent BG with warm border
+      outline:
+        'bg-transparent hover:bg-white/[0.06] active:bg-white/[0.12] text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-white/20 hover:border-white/40 active:scale-[0.98]',
+
+      // Ghost — no border, minimal presence
       ghost:
-        'hover:bg-slate-100 text-slate-700 font-medium focus-visible:ring-slate-400 active:scale-[0.98]',
+        'bg-transparent hover:bg-white/[0.06] active:bg-white/[0.12] text-[#C8BEC1] hover:text-[#F7F2F3] font-semibold rounded-[var(--radius-sm)] border border-transparent active:scale-[0.98]',
+
+      // Link — inline text style
       link:
-        'text-brand-600 hover:text-brand-700 underline-offset-4 hover:underline font-medium p-0 h-auto focus-visible:ring-brand-500',
+        'text-[#D46A79] hover:text-[#F7F2F3] font-semibold underline-offset-4 hover:underline bg-transparent border-transparent h-auto px-0 py-0',
     };
 
     const isBtnDisabled = disabled || isLoading;
-    const combinedClassName = `inline-flex items-center justify-center transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] cursor-pointer select-none focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none group ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+
+    const baseClasses = [
+      'inline-flex items-center justify-center',
+      'select-none cursor-pointer',
+      'transition-[background-color,border-color,box-shadow,transform,opacity]',
+      'duration-[var(--motion-base)]',
+      'ease-[var(--ease-standard)]',
+      'focus:outline-none',
+      'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
+      'group',
+      sizeClasses[size],
+      variantClasses[variant],
+      className,
+    ].join(' ');
 
     const content = (
       <>
         {/* Loading Spinner */}
         {isLoading && (
           <svg
-            className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+            className="animate-spin -ml-0.5 h-4 w-4 text-current shrink-0"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -78,9 +102,12 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
           </svg>
         )}
 
-        {/* Prefix Icon */}
+        {/* Left Icon — subtle movement on hover */}
         {!isLoading && leftIcon && (
-          <span className="inline-flex shrink-0 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:-translate-x-0.5">
+          <span
+            className="inline-flex shrink-0 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:-translate-x-0.5"
+            aria-hidden="true"
+          >
             {leftIcon}
           </span>
         )}
@@ -88,23 +115,26 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
         {/* Button Text */}
         <span className="truncate">{children}</span>
 
-        {/* Suffix Icon */}
+        {/* Right Icon — arrow moves right on hover */}
         {!isLoading && rightIcon && (
-          <span className="inline-flex shrink-0 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:translate-x-0.5">
+          <span
+            className="inline-flex shrink-0 transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover:translate-x-0.5"
+            aria-hidden="true"
+          >
             {rightIcon}
           </span>
         )}
       </>
     );
 
-    // Render as custom Link if href is provided (for Server Component safety)
+    // Render as Link when href is provided (Server Component-safe)
     if (href) {
       return (
         <Link
-          ref={ref as any}
+          ref={ref as React.Ref<HTMLAnchorElement>}
           href={href}
-          className={combinedClassName}
-          {...(props as any)}
+          className={baseClasses}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {content}
         </Link>
@@ -113,11 +143,11 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
 
     return (
       <button
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLButtonElement>}
         type={type}
         disabled={isBtnDisabled}
-        className={combinedClassName}
-        {...props}
+        className={baseClasses}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}
       </button>

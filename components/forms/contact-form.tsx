@@ -109,9 +109,9 @@ export default function ContactForm({ locale }: ContactFormProps) {
   };
 
   return (
-    <div className="relative overflow-hidden bg-white border border-slate-200 border-t-[3px] border-t-brand-600 rounded-lg p-6 md:p-8 shadow-sm">
+    <div className="relative overflow-hidden bg-[#1C181A] border border-white/10 border-t-[3px] border-t-[#8E2938] rounded-lg p-6 md:p-8 shadow-xl">
       {/* Subtle tech grid inside form panel */}
-      <div className="absolute inset-0 bg-tech-grid opacity-[0.03] pointer-events-none" />
+      <div className="absolute inset-0 bg-tech-grid opacity-[0.05] pointer-events-none" />
 
       <h3 className="relative z-10 text-xl font-bold text-text-primary mb-1">{text.formTitle}</h3>
       <p className="relative z-10 text-sm text-text-secondary mb-6">{text.formSub}</p>
@@ -119,7 +119,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
       {submitStatus === 'success' && (
         <div
           role="alert"
-          className="relative z-10 mb-6 p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-sm text-emerald-800 animate-scale-in"
+          className="relative z-10 mb-6 p-4 rounded-lg bg-emerald-950/70 border border-emerald-700/60 text-sm text-emerald-300 animate-scale-in"
         >
           {text.successMsg}
         </div>
@@ -128,7 +128,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
       {submitStatus === 'error' && (
         <div
           role="alert"
-          className="relative z-10 mb-6 p-4 rounded-lg bg-rose-50 border border-rose-200 text-sm text-rose-800 animate-scale-in"
+          className="relative z-10 mb-6 p-4 rounded-lg bg-rose-950/70 border border-rose-700/60 text-sm text-rose-300 animate-scale-in"
         >
           {text.errorMsg}
         </div>
@@ -139,7 +139,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
             <label htmlFor="form-name" className="text-xs font-semibold text-text-primary">
-              {text.labelName} <span className="text-brand-600" aria-hidden="true">*</span>
+              {text.labelName} <span className="text-[#D46A79]" aria-hidden="true">*</span>
             </label>
             <input
               id="form-name"
@@ -147,14 +147,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
               required
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? 'error-name' : undefined}
-              className={`h-10.5 px-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
-                errors.name ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
+              className={`h-10.5 px-3 text-sm rounded-md border bg-[#171315] text-[#F7F2F3] focus:outline-none focus:border-[#8E2938] focus:ring-2 focus:ring-[#D46A79]/30 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+                errors.name ? 'border-rose-500 focus:ring-rose-500/20' : 'border-white/15 hover:border-white/25'
               }`}
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
             {errors.name && (
-              <span id="error-name" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
+              <span id="error-name" role="alert" className="text-[11px] font-semibold text-rose-400 mt-0.5 animate-fade-in">
                 {errors.name}
               </span>
             )}
@@ -162,7 +162,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
 
           <div className="flex flex-col gap-1.5">
             <label htmlFor="form-company" className="text-xs font-semibold text-text-primary">
-              {text.labelCompany} <span className="text-brand-600" aria-hidden="true">*</span>
+              {text.labelCompany} <span className="text-[#D46A79]" aria-hidden="true">*</span>
             </label>
             <input
               id="form-company"
@@ -170,14 +170,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
               required
               aria-invalid={!!errors.company}
               aria-describedby={errors.company ? 'error-company' : undefined}
-              className={`h-10.5 px-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
-                errors.company ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
+              className={`h-10.5 px-3 text-sm rounded-md border bg-[#171315] text-[#F7F2F3] focus:outline-none focus:border-[#8E2938] focus:ring-2 focus:ring-[#D46A79]/30 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+                errors.company ? 'border-rose-500 focus:ring-rose-500/20' : 'border-white/15 hover:border-white/25'
               }`}
               value={formData.company}
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             />
             {errors.company && (
-              <span id="error-company" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
+              <span id="error-company" role="alert" className="text-[11px] font-semibold text-rose-400 mt-0.5 animate-fade-in">
                 {errors.company}
               </span>
             )}
@@ -188,7 +188,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
             <label htmlFor="form-email" className="text-xs font-semibold text-text-primary">
-              {text.labelEmail} <span className="text-brand-600" aria-hidden="true">*</span>
+              {text.labelEmail} <span className="text-[#D46A79]" aria-hidden="true">*</span>
             </label>
             <input
               id="form-email"
@@ -196,14 +196,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
               required
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? 'error-email' : undefined}
-              className={`h-10.5 px-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
-                errors.email ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
+              className={`h-10.5 px-3 text-sm rounded-md border bg-[#171315] text-[#F7F2F3] focus:outline-none focus:border-[#8E2938] focus:ring-2 focus:ring-[#D46A79]/30 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+                errors.email ? 'border-rose-500 focus:ring-rose-500/20' : 'border-white/15 hover:border-white/25'
               }`}
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
             {errors.email && (
-              <span id="error-email" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
+              <span id="error-email" role="alert" className="text-[11px] font-semibold text-rose-400 mt-0.5 animate-fade-in">
                 {errors.email}
               </span>
             )}
@@ -216,7 +216,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             <input
               id="form-phone"
               type="tel"
-              className="h-10.5 px-3 text-sm rounded-md border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
+              className="h-10.5 px-3 text-sm rounded-md border border-white/15 hover:border-white/25 bg-[#171315] text-[#F7F2F3] focus:outline-none focus:border-[#8E2938] focus:ring-2 focus:ring-[#D46A79]/30 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             />
@@ -231,19 +231,19 @@ export default function ContactForm({ locale }: ContactFormProps) {
             </label>
             <select
               id="form-service"
-              className="h-10.5 px-3 text-sm rounded-md border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
+              className="h-10.5 px-3 text-sm rounded-md border border-white/15 hover:border-white/25 bg-[#171315] text-[#F7F2F3] focus:outline-none focus:border-[#8E2938] focus:ring-2 focus:ring-[#D46A79]/30 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
               value={formData.service}
               onChange={(e) => setFormData({ ...formData, service: e.target.value })}
             >
-              <option value="Giải pháp công nghệ">{locale === 'vi' ? 'Giải pháp công nghệ' : 'Technology Solutions'}</option>
-              <option value="Chuyển đổi số">{locale === 'vi' ? 'Chuyển đổi số' : 'Digital Transformation'}</option>
-              <option value="Dịch vụ AI">{locale === 'vi' ? 'Dịch vụ AI' : 'Applied AI Services'}</option>
-              <option value="Tích hợp &amp; Cloud">{locale === 'vi' ? 'Tích hợp &amp; Cloud' : 'Integration &amp; Cloud'}</option>
-              <option value="Hạ tầng mạng &amp; Bảo mật">{locale === 'vi' ? 'Hạ tầng mạng &amp; Bảo mật' : 'Networking &amp; Security'}</option>
-              <option value="Trung tâm dữ liệu">{locale === 'vi' ? 'Trung tâm dữ liệu' : 'Modern Data Center'}</option>
-              <option value="An ninh mạng (SOC)">{locale === 'vi' ? 'An ninh mạng (SOC)' : 'Cybersecurity (SOC)'}</option>
-              <option value="Vận hành &amp; Bảo trì">{locale === 'vi' ? 'Vận hành &amp; Bảo trì' : 'Operations &amp; Maintenance'}</option>
-              <option value="Tư vấn / chưa rõ">{locale === 'vi' ? 'Tư vấn / chưa rõ' : 'General Consulting'}</option>
+              <option value="Giải pháp công nghệ" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Giải pháp công nghệ' : 'Technology Solutions'}</option>
+              <option value="Chuyển đổi số" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Chuyển đổi số' : 'Digital Transformation'}</option>
+              <option value="Dịch vụ AI" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Dịch vụ AI' : 'Applied AI Services'}</option>
+              <option value="Tích hợp &amp; Cloud" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Tích hợp &amp; Cloud' : 'Integration &amp; Cloud'}</option>
+              <option value="Hạ tầng mạng &amp; Bảo mật" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Hạ tầng mạng &amp; Bảo mật' : 'Networking &amp; Security'}</option>
+              <option value="Trung tâm dữ liệu" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Trung tâm dữ liệu' : 'Modern Data Center'}</option>
+              <option value="An ninh mạng (SOC)" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'An ninh mạng (SOC)' : 'Cybersecurity (SOC)'}</option>
+              <option value="Vận hành &amp; Bảo trì" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Vận hành &amp; Bảo trì' : 'Operations &amp; Maintenance'}</option>
+              <option value="Tư vấn / chưa rõ" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Tư vấn / chưa rõ' : 'General Consulting'}</option>
             </select>
           </div>
 
@@ -253,15 +253,15 @@ export default function ContactForm({ locale }: ContactFormProps) {
             </label>
             <select
               id="form-budget"
-              className="h-10.5 px-3 text-sm rounded-md border border-slate-300 hover:border-slate-400 bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
+              className="h-10.5 px-3 text-sm rounded-md border border-white/15 hover:border-white/25 bg-[#171315] text-[#F7F2F3] focus:outline-none focus:border-[#8E2938] focus:ring-2 focus:ring-[#D46A79]/30 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)]"
               value={formData.budget}
               onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
             >
-              <option value="Dưới 500 triệu">{locale === 'vi' ? 'Dưới 500 triệu' : 'Under 500M VND'}</option>
-              <option value="500 triệu – 2 tỷ">{locale === 'vi' ? '500 triệu – 2 tỷ' : '500M – 2B VND'}</option>
-              <option value="2 – 10 tỷ">{locale === 'vi' ? '2 – 10 tỷ' : '2B – 10B VND'}</option>
-              <option value="Trên 10 tỷ">{locale === 'vi' ? 'Trên 10 tỷ' : 'Over 10B VND'}</option>
-              <option value="Chưa xác định">{locale === 'vi' ? 'Chưa xác định' : 'Undecided'}</option>
+              <option value="Dưới 500 triệu" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Dưới 500 triệu' : 'Under 500M VND'}</option>
+              <option value="500 triệu – 2 tỷ" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? '500 triệu – 2 tỷ' : '500M – 2B VND'}</option>
+              <option value="2 – 10 tỷ" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? '2 – 10 tỷ' : '2B – 10B VND'}</option>
+              <option value="Trên 10 tỷ" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Trên 10 tỷ' : 'Over 10B VND'}</option>
+              <option value="Chưa xác định" className="bg-[#1C181A] text-[#F7F2F3]">{locale === 'vi' ? 'Chưa xác định' : 'Undecided'}</option>
             </select>
           </div>
         </div>
@@ -269,7 +269,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
         {/* Row 4: Message */}
         <div className="flex flex-col gap-1.5">
           <label htmlFor="form-message" className="text-xs font-semibold text-text-primary">
-            {text.labelMessage} <span className="text-brand-600" aria-hidden="true">*</span>
+            {text.labelMessage} <span className="text-[#D46A79]" aria-hidden="true">*</span>
           </label>
           <textarea
             id="form-message"
@@ -278,14 +278,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
             placeholder={text.placeholderMessage}
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? 'error-message' : undefined}
-            className={`p-3 text-sm rounded-md border bg-white text-text-primary focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
-              errors.message ? 'border-rose-500 focus:ring-rose-500/10' : 'border-slate-300 hover:border-slate-400'
+            className={`p-3 text-sm rounded-md border bg-[#171315] text-[#F7F2F3] placeholder:text-text-muted focus:outline-none focus:border-[#8E2938] focus:ring-2 focus:ring-[#D46A79]/30 transition-all duration-[var(--motion-base)] ease-[var(--ease-standard)] ${
+              errors.message ? 'border-rose-500 focus:ring-rose-500/20' : 'border-white/15 hover:border-white/25'
             }`}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           />
           {errors.message && (
-            <span id="error-message" role="alert" className="text-[11px] font-semibold text-rose-600 mt-0.5 animate-fade-in">
+            <span id="error-message" role="alert" className="text-[11px] font-semibold text-rose-400 mt-0.5 animate-fade-in">
               {errors.message}
             </span>
           )}
@@ -297,7 +297,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             <input
               id="form-consent"
               type="checkbox"
-              className="mt-1 h-4 w-4 rounded-xs border-slate-300 text-brand-600 focus:ring-brand-500 cursor-pointer transition-colors duration-[var(--motion-base)]"
+              className="mt-1 h-4 w-4 rounded-xs border-white/20 bg-[#171315] text-[#8E2938] focus:ring-[#D46A79] cursor-pointer transition-colors duration-[var(--motion-base)]"
               checked={formData.consent}
               aria-invalid={!!errors.consent}
               aria-describedby={errors.consent ? 'error-consent' : undefined}
@@ -308,7 +308,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             </label>
           </div>
           {errors.consent && (
-            <span id="error-consent" role="alert" className="text-[11px] font-semibold text-rose-600 animate-fade-in">
+            <span id="error-consent" role="alert" className="text-[11px] font-semibold text-rose-400 animate-fade-in">
               {errors.consent}
             </span>
           )}
@@ -319,7 +319,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
           <Button
             type="submit"
             isLoading={isSubmitting}
-            className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-md h-11 transition-all"
+            className="w-full bg-[#8E2938] hover:bg-[#A73748] text-[#F7F2F3] rounded-md h-11 transition-all"
           >
             {text.btnSubmit}
           </Button>
